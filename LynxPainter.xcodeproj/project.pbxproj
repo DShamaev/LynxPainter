@@ -1,0 +1,392 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E12578511642686C00119C0E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578501642686C00119C0E /* UIKit.framework */; };
+		E12578531642686C00119C0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578521642686C00119C0E /* Foundation.framework */; };
+		E12578551642686C00119C0E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578541642686C00119C0E /* CoreGraphics.framework */; };
+		E125785B1642686C00119C0E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E12578591642686C00119C0E /* InfoPlist.strings */; };
+		E125785D1642686C00119C0E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E125785C1642686C00119C0E /* main.m */; };
+		E12578611642686C00119C0E /* LPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E12578601642686C00119C0E /* LPAppDelegate.m */; };
+		E12578631642686C00119C0E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E12578621642686C00119C0E /* Default.png */; };
+		E12578651642686C00119C0E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E12578641642686C00119C0E /* Default@2x.png */; };
+		E12578671642686C00119C0E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E12578661642686C00119C0E /* Default-568h@2x.png */; };
+		E1257890164271E100119C0E /* LPHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E125788E164271E100119C0E /* LPHomeViewController.m */; };
+		E1257891164271E100119C0E /* LPHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E125788F164271E100119C0E /* LPHomeViewController.xib */; };
+		E1257894164271ED00119C0E /* LPNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1257893164271ED00119C0E /* LPNavigationController.m */; };
+		E12578A11642790500119C0E /* LPOpenedProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E125789F1642790500119C0E /* LPOpenedProjectViewController.m */; };
+		E12578A21642790500119C0E /* LPOpenedProjectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E12578A01642790500119C0E /* LPOpenedProjectViewController.xib */; };
+		E12578AF16429B3200119C0E /* LPSmartLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E12578AE16429B3200119C0E /* LPSmartLayer.m */; };
+		E12578B116429F3C00119C0E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578B016429F3C00119C0E /* QuartzCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E125784C1642686C00119C0E /* LynxPainter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LynxPainter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E12578501642686C00119C0E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E12578521642686C00119C0E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E12578541642686C00119C0E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E12578581642686C00119C0E /* LynxPainter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LynxPainter-Info.plist"; sourceTree = "<group>"; };
+		E125785A1642686C00119C0E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E125785C1642686C00119C0E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E125785E1642686C00119C0E /* LynxPainter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LynxPainter-Prefix.pch"; sourceTree = "<group>"; };
+		E125785F1642686C00119C0E /* LPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPAppDelegate.h; sourceTree = "<group>"; };
+		E12578601642686C00119C0E /* LPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPAppDelegate.m; sourceTree = "<group>"; };
+		E12578621642686C00119C0E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		E12578641642686C00119C0E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		E12578661642686C00119C0E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		E125788D164271E100119C0E /* LPHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPHomeViewController.h; path = Classes/ViewControllers/Home/LPHomeViewController.h; sourceTree = "<group>"; };
+		E125788E164271E100119C0E /* LPHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPHomeViewController.m; path = Classes/ViewControllers/Home/LPHomeViewController.m; sourceTree = "<group>"; };
+		E125788F164271E100119C0E /* LPHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPHomeViewController.xib; path = Classes/ViewControllers/Home/LPHomeViewController.xib; sourceTree = "<group>"; };
+		E1257892164271ED00119C0E /* LPNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPNavigationController.h; path = Classes/ViewControllers/NavigationController/LPNavigationController.h; sourceTree = "<group>"; };
+		E1257893164271ED00119C0E /* LPNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPNavigationController.m; path = Classes/ViewControllers/NavigationController/LPNavigationController.m; sourceTree = "<group>"; };
+		E125789E1642790500119C0E /* LPOpenedProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPOpenedProjectViewController.h; path = Classes/ViewControllers/OpenedProject/LPOpenedProjectViewController.h; sourceTree = "<group>"; };
+		E125789F1642790500119C0E /* LPOpenedProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPOpenedProjectViewController.m; path = Classes/ViewControllers/OpenedProject/LPOpenedProjectViewController.m; sourceTree = "<group>"; };
+		E12578A01642790500119C0E /* LPOpenedProjectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPOpenedProjectViewController.xib; path = Classes/ViewControllers/OpenedProject/LPOpenedProjectViewController.xib; sourceTree = "<group>"; };
+		E12578AD16429B3200119C0E /* LPSmartLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPSmartLayer.h; path = Classes/Model/SmartLayer/LPSmartLayer.h; sourceTree = "<group>"; };
+		E12578AE16429B3200119C0E /* LPSmartLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPSmartLayer.m; path = Classes/Model/SmartLayer/LPSmartLayer.m; sourceTree = "<group>"; };
+		E12578B016429F3C00119C0E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E12578491642686C00119C0E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E12578B116429F3C00119C0E /* QuartzCore.framework in Frameworks */,
+				E12578511642686C00119C0E /* UIKit.framework in Frameworks */,
+				E12578531642686C00119C0E /* Foundation.framework in Frameworks */,
+				E12578551642686C00119C0E /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E12578411642686C00119C0E = {
+			isa = PBXGroup;
+			children = (
+				E12578561642686C00119C0E /* LynxPainter */,
+				E125784F1642686C00119C0E /* Frameworks */,
+				E125784D1642686C00119C0E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E125784D1642686C00119C0E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E125784C1642686C00119C0E /* LynxPainter.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E125784F1642686C00119C0E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E12578B016429F3C00119C0E /* QuartzCore.framework */,
+				E12578501642686C00119C0E /* UIKit.framework */,
+				E12578521642686C00119C0E /* Foundation.framework */,
+				E12578541642686C00119C0E /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E12578561642686C00119C0E /* LynxPainter */ = {
+			isa = PBXGroup;
+			children = (
+				E125786D1642687E00119C0E /* Classes */,
+				E125785F1642686C00119C0E /* LPAppDelegate.h */,
+				E12578601642686C00119C0E /* LPAppDelegate.m */,
+				E12578571642686C00119C0E /* Supporting Files */,
+			);
+			path = LynxPainter;
+			sourceTree = "<group>";
+		};
+		E12578571642686C00119C0E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E12578581642686C00119C0E /* LynxPainter-Info.plist */,
+				E12578591642686C00119C0E /* InfoPlist.strings */,
+				E125785C1642686C00119C0E /* main.m */,
+				E125785E1642686C00119C0E /* LynxPainter-Prefix.pch */,
+				E12578621642686C00119C0E /* Default.png */,
+				E12578641642686C00119C0E /* Default@2x.png */,
+				E12578661642686C00119C0E /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E125786D1642687E00119C0E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E12578B31642AB5A00119C0E /* Protocols */,
+				E12578AC16429ACD00119C0E /* Model */,
+				E12578761642695F00119C0E /* ViewControllers */,
+				E125786E164268D300119C0E /* Views */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		E125786E164268D300119C0E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		E12578761642695F00119C0E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E125788116426FB600119C0E /* NavigationController */,
+				E12578771642696E00119C0E /* Home */,
+				E12578A31642790B00119C0E /* OpenedProject */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E12578771642696E00119C0E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E125788D164271E100119C0E /* LPHomeViewController.h */,
+				E125788E164271E100119C0E /* LPHomeViewController.m */,
+				E125788F164271E100119C0E /* LPHomeViewController.xib */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		E125788116426FB600119C0E /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				E1257892164271ED00119C0E /* LPNavigationController.h */,
+				E1257893164271ED00119C0E /* LPNavigationController.m */,
+			);
+			name = NavigationController;
+			sourceTree = "<group>";
+		};
+		E12578A31642790B00119C0E /* OpenedProject */ = {
+			isa = PBXGroup;
+			children = (
+				E125789E1642790500119C0E /* LPOpenedProjectViewController.h */,
+				E125789F1642790500119C0E /* LPOpenedProjectViewController.m */,
+				E12578A01642790500119C0E /* LPOpenedProjectViewController.xib */,
+			);
+			name = OpenedProject;
+			sourceTree = "<group>";
+		};
+		E12578AC16429ACD00119C0E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E12578B21642AB1700119C0E /* SmartLayer */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E12578B21642AB1700119C0E /* SmartLayer */ = {
+			isa = PBXGroup;
+			children = (
+				E12578AD16429B3200119C0E /* LPSmartLayer.h */,
+				E12578AE16429B3200119C0E /* LPSmartLayer.m */,
+			);
+			name = SmartLayer;
+			sourceTree = "<group>";
+		};
+		E12578B31642AB5A00119C0E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E125784B1642686C00119C0E /* LynxPainter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E125786A1642686C00119C0E /* Build configuration list for PBXNativeTarget "LynxPainter" */;
+			buildPhases = (
+				E12578481642686C00119C0E /* Sources */,
+				E12578491642686C00119C0E /* Frameworks */,
+				E125784A1642686C00119C0E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LynxPainter;
+			productName = LynxPainter;
+			productReference = E125784C1642686C00119C0E /* LynxPainter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E12578431642686C00119C0E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = LP;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = DmitriyShamaev;
+			};
+			buildConfigurationList = E12578461642686C00119C0E /* Build configuration list for PBXProject "LynxPainter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E12578411642686C00119C0E;
+			productRefGroup = E125784D1642686C00119C0E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E125784B1642686C00119C0E /* LynxPainter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E125784A1642686C00119C0E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E125785B1642686C00119C0E /* InfoPlist.strings in Resources */,
+				E12578631642686C00119C0E /* Default.png in Resources */,
+				E12578651642686C00119C0E /* Default@2x.png in Resources */,
+				E12578671642686C00119C0E /* Default-568h@2x.png in Resources */,
+				E1257891164271E100119C0E /* LPHomeViewController.xib in Resources */,
+				E12578A21642790500119C0E /* LPOpenedProjectViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E12578481642686C00119C0E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E125785D1642686C00119C0E /* main.m in Sources */,
+				E12578611642686C00119C0E /* LPAppDelegate.m in Sources */,
+				E1257890164271E100119C0E /* LPHomeViewController.m in Sources */,
+				E1257894164271ED00119C0E /* LPNavigationController.m in Sources */,
+				E12578A11642790500119C0E /* LPOpenedProjectViewController.m in Sources */,
+				E12578AF16429B3200119C0E /* LPSmartLayer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E12578591642686C00119C0E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E125785A1642686C00119C0E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E12578681642686C00119C0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		E12578691642686C00119C0E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E125786B1642686C00119C0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LynxPainter/LynxPainter-Prefix.pch";
+				INFOPLIST_FILE = "LynxPainter/LynxPainter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E125786C1642686C00119C0E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LynxPainter/LynxPainter-Prefix.pch";
+				INFOPLIST_FILE = "LynxPainter/LynxPainter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E12578461642686C00119C0E /* Build configuration list for PBXProject "LynxPainter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E12578681642686C00119C0E /* Debug */,
+				E12578691642686C00119C0E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E125786A1642686C00119C0E /* Build configuration list for PBXNativeTarget "LynxPainter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E125786B1642686C00119C0E /* Debug */,
+				E125786C1642686C00119C0E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E12578431642686C00119C0E /* Project object */;
+}
