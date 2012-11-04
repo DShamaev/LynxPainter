@@ -37,6 +37,7 @@
 {
     [super viewDidLoad];
     [self.rootLayer setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.workAreaSV setTranslatesAutoresizingMaskIntoConstraints:NO];
     BOOL isHeightWouldBeUsedForScale = _currRootLayerHeight > _currRootLayerWidth ? YES : NO;
     float scaleMult;
     if(isHeightWouldBeUsedForScale){
