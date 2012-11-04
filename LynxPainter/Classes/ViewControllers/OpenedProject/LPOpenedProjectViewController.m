@@ -36,6 +36,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    currMode = LPWADrawing;
+    self.modeSC.selectedSegmentIndex = 1;
     [self.rootLayer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.workAreaSV setTranslatesAutoresizingMaskIntoConstraints:NO];
     BOOL isHeightWouldBeUsedForScale = _currRootLayerHeight > _currRootLayerWidth ? YES : NO;
