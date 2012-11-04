@@ -12,6 +12,9 @@
 @interface LPSmartLayer : CALayer
 @property (nonatomic,readonly) int smLineWidth;
 @property (nonatomic,strong,readonly) UIColor* smColor;
+@property (nonatomic,strong) NSString* smName;
 
-- (void)fillWithColor:(UIColor*)nColor withLineWidth:(int)nWidth;
+- (void)fillWithName:(NSString*)nName withColor:(UIColor*)nColor withLineWidth:(int)nWidth;
+- (void)clear;
+- (void)needNewPath;
 @end

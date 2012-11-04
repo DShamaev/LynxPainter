@@ -10,4 +10,14 @@
 
 @implementation LPSmartLayerDelegate
 
+-(void)drawLayer:(CALayer*)l inContext:(CGContextRef)context
+{
+    tmp = CGPathCreateMutableCopy(signPath);
+    CGContextSetStrokeColorWithColor(context, currentColor.CGColor);
+    CGContextSetLineWidth(context, currDrawSize);
+    CGContextAddPath(context, tmp);
+    CGContextStrokePath(context);
+    
+}
+
 @end

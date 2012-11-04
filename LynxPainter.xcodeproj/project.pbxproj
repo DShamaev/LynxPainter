@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C384B70316470FAB00A22AFD /* LPSmartLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C384B70216470FAB00A22AFD /* LPSmartLayerManager.m */; };
+		C384B70C164716C900A22AFD /* LPSmartLayerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C384B70B164716C900A22AFD /* LPSmartLayerDelegate.m */; };
 		E12578511642686C00119C0E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578501642686C00119C0E /* UIKit.framework */; };
 		E12578531642686C00119C0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578521642686C00119C0E /* Foundation.framework */; };
 		E12578551642686C00119C0E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578541642686C00119C0E /* CoreGraphics.framework */; };
@@ -26,6 +28,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C384B70116470FAB00A22AFD /* LPSmartLayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPSmartLayerManager.h; path = Classes/Model/SmartLayerManager/LPSmartLayerManager.h; sourceTree = "<group>"; };
+		C384B70216470FAB00A22AFD /* LPSmartLayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPSmartLayerManager.m; path = Classes/Model/SmartLayerManager/LPSmartLayerManager.m; sourceTree = "<group>"; };
+		C384B70A164716C900A22AFD /* LPSmartLayerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPSmartLayerDelegate.h; path = Classes/Model/SmartLayerDelegate/LPSmartLayerDelegate.h; sourceTree = "<group>"; };
+		C384B70B164716C900A22AFD /* LPSmartLayerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPSmartLayerDelegate.m; path = Classes/Model/SmartLayerDelegate/LPSmartLayerDelegate.m; sourceTree = "<group>"; };
 		E125784C1642686C00119C0E /* LynxPainter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LynxPainter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E12578501642686C00119C0E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E12578521642686C00119C0E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -67,6 +73,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C384B6FF16470F8600A22AFD /* SmartLayerManager */ = {
+			isa = PBXGroup;
+			children = (
+				C384B70116470FAB00A22AFD /* LPSmartLayerManager.h */,
+				C384B70216470FAB00A22AFD /* LPSmartLayerManager.m */,
+			);
+			name = SmartLayerManager;
+			sourceTree = "<group>";
+		};
+		C384B709164716A400A22AFD /* SmartLayerDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				C384B70A164716C900A22AFD /* LPSmartLayerDelegate.h */,
+				C384B70B164716C900A22AFD /* LPSmartLayerDelegate.m */,
+			);
+			name = SmartLayerDelegate;
+			sourceTree = "<group>";
+		};
 		E12578411642686C00119C0E = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +204,8 @@
 		E12578AC16429ACD00119C0E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C384B709164716A400A22AFD /* SmartLayerDelegate */,
+				C384B6FF16470F8600A22AFD /* SmartLayerManager */,
 				E12578B21642AB1700119C0E /* SmartLayer */,
 			);
 			name = Model;
@@ -275,6 +301,8 @@
 				E1257894164271ED00119C0E /* LPNavigationController.m in Sources */,
 				E12578A11642790500119C0E /* LPOpenedProjectViewController.m in Sources */,
 				E12578AF16429B3200119C0E /* LPSmartLayer.m in Sources */,
+				C384B70316470FAB00A22AFD /* LPSmartLayerManager.m in Sources */,
+				C384B70C164716C900A22AFD /* LPSmartLayerDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +413,7 @@
 				E125786C1642686C00119C0E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

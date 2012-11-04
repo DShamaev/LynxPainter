@@ -7,7 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
 
-@interface LPSmartLayerManager : NSObject
+@class LPSmartLayer;
+
+@interface LPSmartLayerManager : NSObject{
+    
+}
+
+@property (nonatomic, strong) CALayer *rootLayer;
+
++ (LPSmartLayerManager *)sharedManager;
+
+- (LPSmartLayer*)addNewLayer;
+- (void)removeLayerAtIndex:(int)nIndex;
+- (void)clearLayerAtIndex:(int)nIndex;
+- (void)changeLayerAtIndex:(int)nIndex withVisibility:(BOOL)nVis;
 
 @end
