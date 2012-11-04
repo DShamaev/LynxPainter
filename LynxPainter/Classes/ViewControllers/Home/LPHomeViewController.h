@@ -14,5 +14,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *rlHeightTF;
 - (IBAction)createProjectBtnClicked:(id)sender;
 - (IBAction)createNewProjectDialogBtnClicked:(id)sender;
+- (IBAction)closeNewProjectDialogBtnClicked:(id)sender;
 
 @end

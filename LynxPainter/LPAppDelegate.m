@@ -21,6 +21,7 @@
     self.viewController = [[LPHomeViewController alloc] init];
     LPNavigationController* nav = [[LPNavigationController alloc] initWithRootViewController:self.viewController];
     self.window.rootViewController = nav;
+    [UIApplication sharedApplication].statusBarHidden = YES;
     
     [self.window makeKeyAndVisible];
     return YES;

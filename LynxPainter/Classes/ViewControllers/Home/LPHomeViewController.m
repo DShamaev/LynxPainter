@@ -27,6 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBarHidden = YES;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -41,10 +42,15 @@
 }
 
 - (IBAction)createNewProjectDialogBtnClicked:(id)sender {
+    _createDialogView.hidden = YES;
     LPOpenedProjectViewController* projectVC = [[LPOpenedProjectViewController alloc] initWithNibName:@"LPOpenedProjectViewController" bundle:nil];
-    projectVC.currRootLayerWidth = 100;
-    projectVC.currRootLayerHeight = 300;
+    projectVC.currRootLayerWidth = [self.rlWidthTF.text intValue];
+    projectVC.currRootLayerHeight = [self.rlHeightTF.text intValue];
     [self.navigationController pushViewController:projectVC animated:YES];
+}
+
+- (IBAction)closeNewProjectDialogBtnClicked:(id)sender {
+    _createDialogView.hidden = YES;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
