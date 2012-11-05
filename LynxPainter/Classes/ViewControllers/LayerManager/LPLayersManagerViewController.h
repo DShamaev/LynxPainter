@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LPLayersManagerViewController : UIViewController
+@class LPSmartLayerManager;
+
+@interface LPLayersManagerViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+
+@property (strong, nonatomic) LPSmartLayerManager *slm;
 
 @end

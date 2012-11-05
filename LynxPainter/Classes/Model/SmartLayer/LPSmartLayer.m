@@ -7,11 +7,12 @@
 //
 
 #import "LPSmartLayer.h"
+#import "LPSmartLayerDelegate.h"
 
 @interface LPSmartLayer (){
     CALayer* player;
     CGMutablePathRef signPath;
-    LYPaintLayerDelegate* pld;
+    LPSmartLayerDelegate* pld;
 }
 @property (nonatomic) int smLineWidth;
 @property (nonatomic,strong) UIColor* smColor;
@@ -51,10 +52,10 @@
 - (void)initialization {
     player = [CALayer layer];
     player.opaque = YES;
-    pld = [[LYPaintLayerDelegate alloc] init];
+    pld = [[LPSmartLayerDelegate alloc] init];
     player.delegate = pld;
     player.frame = self.bounds;
-    [self.layer addSublayer:player];
+    [self addSublayer:player];
     signPath = CGPathCreateMutable();
 }
 
@@ -78,8 +79,8 @@
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     CGPoint p = [self pointFromTouches:touches];
     CGPathAddLineToPoint(signPath, NULL, p.x, p.y);
-    pld.currDrawSize = currDrawSize;
-    pld.currentColor = currentColor;
+    pld.currDrawSize = self.smLineWidth;
+    pld.currentColor = self.smColor;
     pld.signPath = signPath;
     [player setNeedsDisplay];
 }
@@ -89,7 +90,7 @@
     CALayer* nplayer = [CALayer layer];
     nplayer.delegate = pld;
     nplayer.frame = self.bounds;
-    [self.layer insertSublayer:nplayer above:player];
+    [self insertSublayer:nplayer above:player];
     player = nplayer;
 }
 

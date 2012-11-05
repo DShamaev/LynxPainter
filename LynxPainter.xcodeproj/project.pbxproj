@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C358B5041647BE590004537E /* LPLayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C358B5031647BE590004537E /* LPLayerCell.m */; };
 		C358B5061647BF290004537E /* LPLayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C358B5051647BF290004537E /* LPLayerCell.xib */; };
+		C3801398164867DB003C27E3 /* UIViewController+XIBLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = C3801397164867DB003C27E3 /* UIViewController+XIBLoader.m */; };
 		C383B4C816479DDC00397907 /* LPLayersManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C383B4C616479DDC00397907 /* LPLayersManagerViewController.m */; };
 		C383B4C916479DDC00397907 /* LPLayersManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C383B4C716479DDC00397907 /* LPLayersManagerViewController.xib */; };
 		C384B70316470FAB00A22AFD /* LPSmartLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C384B70216470FAB00A22AFD /* LPSmartLayerManager.m */; };
@@ -35,6 +36,8 @@
 		C358B5021647BE590004537E /* LPLayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPLayerCell.h; path = Classes/Cells/LayerCell/LPLayerCell.h; sourceTree = "<group>"; };
 		C358B5031647BE590004537E /* LPLayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPLayerCell.m; path = Classes/Cells/LayerCell/LPLayerCell.m; sourceTree = "<group>"; };
 		C358B5051647BF290004537E /* LPLayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPLayerCell.xib; sourceTree = "<group>"; };
+		C3801396164867DB003C27E3 /* UIViewController+XIBLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+XIBLoader.h"; path = "Classes/Categories/UIViewController+XIBLoader.h"; sourceTree = "<group>"; };
+		C3801397164867DB003C27E3 /* UIViewController+XIBLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+XIBLoader.m"; path = "Classes/Categories/UIViewController+XIBLoader.m"; sourceTree = "<group>"; };
 		C383B4C516479DDC00397907 /* LPLayersManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPLayersManagerViewController.h; path = Classes/ViewControllers/LayerManager/LPLayersManagerViewController.h; sourceTree = "<group>"; };
 		C383B4C616479DDC00397907 /* LPLayersManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPLayersManagerViewController.m; path = Classes/ViewControllers/LayerManager/LPLayersManagerViewController.m; sourceTree = "<group>"; };
 		C383B4C716479DDC00397907 /* LPLayersManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPLayersManagerViewController.xib; path = Classes/ViewControllers/LayerManager/LPLayersManagerViewController.xib; sourceTree = "<group>"; };
@@ -99,6 +102,23 @@
 				C358B5051647BF290004537E /* LPLayerCell.xib */,
 			);
 			name = LayerCell;
+			sourceTree = "<group>";
+		};
+		C3801394164867A3003C27E3 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				C3801395164867B0003C27E3 /* UIView+XIBLoader */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		C3801395164867B0003C27E3 /* UIView+XIBLoader */ = {
+			isa = PBXGroup;
+			children = (
+				C3801396164867DB003C27E3 /* UIViewController+XIBLoader.h */,
+				C3801397164867DB003C27E3 /* UIViewController+XIBLoader.m */,
+			);
+			name = "UIView+XIBLoader";
 			sourceTree = "<group>";
 		};
 		C383B4C316479BCB00397907 /* LayersManager */ = {
@@ -185,8 +205,8 @@
 		E125786D1642687E00119C0E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C3801394164867A3003C27E3 /* Categories */,
 				C358B4FF1647BDB50004537E /* Cells */,
-				E12578B31642AB5A00119C0E /* Protocols */,
 				E12578AC16429ACD00119C0E /* Model */,
 				E12578761642695F00119C0E /* ViewControllers */,
 				E125786E164268D300119C0E /* Views */,
@@ -258,13 +278,6 @@
 				E12578AE16429B3200119C0E /* LPSmartLayer.m */,
 			);
 			name = SmartLayer;
-			sourceTree = "<group>";
-		};
-		E12578B31642AB5A00119C0E /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,6 +360,7 @@
 				C384B70C164716C900A22AFD /* LPSmartLayerDelegate.m in Sources */,
 				C383B4C816479DDC00397907 /* LPLayersManagerViewController.m in Sources */,
 				C358B5041647BE590004537E /* LPLayerCell.m in Sources */,
+				C3801398164867DB003C27E3 /* UIViewController+XIBLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

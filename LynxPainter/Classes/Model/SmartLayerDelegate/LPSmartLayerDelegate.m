@@ -9,12 +9,13 @@
 #import "LPSmartLayerDelegate.h"
 
 @implementation LPSmartLayerDelegate
+@synthesize signPath;
 
 -(void)drawLayer:(CALayer*)l inContext:(CGContextRef)context
 {
     tmp = CGPathCreateMutableCopy(signPath);
-    CGContextSetStrokeColorWithColor(context, currentColor.CGColor);
-    CGContextSetLineWidth(context, currDrawSize);
+    CGContextSetStrokeColorWithColor(context, self.currentColor.CGColor);
+    CGContextSetLineWidth(context, self.currDrawSize);
     CGContextAddPath(context, tmp);
     CGContextStrokePath(context);
     

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class LPSmartLayer;
+
 @interface LPLayerCell : UITableViewCell
+
+- (void)setLayer:(LPSmartLayer*)layer;
 
 @end

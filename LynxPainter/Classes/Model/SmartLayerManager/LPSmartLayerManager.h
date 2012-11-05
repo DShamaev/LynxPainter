@@ -16,6 +16,8 @@
 }
 
 @property (nonatomic, strong) CALayer *rootLayer;
+@property (nonatomic,retain,readonly) NSMutableArray* layersArray;
+@property (nonatomic,readonly) int currLayerIndex;
 
 + (LPSmartLayerManager *)sharedManager;
 
