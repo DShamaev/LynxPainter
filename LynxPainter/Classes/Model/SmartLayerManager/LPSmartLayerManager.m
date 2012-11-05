@@ -12,6 +12,8 @@
 @interface LPSmartLayerManager ()
 @property (nonatomic) int layerCounter;
 @property (nonatomic,retain) NSMutableArray* layersArray;
+@property (nonatomic,retain) LPSmartLayer* currLayer;
+@property (nonatomic) int currLayerIndex;
 @end
 
 @implementation LPSmartLayerManager
@@ -24,6 +26,14 @@
         // Do any other initialisation stuff here
     });
     return sharedInstance;
+}
+
+- (void)setCurrLayerWithIndex:(int)nIndex{
+    if(self.rootLayer && self.layersArray && [self.layersArray count]>0)
+        if(nIndex>=0 && nIndex<=[self.layersArray count]-1){
+            self.currLayer = [self.layersArray objectAtIndex:nIndex];
+            self.currLayerIndex = nIndex;
+        }
 }
 
 - (LPSmartLayer*)addNewLayer{
@@ -39,29 +49,26 @@
     return nil;
 }
 - (void)removeLayerAtIndex:(int)nIndex{
-    if(self.rootLayer && self.layersArray && [self.layersArray count]>0)
-        if(nIndex>=0 && nIndex<=[self.layersArray count]-1){
-            LPSmartLayer* rLayer = [self.layersArray objectAtIndex:nIndex];
-            [rLayer removeFromSuperlayer];
-            [self.layersArray removeObjectAtIndex:nIndex];
+    if(self.rootLayer && self.layersArray && [self.layersArray count]>0){
+        [self.currLayer removeFromSuperlayer];
+        [self.layersArray removeObjectAtIndex:self.currLayerIndex];
+        if ([self.layersArray count]>0) {
+            [self setCurrLayerWithIndex:0];
         }
+    }
 }
 - (void)clearLayerAtIndex:(int)nIndex{
-    if(self.rootLayer && self.layersArray && [self.layersArray count]>0)
-        if(nIndex>=0 && nIndex<=[self.layersArray count]-1){
-            LPSmartLayer* rLayer = [self.layersArray objectAtIndex:nIndex];
-            if ([rLayer respondsToSelector:@selector(clear)]) {
-                [rLayer clear];
-            }
+    if(self.rootLayer && self.layersArray && [self.layersArray count]>0){
+        if ([self.currLayer respondsToSelector:@selector(clear)]) {
+            [self.currLayer clear];
         }
+    }
 }
 
 - (void)changeLayerAtIndex:(int)nIndex withVisibility:(BOOL)nVis{
-    if(self.rootLayer && self.layersArray && [self.layersArray count]>0)
-        if(nIndex>=0 && nIndex<=[self.layersArray count]-1){
-            LPSmartLayer* rLayer = [self.layersArray objectAtIndex:nIndex];
-            rLayer.hidden = !nVis;
-        }
+    if(self.rootLayer && self.layersArray && [self.layersArray count]>0){
+        self.currLayer.hidden = !nVis;
+    }
 }
 
 @end

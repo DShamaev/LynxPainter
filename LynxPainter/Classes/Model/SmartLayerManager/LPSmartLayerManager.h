@@ -20,8 +20,10 @@
 + (LPSmartLayerManager *)sharedManager;
 
 - (LPSmartLayer*)addNewLayer;
-- (void)removeLayerAtIndex:(int)nIndex;
-- (void)clearLayerAtIndex:(int)nIndex;
-- (void)changeLayerAtIndex:(int)nIndex withVisibility:(BOOL)nVis;
+- (void)setCurrLayerWithIndex:(int)nIndex;
+- (void)removeLayer;
+- (void)clearLayer;
+- (void)changeLayerWithVisibility:(BOOL)nVis;
+- (void)undo;
 
 @end
