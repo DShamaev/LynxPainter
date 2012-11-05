@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C358B5041647BE590004537E /* LPLayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C358B5031647BE590004537E /* LPLayerCell.m */; };
+		C358B5061647BF290004537E /* LPLayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C358B5051647BF290004537E /* LPLayerCell.xib */; };
 		C383B4C816479DDC00397907 /* LPLayersManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C383B4C616479DDC00397907 /* LPLayersManagerViewController.m */; };
 		C383B4C916479DDC00397907 /* LPLayersManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C383B4C716479DDC00397907 /* LPLayersManagerViewController.xib */; };
 		C384B70316470FAB00A22AFD /* LPSmartLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C384B70216470FAB00A22AFD /* LPSmartLayerManager.m */; };
@@ -30,6 +32,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C358B5021647BE590004537E /* LPLayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPLayerCell.h; path = Classes/Cells/LayerCell/LPLayerCell.h; sourceTree = "<group>"; };
+		C358B5031647BE590004537E /* LPLayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPLayerCell.m; path = Classes/Cells/LayerCell/LPLayerCell.m; sourceTree = "<group>"; };
+		C358B5051647BF290004537E /* LPLayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPLayerCell.xib; sourceTree = "<group>"; };
 		C383B4C516479DDC00397907 /* LPLayersManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPLayersManagerViewController.h; path = Classes/ViewControllers/LayerManager/LPLayersManagerViewController.h; sourceTree = "<group>"; };
 		C383B4C616479DDC00397907 /* LPLayersManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPLayersManagerViewController.m; path = Classes/ViewControllers/LayerManager/LPLayersManagerViewController.m; sourceTree = "<group>"; };
 		C383B4C716479DDC00397907 /* LPLayersManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPLayersManagerViewController.xib; path = Classes/ViewControllers/LayerManager/LPLayersManagerViewController.xib; sourceTree = "<group>"; };
@@ -78,6 +83,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C358B4FF1647BDB50004537E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C358B5011647BDCE0004537E /* LayerCell */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		C358B5011647BDCE0004537E /* LayerCell */ = {
+			isa = PBXGroup;
+			children = (
+				C358B5021647BE590004537E /* LPLayerCell.h */,
+				C358B5031647BE590004537E /* LPLayerCell.m */,
+				C358B5051647BF290004537E /* LPLayerCell.xib */,
+			);
+			name = LayerCell;
+			sourceTree = "<group>";
+		};
 		C383B4C316479BCB00397907 /* LayersManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +185,7 @@
 		E125786D1642687E00119C0E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C358B4FF1647BDB50004537E /* Cells */,
 				E12578B31642AB5A00119C0E /* Protocols */,
 				E12578AC16429ACD00119C0E /* Model */,
 				E12578761642695F00119C0E /* ViewControllers */,
@@ -302,6 +326,7 @@
 				E1257891164271E100119C0E /* LPHomeViewController.xib in Resources */,
 				E12578A21642790500119C0E /* LPOpenedProjectViewController.xib in Resources */,
 				C383B4C916479DDC00397907 /* LPLayersManagerViewController.xib in Resources */,
+				C358B5061647BF290004537E /* LPLayerCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +346,7 @@
 				C384B70316470FAB00A22AFD /* LPSmartLayerManager.m in Sources */,
 				C384B70C164716C900A22AFD /* LPSmartLayerDelegate.m in Sources */,
 				C383B4C816479DDC00397907 /* LPLayersManagerViewController.m in Sources */,
+				C358B5041647BE590004537E /* LPLayerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
