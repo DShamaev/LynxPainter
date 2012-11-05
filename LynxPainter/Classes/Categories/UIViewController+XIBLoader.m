@@ -10,4 +10,15 @@
 
 @implementation UIViewController (XIBLoader)
 
+-(id)objectWithNibName:(NSString *)nibNameOrNil withClass:(NSString*)xibName{
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:nibNameOrNil owner:self options:nil];
+    for (id currentObject in topLevelObjects){
+        if ([currentObject isKindOfClass:NSClassFromString(xibName)]){
+            return currentObject;
+            break;
+        }
+    }
+    return nil;
+}
+
 @end

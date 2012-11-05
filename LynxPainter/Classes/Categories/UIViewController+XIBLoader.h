@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UIViewController (XIBLoader)
-
+-(id)objectWithNibName:(NSString *)nibNameOrNil withClass:(NSString*)xibName;
 @end
