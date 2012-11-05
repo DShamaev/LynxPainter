@@ -24,5 +24,6 @@ typedef enum {
 @property (strong, nonatomic) IBOutlet UIScrollView *workAreaSV;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *modeSC;
 - (IBAction)closeProject:(id)sender;
+- (IBAction)showLayersManager:(id)sender;
 
 @end

@@ -8,10 +8,12 @@
 
 #import "LPOpenedProjectViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "LPLayersManagerViewController.h"
 
 @interface LPOpenedProjectViewController ()
 @property (strong, nonatomic) NSMutableArray* currSizeConstraints;
 @property (strong, nonatomic) NSMutableArray* currCenterConstraints;
+@property (strong, nonatomic) UIPopoverController* pc;
 @end
 
 @implementation LPOpenedProjectViewController
@@ -124,6 +126,13 @@
 }
 - (IBAction)closeProject:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)showLayersManager:(id)sender {
+    UIButton* but = (UIButton*)sender;
+    LPLayersManagerViewController* lmvc = [[LPLayersManagerViewController alloc] initWithNibName:@"LPLayersManagerViewController" bundle:nil];
+    self.pc = [[UIPopoverController alloc] initWithContentViewController:lmvc];
+    [self.pc presentPopoverFromRect:but.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
