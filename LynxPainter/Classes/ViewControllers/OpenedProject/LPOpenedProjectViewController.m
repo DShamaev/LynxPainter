@@ -9,6 +9,7 @@
 #import "LPOpenedProjectViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "LPLayersManagerViewController.h"
+#import "LPSmartLayerManager.h"
 
 @interface LPOpenedProjectViewController ()
 @property (strong, nonatomic) NSMutableArray* currSizeConstraints;
@@ -38,6 +39,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[LPSmartLayerManager sharedManager] setRootLayer:self.rootLayer.layer];
+    [[LPSmartLayerManager sharedManager] addNewLayer];
     currMode = LPWADrawing;
     self.modeSC.selectedSegmentIndex = 1;
     [self.rootLayer setTranslatesAutoresizingMaskIntoConstraints:NO];

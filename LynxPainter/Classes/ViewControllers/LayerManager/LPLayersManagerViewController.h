@@ -13,5 +13,6 @@
 @interface LPLayersManagerViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property (strong, nonatomic) LPSmartLayerManager *slm;
+@property (strong, nonatomic) IBOutlet UITableView *layerTable;
 
 @end

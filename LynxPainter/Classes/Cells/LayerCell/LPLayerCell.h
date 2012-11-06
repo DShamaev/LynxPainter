@@ -11,6 +11,8 @@
 @class LPSmartLayer;
 
 @interface LPLayerCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet UILabel *smLayerNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *smVisibilityLabel;
 
 - (void)setLayer:(LPSmartLayer*)layer;
 

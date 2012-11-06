@@ -30,6 +30,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIView *fakeFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.slm = [LPSmartLayerManager sharedManager];
+    self.layerTable.tableFooterView = fakeFooterView;
     // Do any additional setup after loading the view from its nib.
 }
 

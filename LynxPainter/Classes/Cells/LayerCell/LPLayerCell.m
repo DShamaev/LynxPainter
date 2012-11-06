@@ -7,8 +7,13 @@
 //
 
 #import "LPLayerCell.h"
+#import "LPSmartLayer.h"
 
 @implementation LPLayerCell
+
+- (void)awakeFromNib{
+    
+}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,7 +32,12 @@
 }
 
 - (void)setLayer:(LPSmartLayer*)layer{
-    
+    [self.smLayerNameLabel setText:layer.smName];
+    if(layer.hidden){
+       [self.smVisibilityLabel setText:@"X"];
+    }else{
+        [self.smVisibilityLabel setText:@"V"];
+    }
 }
 
 @end
