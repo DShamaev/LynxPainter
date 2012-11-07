@@ -23,6 +23,8 @@
 
 - (LPSmartLayer*)addNewLayer;
 - (void)setCurrLayerWithIndex:(int)nIndex;
+- (void)moveLayerUp;
+- (void)moveLayerDown;
 - (void)removeLayer;
 - (void)clearLayer;
 - (void)changeLayerWithVisibility:(BOOL)nVis;

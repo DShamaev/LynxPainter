@@ -36,6 +36,32 @@
         }
 }
 
+- (void)moveLayerUp{
+    if(self.rootLayer && self.layersArray && [self.layersArray count]>0){
+        if(self.currLayerIndex<[self.layersArray count]-1){
+            LPSmartLayer* nextLayer = [self.layersArray objectAtIndex:self.currLayerIndex+1];
+            [self.layersArray removeObjectAtIndex:self.currLayerIndex];
+            [self.layersArray insertObject:self.currLayer atIndex:self.currLayerIndex+1];
+            [self.currLayer removeFromSuperlayer];
+            [self.rootLayer insertSublayer:self.currLayer above:nextLayer];
+            self.currLayerIndex+=1;
+        }
+    }
+}
+
+- (void)moveLayerDown{
+    if(self.rootLayer && self.layersArray && [self.layersArray count]>0){
+        if(self.currLayerIndex>0){
+            LPSmartLayer* prevLayer = [self.layersArray objectAtIndex:self.currLayerIndex-1];
+            [self.layersArray removeObjectAtIndex:self.currLayerIndex];
+            [self.layersArray insertObject:self.currLayer atIndex:self.currLayerIndex-1];
+            [self.currLayer removeFromSuperlayer];
+            [self.rootLayer insertSublayer:self.currLayer below:prevLayer];
+            self.currLayerIndex-=1;
+        }
+    }
+}
+
 - (LPSmartLayer*)addNewLayer{
     if(self.rootLayer){
         LPSmartLayer* nLayer = [[LPSmartLayer alloc] init];
@@ -44,6 +70,7 @@
             self.layersArray = [NSMutableArray array];
         [self.layersArray addObject:nLayer];
         [self.rootLayer addSublayer:nLayer];
+        self.layerCounter +=1;
         return nLayer;
     }
     return nil;
@@ -53,7 +80,7 @@
         [self.currLayer removeFromSuperlayer];
         [self.layersArray removeObjectAtIndex:self.currLayerIndex];
         if ([self.layersArray count]>0) {
-            [self setCurrLayerWithIndex:0];
+            [self setCurrLayerWithIndex:[self.layersArray count]-1];
         }
     }
 }

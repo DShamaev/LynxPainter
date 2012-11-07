@@ -14,5 +14,8 @@
 
 @property (strong, nonatomic) LPSmartLayerManager *slm;
 @property (strong, nonatomic) IBOutlet UITableView *layerTable;
+- (IBAction)createNewLayerBtnClicked:(id)sender;
+- (IBAction)moveSelectedLayerUpBtnClicked:(id)sender;
+- (IBAction)moveSelectedLayerDownBtnClicked:(id)sender;
 
 @end

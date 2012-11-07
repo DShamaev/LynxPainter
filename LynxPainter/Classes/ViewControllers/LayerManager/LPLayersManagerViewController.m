@@ -13,7 +13,7 @@
 #import "UIViewController+XIBLoader.h"
 
 @interface LPLayersManagerViewController ()
-
+@property (nonatomic) int selectedIndex;
 @end
 
 @implementation LPLayersManagerViewController
@@ -30,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.selectedIndex = 0;
     UIView *fakeFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.slm = [LPSmartLayerManager sharedManager];
     self.layerTable.tableFooterView = fakeFooterView;
@@ -45,8 +46,9 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    LPSmartLayer* sl = [self.slm.layersArray objectAtIndex:indexPath.row];
-    [self.slm setCurrLayerWithIndex:indexPath.row];
+    LPSmartLayer* sl = [self.slm.layersArray objectAtIndex:[self.slm.layersArray count]-indexPath.row-1];
+    [self.slm setCurrLayerWithIndex:[self.slm.layersArray count]-indexPath.row-1];
+    self.selectedIndex = indexPath.row;
 }
 
 #pragma mark - UITableViewDataSource
@@ -64,9 +66,32 @@
     if(!cell){
         cell = [self objectWithNibName:@"LPLayerCell" withClass:@"LPLayerCell"];
     }
-    LPSmartLayer* sl = [self.slm.layersArray objectAtIndex:indexPath.row];
+    LPSmartLayer* sl = [self.slm.layersArray objectAtIndex:[self.slm.layersArray count]-indexPath.row-1];
     [cell setLayer:sl];
+    if(indexPath.row == self.selectedIndex)
+        [cell setSelected:YES];
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 90;
+}
+
+
+- (IBAction)createNewLayerBtnClicked:(id)sender {
+    [self.slm addNewLayer];
+    [self.layerTable reloadData];
+}
+
+- (IBAction)moveSelectedLayerUpBtnClicked:(id)sender {
+    [self.slm moveLayerUp];
+    self.selectedIndex-=1;
+    [self.layerTable reloadData];
+}
+
+- (IBAction)moveSelectedLayerDownBtnClicked:(id)sender {
+    [self.slm moveLayerDown];
+    self.selectedIndex+=1;
+    [self.layerTable reloadData];
+}
 @end
