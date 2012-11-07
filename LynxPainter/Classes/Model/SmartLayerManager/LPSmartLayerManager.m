@@ -12,7 +12,6 @@
 @interface LPSmartLayerManager ()
 @property (nonatomic) int layerCounter;
 @property (nonatomic,retain) NSMutableArray* layersArray;
-@property (nonatomic,retain) LPSmartLayer* currLayer;
 @property (nonatomic) int currLayerIndex;
 @end
 
@@ -34,6 +33,16 @@
             self.currLayer = [self.layersArray objectAtIndex:nIndex];
             self.currLayerIndex = nIndex;
         }
+}
+
+- (void)setCurrLayerVisibility:(BOOL)vis{
+    if(self.currLayer)
+        self.currLayer.hidden = !vis;
+}
+
+- (void)setCurrLayerAlpha:(float)alpha{
+    if(self.currLayer)
+        self.currLayer.opacity = alpha;
 }
 
 - (void)moveLayerUp{

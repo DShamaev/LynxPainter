@@ -18,11 +18,14 @@
 @property (nonatomic, strong) CALayer *rootLayer;
 @property (nonatomic,retain,readonly) NSMutableArray* layersArray;
 @property (nonatomic,readonly) int currLayerIndex;
+@property (nonatomic,retain) LPSmartLayer* currLayer;
 
 + (LPSmartLayerManager *)sharedManager;
 
 - (LPSmartLayer*)addNewLayer;
 - (void)setCurrLayerWithIndex:(int)nIndex;
+- (void)setCurrLayerVisibility:(BOOL)vis;
+- (void)setCurrLayerAlpha:(float)alpha;
 - (void)moveLayerUp;
 - (void)moveLayerDown;
 - (void)removeLayer;
