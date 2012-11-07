@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "LPLayersManagerViewController.h"
 #import "LPSmartLayerManager.h"
+#import "LPSmartLayer.h"
 
 @interface LPOpenedProjectViewController ()
 @property (strong, nonatomic) NSMutableArray* currSizeConstraints;
@@ -39,7 +40,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    currMode = LPWADrawing;
     self.workAreaSV.scrollEnabled = NO;
     [[LPSmartLayerManager sharedManager] setRootLayer:self.rootLayer.layer];
     [[LPSmartLayerManager sharedManager] setRootView:self.view];
@@ -145,14 +146,17 @@
     //DRAWING
     if(self.modeSC.selectedSegmentIndex == 0){
         self.workAreaSV.scrollEnabled = NO;
+        currMode = LPWADrawing;
     }
     //TRANSFORMING
     if(self.modeSC.selectedSegmentIndex == 1){
         self.workAreaSV.scrollEnabled = YES;
+        currMode = LPWATransforming;
     }
     //LAYER
     if(self.modeSC.selectedSegmentIndex == 2){
         self.workAreaSV.scrollEnabled = NO;
+        currMode = LPWALayer;
     }
 }
 
@@ -195,4 +199,5 @@
 
     }
 }
+
 @end
