@@ -10,7 +10,8 @@
 
 typedef enum {
     LPWATransforming,
-    LPWADrawing
+    LPWADrawing,
+    LPWALayer
 } LPWAMode;
 
 @interface LPOpenedProjectViewController : UIViewController<UITextFieldDelegate>{
@@ -25,5 +26,6 @@ typedef enum {
 @property (strong, nonatomic) IBOutlet UISegmentedControl *modeSC;
 - (IBAction)closeProject:(id)sender;
 - (IBAction)showLayersManager:(id)sender;
+- (IBAction)modeChanged:(id)sender;
 
 @end

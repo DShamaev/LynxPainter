@@ -39,10 +39,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.workAreaSV.scrollEnabled = NO;
     [[LPSmartLayerManager sharedManager] setRootLayer:self.rootLayer.layer];
+    [[LPSmartLayerManager sharedManager] setRootView:self.view];
     [[LPSmartLayerManager sharedManager] addNewLayer];
     currMode = LPWADrawing;
-    self.modeSC.selectedSegmentIndex = 1;
+    self.modeSC.selectedSegmentIndex = 0;
     [self.rootLayer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.workAreaSV setTranslatesAutoresizingMaskIntoConstraints:NO];
     BOOL isHeightWouldBeUsedForScale = _currRootLayerHeight > _currRootLayerWidth ? YES : NO;
@@ -136,6 +139,21 @@
     LPLayersManagerViewController* lmvc = [[LPLayersManagerViewController alloc] initWithNibName:@"LPLayersManagerViewController" bundle:nil];
     self.pc = [[UIPopoverController alloc] initWithContentViewController:lmvc];
     [self.pc presentPopoverFromRect:but.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+}
+
+- (IBAction)modeChanged:(id)sender {
+    //DRAWING
+    if(self.modeSC.selectedSegmentIndex == 0){
+        self.workAreaSV.scrollEnabled = NO;
+    }
+    //TRANSFORMING
+    if(self.modeSC.selectedSegmentIndex == 1){
+        self.workAreaSV.scrollEnabled = YES;
+    }
+    //LAYER
+    if(self.modeSC.selectedSegmentIndex == 2){
+        self.workAreaSV.scrollEnabled = NO;
+    }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
