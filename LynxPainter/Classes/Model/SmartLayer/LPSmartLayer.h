@@ -13,6 +13,7 @@
 @property (nonatomic,readonly) int smLineWidth;
 @property (nonatomic,strong,readonly) UIColor* smColor;
 @property (nonatomic,strong) NSString* smName;
+@property (nonatomic,strong) UIView* rootLayerView;
 
 - (void)fillWithName:(NSString*)nName withColor:(UIColor*)nColor withLineWidth:(int)nWidth;
 - (void)clear;

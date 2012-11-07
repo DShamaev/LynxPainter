@@ -66,7 +66,7 @@
 - (CGPoint)pointFromTouches:(NSSet*)touches {
     UITouch *touch = [[touches allObjects] objectAtIndex:0];
     
-    CGPoint p = [touch locationInView:self];
+    CGPoint p = [touch locationInView:self.rootLayerView];
     return p;
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C32351EA1649BBB6006888CF /* UITableViewCell+FixUITableViewCellAutolayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C32351E91649BBB6006888CF /* UITableViewCell+FixUITableViewCellAutolayout.m */; };
 		C358B5041647BE590004537E /* LPLayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C358B5031647BE590004537E /* LPLayerCell.m */; };
 		C358B5061647BF290004537E /* LPLayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C358B5051647BF290004537E /* LPLayerCell.xib */; };
 		C3801398164867DB003C27E3 /* UIViewController+XIBLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = C3801397164867DB003C27E3 /* UIViewController+XIBLoader.m */; };
@@ -33,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C32351E81649BBB6006888CF /* UITableViewCell+FixUITableViewCellAutolayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+FixUITableViewCellAutolayout.h"; path = "Classes/Categories/UITableViewCell+FixUITableViewCellAutolayout.h"; sourceTree = "<group>"; };
+		C32351E91649BBB6006888CF /* UITableViewCell+FixUITableViewCellAutolayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+FixUITableViewCellAutolayout.m"; path = "Classes/Categories/UITableViewCell+FixUITableViewCellAutolayout.m"; sourceTree = "<group>"; };
 		C358B5021647BE590004537E /* LPLayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPLayerCell.h; path = Classes/Cells/LayerCell/LPLayerCell.h; sourceTree = "<group>"; };
 		C358B5031647BE590004537E /* LPLayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPLayerCell.m; path = Classes/Cells/LayerCell/LPLayerCell.m; sourceTree = "<group>"; };
 		C358B5051647BF290004537E /* LPLayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPLayerCell.xib; sourceTree = "<group>"; };
@@ -86,6 +89,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C32351EC1649BBBE006888CF /* UITableViewCell+FixUITableViewCellAutolayout */ = {
+			isa = PBXGroup;
+			children = (
+				C32351E81649BBB6006888CF /* UITableViewCell+FixUITableViewCellAutolayout.h */,
+				C32351E91649BBB6006888CF /* UITableViewCell+FixUITableViewCellAutolayout.m */,
+			);
+			name = "UITableViewCell+FixUITableViewCellAutolayout";
+			sourceTree = "<group>";
+		};
 		C358B4FF1647BDB50004537E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				C3801395164867B0003C27E3 /* UIView+XIBLoader */,
+				C32351EC1649BBBE006888CF /* UITableViewCell+FixUITableViewCellAutolayout */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -361,6 +374,7 @@
 				C383B4C816479DDC00397907 /* LPLayersManagerViewController.m in Sources */,
 				C358B5041647BE590004537E /* LPLayerCell.m in Sources */,
 				C3801398164867DB003C27E3 /* UIViewController+XIBLoader.m in Sources */,
+				C32351EA1649BBB6006888CF /* UITableViewCell+FixUITableViewCellAutolayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

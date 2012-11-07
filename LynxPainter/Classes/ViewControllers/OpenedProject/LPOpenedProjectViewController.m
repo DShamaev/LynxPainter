@@ -143,7 +143,6 @@
         return true;
     if(textField == self.scaleValueTF){
         NSScanner *sc = [NSScanner scannerWithString: string];
-        NSCharacterSet* perc = [NSCharacterSet characterSetWithCharactersInString:@"%"];
         NSCharacterSet* allUnaccepted = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789%%"] invertedSet];
         if([sc scanCharactersFromSet:allUnaccepted intoString:&string])
             return false;
