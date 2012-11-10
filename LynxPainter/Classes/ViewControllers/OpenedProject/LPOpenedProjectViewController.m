@@ -11,6 +11,8 @@
 #import "LPLayersManagerViewController.h"
 #import "LPSmartLayerManager.h"
 #import "LPSmartLayer.h"
+#import "TBXML.h"
+#import "TBXML+Compression.h"
 
 @interface LPOpenedProjectViewController ()
 @property (strong, nonatomic) NSMutableArray* currSizeConstraints;
@@ -198,6 +200,55 @@
         [self addNewSizeConstraintsWithScale:[actValue intValue]/100.];
 
     }
+}
+
+-(void)saveProjectAsJPEGImage:(NSString*)filename{
+    UIGraphicsBeginImageContext(self.rootLayer.bounds.size);
+    [self.rootLayer.layer renderInContext:UIGraphicsGetCurrentContext()];
+    NSData* content = UIImageJPEGRepresentation(UIGraphicsGetImageFromCurrentImageContext(), 1.);
+    UIGraphicsEndImageContext();    
+    [content writeToFile:[NSString stringWithFormat:@"%@.jpg",filename] atomically:YES];
+}
+
+-(void)saveProjectAsPNGImage:(NSString*)filename{
+    UIGraphicsBeginImageContext(self.rootLayer.bounds.size);
+    [self.rootLayer.layer renderInContext:UIGraphicsGetCurrentContext()];
+    NSData* content = UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
+    UIGraphicsEndImageContext(); 
+    [content writeToFile:[NSString stringWithFormat:@"%@.png",filename] atomically:YES];
+}
+
+-(void)saveImageAsLProjectFile:(NSString*)filename{
+    LPSmartLayerManager* slm = [LPSmartLayerManager sharedManager];
+    NSString* fileData = @"<LPFileRoot>";
+    if([slm.layersArray count]>0){
+        [fileData stringByAppendingFormat:@"<LPLayersCount>%d</LPLayersCount>",[slm.layersArray count]];
+    }
+    LPSmartLayer* sl;
+    for (int i=0; i<[slm.layersArray count]; i++) {
+        [fileData stringByAppendingString:@"<LPFileLayer>"];
+        sl = [slm.layersArray objectAtIndex:i];
+        [fileData stringByAppendingFormat:@"<LPLayerName>%@</LPLayerName>",sl.smName];
+        [fileData stringByAppendingFormat:@"<LPLayerBrushSize>%d</LPLayerBrushSize>",sl.smLineWidth];
+        [fileData stringByAppendingString:@"<LPLayerColor>"];
+        CGFloat red = 0.0, green = 0.0, blue = 0.0, alpha = 0.0;        
+        [sl.smColor getRed:&red green:&green blue:&blue alpha:&alpha];
+        [fileData stringByAppendingFormat:@"<LPLayerColorRed>%f</LPLayerColorRed>",red];
+        [fileData stringByAppendingFormat:@"<LPLayerColorGreen>%f</LPLayerColorGreen>",green];
+        [fileData stringByAppendingFormat:@"<LPLayerColorBlue>%f</LPLayerColorBlue>",blue];
+        [fileData stringByAppendingFormat:@"<LPLayerColorAlpha>%f</LPLayerColorAlpha>",alpha];
+        [fileData stringByAppendingString:@"</LayerColor>"];
+        
+        UIGraphicsBeginImageContext(self.rootLayer.bounds.size);
+        [sl renderInContext:UIGraphicsGetCurrentContext()];
+        NSData* content = UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
+        UIGraphicsEndImageContext();
+
+        [fileData stringByAppendingFormat:@"<LPLayerData>%@</LPLayerData>",[content  ];
+        
+        [fileData stringByAppendingString:@"</LPFileLayer>"];
+    }
+    [fileData stringByAppendingString:@"</LPFileRoot>"];
 }
 
 @end

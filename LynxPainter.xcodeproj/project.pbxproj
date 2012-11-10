@@ -11,6 +11,7 @@
 		C358B5041647BE590004537E /* LPLayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C358B5031647BE590004537E /* LPLayerCell.m */; };
 		C358B5061647BF290004537E /* LPLayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C358B5051647BF290004537E /* LPLayerCell.xib */; };
 		C3801398164867DB003C27E3 /* UIViewController+XIBLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = C3801397164867DB003C27E3 /* UIViewController+XIBLoader.m */; };
+		C3818D34164E6AAF008620ED /* LPWorkAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3818D33164E6AAF008620ED /* LPWorkAreaView.m */; };
 		C383B4C816479DDC00397907 /* LPLayersManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C383B4C616479DDC00397907 /* LPLayersManagerViewController.m */; };
 		C383B4C916479DDC00397907 /* LPLayersManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C383B4C716479DDC00397907 /* LPLayersManagerViewController.xib */; };
 		C384B70316470FAB00A22AFD /* LPSmartLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C384B70216470FAB00A22AFD /* LPSmartLayerManager.m */; };
@@ -41,6 +42,8 @@
 		C358B5051647BF290004537E /* LPLayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPLayerCell.xib; sourceTree = "<group>"; };
 		C3801396164867DB003C27E3 /* UIViewController+XIBLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+XIBLoader.h"; path = "Classes/Categories/UIViewController+XIBLoader.h"; sourceTree = "<group>"; };
 		C3801397164867DB003C27E3 /* UIViewController+XIBLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+XIBLoader.m"; path = "Classes/Categories/UIViewController+XIBLoader.m"; sourceTree = "<group>"; };
+		C3818D32164E6AAF008620ED /* LPWorkAreaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPWorkAreaView.h; path = Classes/Views/WorkAreaView/LPWorkAreaView.h; sourceTree = "<group>"; };
+		C3818D33164E6AAF008620ED /* LPWorkAreaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPWorkAreaView.m; path = Classes/Views/WorkAreaView/LPWorkAreaView.m; sourceTree = "<group>"; };
 		C383B4C516479DDC00397907 /* LPLayersManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPLayersManagerViewController.h; path = Classes/ViewControllers/LayerManager/LPLayersManagerViewController.h; sourceTree = "<group>"; };
 		C383B4C616479DDC00397907 /* LPLayersManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPLayersManagerViewController.m; path = Classes/ViewControllers/LayerManager/LPLayersManagerViewController.m; sourceTree = "<group>"; };
 		C383B4C716479DDC00397907 /* LPLayersManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPLayersManagerViewController.xib; path = Classes/ViewControllers/LayerManager/LPLayersManagerViewController.xib; sourceTree = "<group>"; };
@@ -134,6 +137,22 @@
 			name = "UIView+XIBLoader";
 			sourceTree = "<group>";
 		};
+		C3818D30164E6A74008620ED /* WorkAreaView */ = {
+			isa = PBXGroup;
+			children = (
+				C3818D32164E6AAF008620ED /* LPWorkAreaView.h */,
+				C3818D33164E6AAF008620ED /* LPWorkAreaView.m */,
+			);
+			name = WorkAreaView;
+			sourceTree = "<group>";
+		};
+		C3818D3D164E95B9008620ED /* External */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
 		C383B4C316479BCB00397907 /* LayersManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +237,7 @@
 		E125786D1642687E00119C0E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C3818D3D164E95B9008620ED /* External */,
 				C3801394164867A3003C27E3 /* Categories */,
 				C358B4FF1647BDB50004537E /* Cells */,
 				E12578AC16429ACD00119C0E /* Model */,
@@ -230,6 +250,7 @@
 		E125786E164268D300119C0E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C3818D30164E6A74008620ED /* WorkAreaView */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -375,6 +396,7 @@
 				C358B5041647BE590004537E /* LPLayerCell.m in Sources */,
 				C3801398164867DB003C27E3 /* UIViewController+XIBLoader.m in Sources */,
 				C32351EA1649BBB6006888CF /* UITableViewCell+FixUITableViewCellAutolayout.m in Sources */,
+				C3818D34164E6AAF008620ED /* LPWorkAreaView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
