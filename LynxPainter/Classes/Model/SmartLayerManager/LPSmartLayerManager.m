@@ -85,16 +85,18 @@
     }
     return nil;
 }
-- (void)removeLayerAtIndex:(int)nIndex{
+- (void)removeLayer{
     if(self.rootLayer && self.layersArray && [self.layersArray count]>0){
         [self.currLayer removeFromSuperlayer];
         [self.layersArray removeObjectAtIndex:self.currLayerIndex];
         if ([self.layersArray count]>0) {
             [self setCurrLayerWithIndex:[self.layersArray count]-1];
         }
+        if([self.layersArray count] == 0)
+            self.layerCounter = 0;
     }
 }
-- (void)clearLayerAtIndex:(int)nIndex{
+- (void)clearLayer{
     if(self.rootLayer && self.layersArray && [self.layersArray count]>0){
         if ([self.currLayer respondsToSelector:@selector(clear)]) {
             [self.currLayer clear];
@@ -102,7 +104,7 @@
     }
 }
 
-- (void)changeLayerAtIndex:(int)nIndex withVisibility:(BOOL)nVis{
+- (void)changeLayerWithVisibility:(BOOL)nVis{
     if(self.rootLayer && self.layersArray && [self.layersArray count]>0){
         self.currLayer.hidden = !nVis;
     }

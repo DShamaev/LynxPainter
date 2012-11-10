@@ -17,5 +17,6 @@
 - (IBAction)createNewLayerBtnClicked:(id)sender;
 - (IBAction)moveSelectedLayerUpBtnClicked:(id)sender;
 - (IBAction)moveSelectedLayerDownBtnClicked:(id)sender;
+- (IBAction)removeLayerBtnClicked:(id)sender;
 
 @end

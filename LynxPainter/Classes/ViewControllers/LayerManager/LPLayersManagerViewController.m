@@ -94,4 +94,10 @@
     self.selectedIndex+=1;
     [self.layerTable reloadData];
 }
+
+- (IBAction)removeLayerBtnClicked:(id)sender {
+    [self.slm removeLayer];
+    self.selectedIndex = [self.slm.layersArray count]>0 ? [self.slm.layersArray count]-1 : -1;
+    [self.layerTable reloadData];
+}
 @end
