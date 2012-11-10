@@ -52,6 +52,7 @@
     [self.slm setCurrLayerWithIndex:[self.slm.layersArray count]-indexPath.row-1];
     self.selectedIndex = indexPath.row;
     [self.alphaSlider setValue:self.slm.currLayer.opacity];
+    [self.alphaLevelLabel setText:[NSString stringWithFormat:@"%d%%",(int)(self.slm.currLayer.opacity*100)]];
     [self.changeVisButton setTitle:self.slm.currLayer.hidden ? @"X" : @"V" forState:UIControlStateNormal];
 }
 
@@ -81,6 +82,7 @@
 
 - (IBAction)createNewLayerBtnClicked:(id)sender {
     [self.slm addNewLayer];
+    [self.alphaLevelLabel setText:@"100%"];
     [self.layerTable reloadData];
 }
 

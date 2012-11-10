@@ -7,6 +7,15 @@
 //
 
 #import "LPWorkAreaView.h"
+#import "LPSmartLayerManager.h"
+#import "LPSmartLayer.h"
+#import "LPSmartLayerDelegate.h"
+
+@interface LPWorkAreaView (){
+    CGMutablePathRef signPath;
+}
+
+@end
 
 @implementation LPWorkAreaView
 
@@ -15,8 +24,32 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        [self initialization];
     }
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        // Initialization code
+        [self initialization];
+    }
+    return self;
+}
+
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        // Initialization code
+        [self initialization];
+    }
+    return self;
+}
+
+- (void)initialization {
+    signPath = CGPathCreateMutable();
 }
 
 /*
@@ -28,5 +61,35 @@
 }
 */
 
+
+- (CGPoint)pointFromTouches:(NSSet*)touches {
+    UITouch *touch = [[touches allObjects] objectAtIndex:0];
+    
+    CGPoint p = [touch locationInView:self];
+    return p;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    CGPoint p = [self pointFromTouches:touches];
+    //signPath = CGPathCreateMutable();
+    CGPathMoveToPoint(signPath, NULL, p.x, p.y);
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    CGPoint p = [self pointFromTouches:touches];
+    CGPathAddLineToPoint(signPath, NULL, p.x, p.y);
+    LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
+    del.signPath = CGPathCreateCopy(signPath);
+    [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];
+}
+
+- (void)needNewPath{
+    signPath = CGPathCreateMutable();
+    CALayer* nplayer = [CALayer layer];
+    nplayer.delegate = [LPSmartLayerManager sharedManager].currLayer.delegate;
+    nplayer.frame = self.bounds;
+    [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer = nplayer;
+    [[LPSmartLayerManager sharedManager].currLayer addSublayer:nplayer];
+}
 
 @end

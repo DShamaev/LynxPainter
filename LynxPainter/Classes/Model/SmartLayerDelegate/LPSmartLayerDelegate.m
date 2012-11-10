@@ -13,12 +13,10 @@
 
 -(void)drawLayer:(CALayer*)l inContext:(CGContextRef)context
 {
-    tmp = CGPathCreateMutableCopy(signPath);
     CGContextSetStrokeColorWithColor(context, self.currentColor.CGColor);
     CGContextSetLineWidth(context, self.currDrawSize);
-    CGContextAddPath(context, tmp);
-    CGContextStrokePath(context);
-    
+    CGContextAddPath(context, signPath);
+    CGContextStrokePath(context);    
 }
 
 @end

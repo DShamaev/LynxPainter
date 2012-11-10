@@ -8,12 +8,12 @@
 
 #import "LPSmartLayer.h"
 #import "LPSmartLayerDelegate.h"
+#import "LPSmartLayerManager.h"
 
 @interface LPSmartLayer (){
-    CALayer* player;
-    CGMutablePathRef signPath;
-    LPSmartLayerDelegate* pld;
+    LPSmartLayerDelegate* del;
 }
+
 @property (nonatomic) int smLineWidth;
 @property (nonatomic,strong) UIColor* smColor;
 
@@ -25,10 +25,15 @@
 
 @implementation LPSmartLayer
 
-- (void)fillWithName:(NSString*)nName withColor:(UIColor*)nColor withLineWidth:(int)nWidth{
-    self.smName = nName;
-    self.smColor = nColor;
-    self.smLineWidth = nWidth;
+- (id)initWithName:(NSString*)nName withColor:(UIColor*)nColor withLineWidth:(int)nWidth{
+    self = [super init];
+    if(self){
+        self.smName = nName;
+        self.smColor = nColor;
+        self.smLineWidth = nWidth;
+        [self initialization];
+    }
+    return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -50,53 +55,29 @@
 }
 
 - (void)initialization {
-    player = [CALayer layer];
-    player.opaque = YES;
-    pld = [[LPSmartLayerDelegate alloc] init];
-    player.delegate = pld;
-    player.frame = self.bounds;
+    [self setBackgroundColor:[UIColor clearColor].CGColor];
+    del = [[LPSmartLayerDelegate alloc] init];
+    del.currentColor = self.smColor;
+    del.currDrawSize = self.smLineWidth;
+    self.delegate = del;
+    NSArray* sl = [self sublayers];
+    for (int i=0; i<[sl count]; i++) {
+        [[self.sublayers objectAtIndex:i] removeFromSuperlayer];
+    }
+    CALayer* player = [CALayer layer];
+    player.delegate = self.delegate;
+    player.frame = [LPSmartLayerManager sharedManager].rootView.bounds;
+    CGRect f = player.frame;
+    self.smCurrSLayer = player;
     [self addSublayer:player];
-    signPath = CGPathCreateMutable();
 }
 
 - (void) dealloc {
-    CGPathRelease(signPath);
-}
-
-- (CGPoint)pointFromTouches:(NSSet*)touches {
-    UITouch *touch = [[touches allObjects] objectAtIndex:0];
-    
-    CGPoint p = [touch locationInView:self.rootLayerView];
-    return p;
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    CGPoint p = [self pointFromTouches:touches];
-    //signPath = CGPathCreateMutable();
-    CGPathMoveToPoint(signPath, NULL, p.x, p.y);
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    CGPoint p = [self pointFromTouches:touches];
-    CGPathAddLineToPoint(signPath, NULL, p.x, p.y);
-    pld.currDrawSize = self.smLineWidth;
-    pld.currentColor = self.smColor;
-    pld.signPath = signPath;
-    [player setNeedsDisplay];
-}
-
-- (void)needNewPath{
-    signPath = CGPathCreateMutable();
-    CALayer* nplayer = [CALayer layer];
-    nplayer.delegate = pld;
-    nplayer.frame = self.bounds;
-    [self insertSublayer:nplayer above:player];
-    player = nplayer;
 }
 
 - (void)clean {
     [self initialization];
-    [player setNeedsDisplay];
+    [self setNeedsDisplay];
 }
 
 

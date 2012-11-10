@@ -8,11 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LPSmartLayerDelegate : NSObject{
-    CGMutablePathRef signPath;
-    CGMutablePathRef tmp;
-}
-@property(nonatomic) CGMutablePathRef signPath;
+@interface LPSmartLayerDelegate : NSObject
+@property(nonatomic,assign) CGMutablePathRef signPath;
 @property (nonatomic,strong) UIColor* currentColor;
 @property (nonatomic,assign) int currDrawSize;
 

@@ -74,9 +74,7 @@
 
 - (LPSmartLayer*)addNewLayer{
     if(self.rootLayer){
-        LPSmartLayer* nLayer = [[LPSmartLayer alloc] init];
-        nLayer.rootLayerView = self.rootView;
-        [nLayer fillWithName:[NSString stringWithFormat:@"Layer %d",_layerCounter] withColor:[UIColor blackColor] withLineWidth:1];
+        LPSmartLayer* nLayer = [[LPSmartLayer alloc] initWithName:[NSString stringWithFormat:@"Layer %d",_layerCounter] withColor:[UIColor blackColor] withLineWidth:10];
         if(!self.layersArray)
             self.layersArray = [NSMutableArray array];
         [self.layersArray addObject:nLayer];

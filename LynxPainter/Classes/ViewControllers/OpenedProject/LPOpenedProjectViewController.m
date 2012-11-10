@@ -44,13 +44,14 @@
     self.workAreaSV.scrollEnabled = NO;
     [[LPSmartLayerManager sharedManager] setRootLayer:self.rootLayer.layer];
     [[LPSmartLayerManager sharedManager] setRootView:self.view];
-    [[LPSmartLayerManager sharedManager] addNewLayer];
+    LPSmartLayer* nl = [[LPSmartLayerManager sharedManager] addNewLayer];
+    [[LPSmartLayerManager sharedManager] setCurrLayer:nl];
     currMode = LPWADrawing;
     self.modeSC.selectedSegmentIndex = 0;
     [self.rootLayer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.workAreaSV setTranslatesAutoresizingMaskIntoConstraints:NO];
     BOOL isHeightWouldBeUsedForScale = _currRootLayerHeight > _currRootLayerWidth ? YES : NO;
-    float scaleMult;
+    float scaleMult=1;
     if(isHeightWouldBeUsedForScale){
         scaleMult = 600./_currRootLayerHeight;
     }else
