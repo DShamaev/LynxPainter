@@ -22,6 +22,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[LPSmartLayerManager alloc] init];
+        sharedInstance.currLayerIndex = -1;
         // Do any other initialisation stuff here
     });
     return sharedInstance;
@@ -101,12 +102,6 @@
         if ([self.currLayer respondsToSelector:@selector(clear)]) {
             [self.currLayer clear];
         }
-    }
-}
-
-- (void)changeLayerWithVisibility:(BOOL)nVis{
-    if(self.rootLayer && self.layersArray && [self.layersArray count]>0){
-        self.currLayer.hidden = !nVis;
     }
 }
 

@@ -34,6 +34,8 @@
     UIView *fakeFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.slm = [LPSmartLayerManager sharedManager];
     self.layerTable.tableFooterView = fakeFooterView;
+    [self.layerTable registerClass:[LPLayerCell class] forCellReuseIdentifier:@"layerCell"];
+    [self.layerTable registerNib:[UINib nibWithNibName:@"LPLayerCell" bundle:nil] forCellReuseIdentifier:@"layerCell"];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -49,6 +51,8 @@
     LPSmartLayer* sl = [self.slm.layersArray objectAtIndex:[self.slm.layersArray count]-indexPath.row-1];
     [self.slm setCurrLayerWithIndex:[self.slm.layersArray count]-indexPath.row-1];
     self.selectedIndex = indexPath.row;
+    [self.alphaSlider setValue:self.slm.currLayer.opacity];
+    [self.changeVisButton setTitle:self.slm.currLayer.hidden ? @"X" : @"V" forState:UIControlStateNormal];
 }
 
 #pragma mark - UITableViewDataSource
@@ -63,9 +67,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LPLayerCell* cell =(LPLayerCell*) [tableView dequeueReusableCellWithIdentifier:@"layerCell"];
-    if(!cell){
-        cell = [self objectWithNibName:@"LPLayerCell" withClass:@"LPLayerCell"];
-    }
     LPSmartLayer* sl = [self.slm.layersArray objectAtIndex:[self.slm.layersArray count]-indexPath.row-1];
     [cell setLayer:sl];
     if(indexPath.row == self.selectedIndex)
@@ -99,5 +100,19 @@
     [self.slm removeLayer];
     self.selectedIndex = [self.slm.layersArray count]>0 ? [self.slm.layersArray count]-1 : -1;
     [self.layerTable reloadData];
+}
+
+- (IBAction)changeVisBtnClicked:(id)sender {
+    if(self.slm.currLayer){
+        [self.slm setCurrLayerVisibility:self.slm.currLayer.hidden];
+        [self.changeVisButton setTitle:self.slm.currLayer.hidden ? @"X" : @"V" forState:UIControlStateNormal];
+    }
+}
+
+- (IBAction)changeAlphaValue:(id)sender {
+    if(self.slm.currLayer){
+        [self.slm setCurrLayerAlpha:self.alphaSlider.value];
+        [self.alphaLevelLabel setText:[NSString stringWithFormat:@"%d%%",(int)(self.slm.currLayer.opacity*100)]];
+    }
 }
 @end

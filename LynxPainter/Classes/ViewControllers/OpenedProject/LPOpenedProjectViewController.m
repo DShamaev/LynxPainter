@@ -11,8 +11,6 @@
 #import "LPLayersManagerViewController.h"
 #import "LPSmartLayerManager.h"
 #import "LPSmartLayer.h"
-#import "TBXML.h"
-#import "TBXML+Compression.h"
 
 @interface LPOpenedProjectViewController ()
 @property (strong, nonatomic) NSMutableArray* currSizeConstraints;
@@ -244,7 +242,7 @@
         NSData* content = UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
         UIGraphicsEndImageContext();
 
-        [fileData stringByAppendingFormat:@"<LPLayerData>%@</LPLayerData>",[content  ];
+        [fileData stringByAppendingFormat:@"<LPLayerData>%@</LPLayerData>"];
         
         [fileData stringByAppendingString:@"</LPFileLayer>"];
     }

@@ -8,7 +8,6 @@
 
 #import "LPLayerCell.h"
 #import "LPSmartLayer.h"
-#import "UITableViewCell+FixUITableViewCellAutolayout.h"
 
 @implementation LPLayerCell
 
@@ -39,7 +38,6 @@
     }else{
         [self.smVisibilityLabel setText:@"V"];
     }
-    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 
 @end
