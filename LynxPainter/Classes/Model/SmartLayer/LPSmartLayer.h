@@ -14,6 +14,7 @@
 @property (nonatomic,strong,readonly) UIColor* smColor;
 @property (nonatomic,strong) NSString* smName;
 @property (nonatomic,assign) CALayer* smCurrSLayer;
+@property (nonatomic,assign) CGMutablePathRef signPath;
 
 - (id)initWithName:(NSString*)nName withColor:(UIColor*)nColor withLineWidth:(int)nWidth;
 - (void)clear;

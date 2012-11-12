@@ -50,6 +50,7 @@
 
 - (void)initialization {
     signPath = CGPathCreateMutable();
+    self.isDrawable = YES;
 }
 
 /*
@@ -70,26 +71,35 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    CGPoint p = [self pointFromTouches:touches];
-    //signPath = CGPathCreateMutable();
-    CGPathMoveToPoint(signPath, NULL, p.x, p.y);
+    if(self.isDrawable){
+        signPath = [LPSmartLayerManager sharedManager].currLayer.signPath;
+        CGPoint p = [self pointFromTouches:touches];
+        //signPath = CGPathCreateMutable();
+        CGPathMoveToPoint(signPath, NULL, p.x, p.y);
+    }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    CGPoint p = [self pointFromTouches:touches];
-    CGPathAddLineToPoint(signPath, NULL, p.x, p.y);
-    LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
-    del.signPath = CGPathCreateCopy(signPath);
-    [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];
+    if(self.isDrawable){
+        CGPoint p = [self pointFromTouches:touches];
+        CGPathAddLineToPoint(signPath, NULL, p.x, p.y);
+        LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
+        del.signPath = [LPSmartLayerManager sharedManager].currLayer.signPath;
+        [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];
+    }
 }
 
-- (void)needNewPath{
+- (void)needNewSubPathPath{
     signPath = CGPathCreateMutable();
     CALayer* nplayer = [CALayer layer];
     nplayer.delegate = [LPSmartLayerManager sharedManager].currLayer.delegate;
     nplayer.frame = self.bounds;
     [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer = nplayer;
     [[LPSmartLayerManager sharedManager].currLayer addSublayer:nplayer];
+}
+
+- (void)requestNewPath{
+    
 }
 
 @end

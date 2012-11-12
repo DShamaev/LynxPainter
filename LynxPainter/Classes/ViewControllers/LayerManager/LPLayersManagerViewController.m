@@ -71,7 +71,7 @@
     LPSmartLayer* sl = [self.slm.layersArray objectAtIndex:[self.slm.layersArray count]-indexPath.row-1];
     [cell setLayer:sl];
     if(indexPath.row == self.selectedIndex)
-        [cell setSelected:YES];
+        [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     return cell;
 }
 
@@ -108,6 +108,7 @@
     if(self.slm.currLayer){
         [self.slm setCurrLayerVisibility:self.slm.currLayer.hidden];
         [self.changeVisButton setTitle:self.slm.currLayer.hidden ? @"X" : @"V" forState:UIControlStateNormal];
+        [self.layerTable reloadData];
     }
 }
 

@@ -55,6 +55,7 @@
 }
 
 - (void)initialization {
+    self.signPath = CGPathCreateMutable();
     [self setBackgroundColor:[UIColor clearColor].CGColor];
     del = [[LPSmartLayerDelegate alloc] init];
     del.currentColor = self.smColor;
@@ -65,9 +66,8 @@
         [[self.sublayers objectAtIndex:i] removeFromSuperlayer];
     }
     CALayer* player = [CALayer layer];
-    player.delegate = self.delegate;
+    player.delegate = del;
     player.frame = [LPSmartLayerManager sharedManager].rootView.bounds;
-    CGRect f = player.frame;
     self.smCurrSLayer = player;
     [self addSublayer:player];
 }

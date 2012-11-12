@@ -10,4 +10,7 @@
 
 @interface LPWorkAreaView : UIView
 
+@property (nonatomic) BOOL isDrawable;
+- (void)needNewSubPathPath;
+
 @end
