@@ -31,6 +31,8 @@
 		E12578A21642790500119C0E /* LPOpenedProjectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E12578A01642790500119C0E /* LPOpenedProjectViewController.xib */; };
 		E12578AF16429B3200119C0E /* LPSmartLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E12578AE16429B3200119C0E /* LPSmartLayer.m */; };
 		E12578B116429F3C00119C0E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578B016429F3C00119C0E /* QuartzCore.framework */; };
+		E17C7A8616515B33009202BA /* LPCloseProjectDialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E17C7A8416515B33009202BA /* LPCloseProjectDialogViewController.m */; };
+		E17C7A8716515B33009202BA /* LPCloseProjectDialogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E17C7A8516515B33009202BA /* LPCloseProjectDialogViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +74,9 @@
 		E12578AD16429B3200119C0E /* LPSmartLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPSmartLayer.h; path = Classes/Model/SmartLayer/LPSmartLayer.h; sourceTree = "<group>"; };
 		E12578AE16429B3200119C0E /* LPSmartLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPSmartLayer.m; path = Classes/Model/SmartLayer/LPSmartLayer.m; sourceTree = "<group>"; };
 		E12578B016429F3C00119C0E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E17C7A8316515B33009202BA /* LPCloseProjectDialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPCloseProjectDialogViewController.h; path = Classes/ViewControllers/CloseProjectDialog/LPCloseProjectDialogViewController.h; sourceTree = "<group>"; };
+		E17C7A8416515B33009202BA /* LPCloseProjectDialogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPCloseProjectDialogViewController.m; path = Classes/ViewControllers/CloseProjectDialog/LPCloseProjectDialogViewController.m; sourceTree = "<group>"; };
+		E17C7A8516515B33009202BA /* LPCloseProjectDialogViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPCloseProjectDialogViewController.xib; path = Classes/ViewControllers/CloseProjectDialog/LPCloseProjectDialogViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +250,7 @@
 		E12578761642695F00119C0E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E17C7A8116515AB6009202BA /* CloseProjectDialog */,
 				C383B4C316479BCB00397907 /* LayersManager */,
 				E125788116426FB600119C0E /* NavigationController */,
 				E12578771642696E00119C0E /* Home */,
@@ -299,6 +305,16 @@
 				E12578AE16429B3200119C0E /* LPSmartLayer.m */,
 			);
 			name = SmartLayer;
+			sourceTree = "<group>";
+		};
+		E17C7A8116515AB6009202BA /* CloseProjectDialog */ = {
+			isa = PBXGroup;
+			children = (
+				E17C7A8316515B33009202BA /* LPCloseProjectDialogViewController.h */,
+				E17C7A8416515B33009202BA /* LPCloseProjectDialogViewController.m */,
+				E17C7A8516515B33009202BA /* LPCloseProjectDialogViewController.xib */,
+			);
+			name = CloseProjectDialog;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +377,7 @@
 				E12578A21642790500119C0E /* LPOpenedProjectViewController.xib in Resources */,
 				C383B4C916479DDC00397907 /* LPLayersManagerViewController.xib in Resources */,
 				C358B5061647BF290004537E /* LPLayerCell.xib in Resources */,
+				E17C7A8716515B33009202BA /* LPCloseProjectDialogViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +400,7 @@
 				C358B5041647BE590004537E /* LPLayerCell.m in Sources */,
 				C3801398164867DB003C27E3 /* UIViewController+XIBLoader.m in Sources */,
 				C3818D34164E6AAF008620ED /* LPWorkAreaView.m in Sources */,
+				E17C7A8616515B33009202BA /* LPCloseProjectDialogViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

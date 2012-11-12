@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class LPOpenedProjectViewController;
+
 @interface LPCloseProjectDialogViewController : UIViewController
+@property (strong,nonatomic) LPOpenedProjectViewController* delegate;
+@property (strong, nonatomic) IBOutlet UITextField *cpdFilenameTF;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *formatSC;
+- (IBAction)cancelBtnClicked:(id)sender;
+- (IBAction)saveBtnClicked:(id)sender;
+- (IBAction)dontsaveBtnClicked:(id)sender;
 
 @end

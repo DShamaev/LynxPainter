@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class LPWorkAreaView;
+
 typedef enum {
     LPWATransforming,
     LPWADrawing,
@@ -17,7 +19,8 @@ typedef enum {
 @interface LPOpenedProjectViewController : UIViewController<UITextFieldDelegate>{
     LPWAMode currMode;
 }
-@property (strong, nonatomic) IBOutlet UIView *rootLayer;
+@property (strong, nonatomic) UIPopoverController* pc;
+@property (strong, nonatomic) IBOutlet LPWorkAreaView *rootLayer;
 @property (nonatomic) float currScale;
 @property (nonatomic) int currRootLayerWidth;
 @property (nonatomic) int currRootLayerHeight;

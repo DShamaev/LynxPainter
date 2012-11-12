@@ -7,6 +7,7 @@
 //
 
 #import "LPCloseProjectDialogViewController.h"
+#import "LPOpenedProjectViewController.h"
 
 @interface LPCloseProjectDialogViewController ()
 
@@ -35,4 +36,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)cancelBtnClicked:(id)sender {
+    [self.delegate.pc dismissPopoverAnimated:YES];
+}
+
+- (IBAction)saveBtnClicked:(id)sender {
+    //JPEG
+    if(self.formatSC.selectedSegmentIndex == 0){
+        [self.delegate saveProjectAsJPEGImage:self.cpdFilenameTF.text];
+    }
+    //PNG
+    if(self.formatSC.selectedSegmentIndex == 1){
+        [self.delegate saveProjectAsPNGImage:self.cpdFilenameTF.text];
+    }
+    //PROJECT
+    if(self.formatSC.selectedSegmentIndex == 2){
+        [self.delegate saveImageAsLProjectFile:self.cpdFilenameTF.text];
+    }
+}
+
+- (IBAction)dontsaveBtnClicked:(id)sender {
+    [self.delegate.navigationController popToRootViewControllerAnimated:YES];
+}
 @end

@@ -11,11 +11,12 @@
 #import "LPLayersManagerViewController.h"
 #import "LPSmartLayerManager.h"
 #import "LPSmartLayer.h"
+#import "LPWorkAreaView.h"
+#import "LPCloseProjectDialogViewController.h"
 
 @interface LPOpenedProjectViewController ()
 @property (strong, nonatomic) NSMutableArray* currSizeConstraints;
 @property (strong, nonatomic) NSMutableArray* currCenterConstraints;
-@property (strong, nonatomic) UIPopoverController* pc;
 @end
 
 @implementation LPOpenedProjectViewController
@@ -133,7 +134,12 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)closeProject:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    UIButton* but = (UIButton*)sender;
+    LPCloseProjectDialogViewController* cpdvc = [[LPCloseProjectDialogViewController alloc] initWithNibName:@"LPCloseProjectDialogViewController" bundle:nil];
+    cpdvc.delegate = self;
+    self.pc = [[UIPopoverController alloc] initWithContentViewController:cpdvc];
+    [self.pc presentPopoverFromRect:but.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+    //[self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (IBAction)showLayersManager:(id)sender {
@@ -148,16 +154,19 @@
     if(self.modeSC.selectedSegmentIndex == 0){
         self.workAreaSV.scrollEnabled = NO;
         currMode = LPWADrawing;
+        self.rootLayer.isDrawable = YES;
     }
     //TRANSFORMING
     if(self.modeSC.selectedSegmentIndex == 1){
         self.workAreaSV.scrollEnabled = YES;
         currMode = LPWATransforming;
+        self.rootLayer.isDrawable = NO;
     }
     //LAYER
     if(self.modeSC.selectedSegmentIndex == 2){
         self.workAreaSV.scrollEnabled = NO;
         currMode = LPWALayer;
+        self.rootLayer.isDrawable = NO;
     }
 }
 
@@ -202,22 +211,47 @@
 }
 
 -(void)saveProjectAsJPEGImage:(NSString*)filename{
+    NSFileManager* sharedFM = [NSFileManager defaultManager];
+    NSArray* possibleURLs = [sharedFM URLsForDirectory:NSDocumentDirectory
+                                             inDomains:NSUserDomainMask];
+    NSURL* docDir = nil;
+    if ([possibleURLs count]>0) {
+        docDir=[possibleURLs objectAtIndex:0];
+    }
     UIGraphicsBeginImageContext(self.rootLayer.bounds.size);
     [self.rootLayer.layer renderInContext:UIGraphicsGetCurrentContext()];
     NSData* content = UIImageJPEGRepresentation(UIGraphicsGetImageFromCurrentImageContext(), 1.);
-    UIGraphicsEndImageContext();    
-    [content writeToFile:[NSString stringWithFormat:@"%@.jpg",filename] atomically:YES];
+    UIGraphicsEndImageContext();
+    if (docDir!=nil) {
+        [content writeToFile:[NSString stringWithFormat:@"%@%@.jpg",docDir,filename] atomically:YES];
+    }
 }
 
 -(void)saveProjectAsPNGImage:(NSString*)filename{
+    NSFileManager* sharedFM = [NSFileManager defaultManager];
+    NSArray* possibleURLs = [sharedFM URLsForDirectory:NSDocumentDirectory
+                                             inDomains:NSUserDomainMask];
+    NSURL* docDir = nil;
+    if ([possibleURLs count]>0) {
+        docDir=[possibleURLs objectAtIndex:0];
+    }    
     UIGraphicsBeginImageContext(self.rootLayer.bounds.size);
     [self.rootLayer.layer renderInContext:UIGraphicsGetCurrentContext()];
     NSData* content = UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
-    UIGraphicsEndImageContext(); 
-    [content writeToFile:[NSString stringWithFormat:@"%@.png",filename] atomically:YES];
+    UIGraphicsEndImageContext();
+    if (docDir!=nil) {
+        [content writeToFile:[NSString stringWithFormat:@"%@%@.png",docDir,filename] atomically:YES];
+    }
 }
 
 -(void)saveImageAsLProjectFile:(NSString*)filename{
+    NSFileManager* sharedFM = [NSFileManager defaultManager];
+    NSArray* possibleURLs = [sharedFM URLsForDirectory:NSDocumentDirectory
+                                             inDomains:NSUserDomainMask];
+    NSURL* docDir = nil;
+    if ([possibleURLs count]>0) {
+        docDir=[possibleURLs objectAtIndex:0];
+    }
     LPSmartLayerManager* slm = [LPSmartLayerManager sharedManager];
     NSString* fileData = @"<LPFileRoot>";
     if([slm.layersArray count]>0){
