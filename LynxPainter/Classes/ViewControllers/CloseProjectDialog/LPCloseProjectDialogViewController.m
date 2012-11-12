@@ -56,6 +56,7 @@
 }
 
 - (IBAction)dontsaveBtnClicked:(id)sender {
+    [self.delegate.pc dismissPopoverAnimated:YES];
     [self.delegate.navigationController popToRootViewControllerAnimated:YES];
 }
 @end

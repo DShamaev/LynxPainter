@@ -258,7 +258,6 @@
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<bool key="IBUIEnabled">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<int key="IBUIButtonType">1</int>
@@ -294,7 +293,6 @@
 								<string key="NSFrame">{{112, 21}, {800, 600}}</string>
 								<reference key="NSSuperview" ref="1014804027"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<string key="NSAntiCompressionPriority">{750, 750}</string>
 								<reference key="IBUIBackgroundColor" ref="778244670"/>
@@ -401,6 +399,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">535</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">showDrawingManager:</string>
+						<reference key="source" ref="589610825"/>
+						<reference key="destination" ref="841351856"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">537</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -903,9 +910,9 @@
 							<reference ref="424404375"/>
 							<reference ref="22729615"/>
 							<reference ref="620000956"/>
-							<reference ref="589610825"/>
 							<reference ref="107374839"/>
 							<reference ref="1053737354"/>
+							<reference ref="589610825"/>
 						</array>
 						<reference key="parent" ref="766721923"/>
 						<string key="objectName">TopBar</string>
@@ -1627,7 +1634,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">536</int>
+			<int key="maxID">537</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1637,6 +1644,7 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="closeProject:">id</string>
 						<string key="modeChanged:">id</string>
+						<string key="showDrawingManager:">id</string>
 						<string key="showLayersManager:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
@@ -1648,6 +1656,10 @@
 							<string key="name">modeChanged:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="showDrawingManager:">
+							<string key="name">showDrawingManager:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="showLayersManager:">
 							<string key="name">showLayersManager:</string>
 							<string key="candidateClassName">id</string>
@@ -1655,7 +1667,7 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="modeSC">UISegmentedControl</string>
-						<string key="rootLayer">UIView</string>
+						<string key="rootLayer">LPWorkAreaView</string>
 						<string key="scaleValueTF">UITextField</string>
 						<string key="workAreaSV">UIScrollView</string>
 					</dictionary>
@@ -1666,7 +1678,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="rootLayer">
 							<string key="name">rootLayer</string>
-							<string key="candidateClassName">UIView</string>
+							<string key="candidateClassName">LPWorkAreaView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="scaleValueTF">
 							<string key="name">scaleValueTF</string>

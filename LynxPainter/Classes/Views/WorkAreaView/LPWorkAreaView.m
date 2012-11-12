@@ -85,21 +85,21 @@
         CGPathAddLineToPoint(signPath, NULL, p.x, p.y);
         LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
         del.signPath = [LPSmartLayerManager sharedManager].currLayer.signPath;
+        del.currentColor = [LPSmartLayerManager sharedManager].currLayer.smColor;
+        del.currDrawSize = [LPSmartLayerManager sharedManager].currLayer.smLineWidth;
         [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];
     }
 }
 
 - (void)needNewSubPathPath{
-    signPath = CGPathCreateMutable();
     CALayer* nplayer = [CALayer layer];
-    nplayer.delegate = [LPSmartLayerManager sharedManager].currLayer.delegate;
     nplayer.frame = self.bounds;
+    [[LPSmartLayerManager sharedManager].currLayer requestNewDelegate];
+    LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.del;
+    del.signPath = CGPathCreateMutable();
+    nplayer.delegate = del;
     [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer = nplayer;
-    [[LPSmartLayerManager sharedManager].currLayer addSublayer:nplayer];
-}
-
-- (void)requestNewPath{
-    
+    [[LPSmartLayerManager sharedManager].currLayer addSublayer:nplayer ];
 }
 
 @end

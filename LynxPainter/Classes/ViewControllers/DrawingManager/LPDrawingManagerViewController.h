@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LPDrawingManagerViewController : UIViewController
+@class LPOpenedProjectViewController;
+
+@interface LPDrawingManagerViewController : UIViewController<UITextFieldDelegate>
+@property (strong,nonatomic) LPOpenedProjectViewController* delegate;
+@property (strong, nonatomic) IBOutlet UITextField *brsizeTF;
+- (IBAction)redColorBtn:(id)sender;
+- (IBAction)blueColorBtn:(id)sender;
+- (IBAction)greenColorBtn:(id)sender;
+- (IBAction)yellowColorBtn:(id)sender;
+- (IBAction)blackColorBtn:(id)sender;
+- (IBAction)WhiteColorBtn:(id)sender;
 
 @end

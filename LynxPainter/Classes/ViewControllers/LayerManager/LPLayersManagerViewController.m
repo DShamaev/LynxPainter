@@ -49,6 +49,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     LPSmartLayer* sl = [self.slm.layersArray objectAtIndex:[self.slm.layersArray count]-indexPath.row-1];
+    [self selectLayerWithIndexPath:indexPath];
+}
+
+-(void)selectLayerWithIndexPath:(NSIndexPath*)indexPath{
     [self.slm setCurrLayerWithIndex:[self.slm.layersArray count]-indexPath.row-1];
     self.selectedIndex = indexPath.row;
     [self.alphaSlider setValue:self.slm.currLayer.opacity];
@@ -70,8 +74,10 @@
     LPLayerCell* cell =(LPLayerCell*) [tableView dequeueReusableCellWithIdentifier:@"layerCell"];
     LPSmartLayer* sl = [self.slm.layersArray objectAtIndex:[self.slm.layersArray count]-indexPath.row-1];
     [cell setLayer:sl];
-    if(indexPath.row == self.selectedIndex)
+    if(indexPath.row == self.selectedIndex){
         [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        [self selectLayerWithIndexPath:indexPath];
+    }
     return cell;
 }
 

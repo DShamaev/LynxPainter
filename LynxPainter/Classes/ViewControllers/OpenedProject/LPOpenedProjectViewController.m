@@ -13,6 +13,7 @@
 #import "LPSmartLayer.h"
 #import "LPWorkAreaView.h"
 #import "LPCloseProjectDialogViewController.h"
+#import "LPDrawingManagerViewController.h"
 
 @interface LPOpenedProjectViewController ()
 @property (strong, nonatomic) NSMutableArray* currSizeConstraints;
@@ -45,8 +46,6 @@
     self.workAreaSV.scrollEnabled = NO;
     [[LPSmartLayerManager sharedManager] setRootLayer:self.rootLayer.layer];
     [[LPSmartLayerManager sharedManager] setRootView:self.view];
-    LPSmartLayer* nl = [[LPSmartLayerManager sharedManager] addNewLayer];
-    [[LPSmartLayerManager sharedManager] setCurrLayer:nl];
     currMode = LPWADrawing;
     self.modeSC.selectedSegmentIndex = 0;
     [self.rootLayer setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -57,6 +56,9 @@
         scaleMult = 600./_currRootLayerHeight;
     }else
         scaleMult = 800./_currRootLayerWidth;
+    [LPSmartLayerManager sharedManager].currScale = scaleMult;
+    LPSmartLayer* nl = [[LPSmartLayerManager sharedManager] addNewLayer];
+    [[LPSmartLayerManager sharedManager] setCurrLayer:nl];
     [self addNewSizeConstraintsWithScale:scaleMult];
     self.rootLayer.layer.borderColor = [UIColor blackColor].CGColor;
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -170,6 +172,14 @@
     }
 }
 
+- (IBAction)showDrawingManager:(id)sender {
+    UIButton* but = (UIButton*)sender;
+    LPDrawingManagerViewController* dmvc = [[LPDrawingManagerViewController alloc] initWithNibName:@"LPDrawingManagerViewController" bundle:nil];
+    dmvc.delegate = self;
+    self.pc = [[UIPopoverController alloc] initWithContentViewController:dmvc];
+    [self.pc presentPopoverFromRect:but.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     if([@"" isEqualToString:string])
         return true;
@@ -206,7 +216,7 @@
             actValue = [actValue stringByReplacingCharactersInRange:lastPerc
                                                          withString:@""];
         [self addNewSizeConstraintsWithScale:[actValue intValue]/100.];
-
+        [LPSmartLayerManager sharedManager].currScale = [actValue intValue]/100.;
     }
 }
 

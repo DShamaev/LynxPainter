@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C358B5041647BE590004537E /* LPLayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C358B5031647BE590004537E /* LPLayerCell.m */; };
 		C358B5061647BF290004537E /* LPLayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C358B5051647BF290004537E /* LPLayerCell.xib */; };
+		C37DF7881651942A00AEAC0B /* LPDrawingManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C37DF7861651942A00AEAC0B /* LPDrawingManagerViewController.m */; };
+		C37DF7891651942A00AEAC0B /* LPDrawingManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C37DF7871651942A00AEAC0B /* LPDrawingManagerViewController.xib */; };
 		C3801398164867DB003C27E3 /* UIViewController+XIBLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = C3801397164867DB003C27E3 /* UIViewController+XIBLoader.m */; };
 		C3818D34164E6AAF008620ED /* LPWorkAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3818D33164E6AAF008620ED /* LPWorkAreaView.m */; };
 		C383B4C816479DDC00397907 /* LPLayersManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C383B4C616479DDC00397907 /* LPLayersManagerViewController.m */; };
@@ -39,6 +41,9 @@
 		C358B5021647BE590004537E /* LPLayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPLayerCell.h; path = Classes/Cells/LayerCell/LPLayerCell.h; sourceTree = "<group>"; };
 		C358B5031647BE590004537E /* LPLayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPLayerCell.m; path = Classes/Cells/LayerCell/LPLayerCell.m; sourceTree = "<group>"; };
 		C358B5051647BF290004537E /* LPLayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPLayerCell.xib; sourceTree = "<group>"; };
+		C37DF7851651942A00AEAC0B /* LPDrawingManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPDrawingManagerViewController.h; path = Classes/ViewControllers/DrawingManager/LPDrawingManagerViewController.h; sourceTree = "<group>"; };
+		C37DF7861651942A00AEAC0B /* LPDrawingManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPDrawingManagerViewController.m; path = Classes/ViewControllers/DrawingManager/LPDrawingManagerViewController.m; sourceTree = "<group>"; };
+		C37DF7871651942A00AEAC0B /* LPDrawingManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPDrawingManagerViewController.xib; path = Classes/ViewControllers/DrawingManager/LPDrawingManagerViewController.xib; sourceTree = "<group>"; };
 		C3801396164867DB003C27E3 /* UIViewController+XIBLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+XIBLoader.h"; path = "Classes/Categories/UIViewController+XIBLoader.h"; sourceTree = "<group>"; };
 		C3801397164867DB003C27E3 /* UIViewController+XIBLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+XIBLoader.m"; path = "Classes/Categories/UIViewController+XIBLoader.m"; sourceTree = "<group>"; };
 		C3818D32164E6AAF008620ED /* LPWorkAreaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPWorkAreaView.h; path = Classes/Views/WorkAreaView/LPWorkAreaView.h; sourceTree = "<group>"; };
@@ -110,6 +115,16 @@
 				C358B5051647BF290004537E /* LPLayerCell.xib */,
 			);
 			name = LayerCell;
+			sourceTree = "<group>";
+		};
+		C37DF783165193CE00AEAC0B /* DrawingManager */ = {
+			isa = PBXGroup;
+			children = (
+				C37DF7851651942A00AEAC0B /* LPDrawingManagerViewController.h */,
+				C37DF7861651942A00AEAC0B /* LPDrawingManagerViewController.m */,
+				C37DF7871651942A00AEAC0B /* LPDrawingManagerViewController.xib */,
+			);
+			name = DrawingManager;
 			sourceTree = "<group>";
 		};
 		C3801394164867A3003C27E3 /* Categories */ = {
@@ -250,6 +265,7 @@
 		E12578761642695F00119C0E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C37DF783165193CE00AEAC0B /* DrawingManager */,
 				E17C7A8116515AB6009202BA /* CloseProjectDialog */,
 				C383B4C316479BCB00397907 /* LayersManager */,
 				E125788116426FB600119C0E /* NavigationController */,
@@ -378,6 +394,7 @@
 				C383B4C916479DDC00397907 /* LPLayersManagerViewController.xib in Resources */,
 				C358B5061647BF290004537E /* LPLayerCell.xib in Resources */,
 				E17C7A8716515B33009202BA /* LPCloseProjectDialogViewController.xib in Resources */,
+				C37DF7891651942A00AEAC0B /* LPDrawingManagerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +418,7 @@
 				C3801398164867DB003C27E3 /* UIViewController+XIBLoader.m in Sources */,
 				C3818D34164E6AAF008620ED /* LPWorkAreaView.m in Sources */,
 				E17C7A8616515B33009202BA /* LPCloseProjectDialogViewController.m in Sources */,
+				C37DF7881651942A00AEAC0B /* LPDrawingManagerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

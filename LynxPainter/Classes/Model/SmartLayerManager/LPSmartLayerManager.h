@@ -18,6 +18,7 @@
 @property (nonatomic, strong) CALayer *rootLayer;
 @property (nonatomic,retain,readonly) NSMutableArray* layersArray;
 @property (nonatomic,readonly) int currLayerIndex;
+@property (nonatomic) float currScale;
 @property (nonatomic,retain) LPSmartLayer* currLayer;
 
 + (LPSmartLayerManager *)sharedManager;

@@ -11,11 +11,8 @@
 #import "LPSmartLayerManager.h"
 
 @interface LPSmartLayer (){
-    LPSmartLayerDelegate* del;
+    NSMutableArray* layerDelegates;
 }
-
-@property (nonatomic) int smLineWidth;
-@property (nonatomic,strong) UIColor* smColor;
 
 - (void)initialization;
 - (CGPoint)pointFromTouches:(NSSet*)touches;
@@ -57,16 +54,17 @@
 - (void)initialization {
     self.signPath = CGPathCreateMutable();
     [self setBackgroundColor:[UIColor clearColor].CGColor];
-    del = [[LPSmartLayerDelegate alloc] init];
-    del.currentColor = self.smColor;
-    del.currDrawSize = self.smLineWidth;
-    self.delegate = del;
+    self.del = [[LPSmartLayerDelegate alloc] init];
+    self.del.currentColor = self.smColor;
+    self.del.currDrawSize = self.smLineWidth;
+    layerDelegates = [NSMutableArray array];
+    [layerDelegates addObject:self.del];
     NSArray* sl = [self sublayers];
     for (int i=0; i<[sl count]; i++) {
         [[self.sublayers objectAtIndex:i] removeFromSuperlayer];
     }
     CALayer* player = [CALayer layer];
-    player.delegate = del;
+    player.delegate = [layerDelegates objectAtIndex:0];
     player.frame = [LPSmartLayerManager sharedManager].rootView.bounds;
     self.smCurrSLayer = player;
     [self addSublayer:player];
@@ -80,5 +78,11 @@
     [self setNeedsDisplay];
 }
 
+- (void)requestNewDelegate{
+    self.del = [[LPSmartLayerDelegate alloc] init];
+    self.del.currentColor = self.smColor;
+    self.del.currDrawSize = self.smLineWidth;
+    [layerDelegates addObject:self.del];
+}
 
 @end
