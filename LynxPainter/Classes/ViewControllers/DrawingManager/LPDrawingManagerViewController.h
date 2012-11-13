@@ -13,6 +13,7 @@
 @interface LPDrawingManagerViewController : UIViewController<UITextFieldDelegate>
 @property (strong,nonatomic) LPOpenedProjectViewController* delegate;
 @property (strong, nonatomic) IBOutlet UITextField *brsizeTF;
+@property (strong, nonatomic) IBOutlet UIView *currColorView;
 - (IBAction)redColorBtn:(id)sender;
 - (IBAction)blueColorBtn:(id)sender;
 - (IBAction)greenColorBtn:(id)sender;

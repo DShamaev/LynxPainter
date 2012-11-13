@@ -43,35 +43,48 @@
 - (IBAction)redColorBtn:(id)sender {
     if ([LPSmartLayerManager sharedManager].currLayer.smColor != [UIColor redColor]) {
         [LPSmartLayerManager sharedManager].currLayer.smColor = [UIColor redColor];
-        [self.delegate.rootLayer needNewSubPathPath];
+        [self notifyAboutColorChange];
     }
 }
 
 - (IBAction)blueColorBtn:(id)sender {
     if ([LPSmartLayerManager sharedManager].currLayer.smColor != [UIColor blueColor]) {
         [LPSmartLayerManager sharedManager].currLayer.smColor = [UIColor blueColor];
-        [self.delegate.rootLayer needNewSubPathPath];
+        [self notifyAboutColorChange];
     }
 }
 
 - (IBAction)greenColorBtn:(id)sender {
+    if ([LPSmartLayerManager sharedManager].currLayer.smColor != [UIColor greenColor]) {
+        [LPSmartLayerManager sharedManager].currLayer.smColor = [UIColor greenColor];
+        [self notifyAboutColorChange];
+    }
 }
 
 - (IBAction)yellowColorBtn:(id)sender {
+    if ([LPSmartLayerManager sharedManager].currLayer.smColor != [UIColor yellowColor]) {
+        [LPSmartLayerManager sharedManager].currLayer.smColor = [UIColor yellowColor];
+        [self notifyAboutColorChange];
+    }
 }
 
 - (IBAction)blackColorBtn:(id)sender {
     if ([LPSmartLayerManager sharedManager].currLayer.smColor != [UIColor blackColor]) {
         [LPSmartLayerManager sharedManager].currLayer.smColor = [UIColor blackColor];
-        [self.delegate.rootLayer needNewSubPathPath];
+        [self notifyAboutColorChange];
     }
 }
 
 - (IBAction)WhiteColorBtn:(id)sender {
     if ([LPSmartLayerManager sharedManager].currLayer.smColor != [UIColor whiteColor]) {
         [LPSmartLayerManager sharedManager].currLayer.smColor = [UIColor whiteColor];
-        [self.delegate.rootLayer needNewSubPathPath];
+        [self notifyAboutColorChange];
     }
+}
+
+- (void) notifyAboutColorChange{
+    [self.currColorView setBackgroundColor:[LPSmartLayerManager sharedManager].currLayer.smColor];
+    [self.delegate.rootLayer needNewSubPathPath];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
@@ -95,7 +108,6 @@
 
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
     if(textField == self.brsizeTF){
-        NSLog(@"%d and %d",(int)([textField.text floatValue]/[LPSmartLayerManager sharedManager].currScale),[LPSmartLayerManager sharedManager].currLayer.smLineWidth);
         if ((int)([textField.text floatValue]/[LPSmartLayerManager sharedManager].currScale) != [LPSmartLayerManager sharedManager].currLayer.smLineWidth) {
             [LPSmartLayerManager sharedManager].currLayer.smLineWidth = [textField.text floatValue]/self.delegate.currScale;
             [self.delegate.rootLayer needNewSubPathPath];
