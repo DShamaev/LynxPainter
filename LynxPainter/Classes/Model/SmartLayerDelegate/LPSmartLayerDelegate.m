@@ -16,6 +16,8 @@
     CGContextSetStrokeColorWithColor(context, self.currentColor.CGColor);
     CGContextSetLineWidth(context, self.currDrawSize);
     CGContextAddPath(context, signPath);
+    CGContextSetLineCap(context,kCGLineCapRound);
+    CGContextSetLineJoin(context, kCGLineCapRound);
     CGContextStrokePath(context);    
 }
 
