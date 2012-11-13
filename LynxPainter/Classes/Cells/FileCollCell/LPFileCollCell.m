@@ -19,6 +19,11 @@
     return self;
 }
 
+- (void)fillCellWithName:(NSString*)name andImage:(UIImage*)image{
+    [self.fileImageView setImage:image];
+    [self.fileNameLabel setText:name];
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

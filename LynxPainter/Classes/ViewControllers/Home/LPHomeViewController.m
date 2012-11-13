@@ -8,9 +8,12 @@
 
 #import "LPHomeViewController.h"
 #import "LPOpenedProjectViewController.h"
+#import "LPFileCollCell.h"
+#import "LPFileManager.h"
+#import "LPFileInfo.h"
 
 @interface LPHomeViewController ()
-
+@property (nonatomic,retain) NSMutableArray* fileSectionArray;
 @end
 
 @implementation LPHomeViewController
@@ -28,17 +31,19 @@
 {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
+    [self.fileCollView registerClass:[LPFileCollCell class] forCellWithReuseIdentifier:@"fileCollCell"];
+    [self.fileCollView registerNib:[UINib nibWithNibName:@"LPFileCollCell" bundle:nil] forCellWithReuseIdentifier:@"fileCollCell"];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [self updateFileSectionArray];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)createProjectBtnClicked:(id)sender {
-    _createDialogView.hidden = NO;
 }
 
 - (IBAction)createNewProjectDialogBtnClicked:(id)sender {
@@ -70,6 +75,56 @@
         }
     }
     return true;
+}
+
+- (void)updateFileSectionArray{
+    if(!self.fileSectionArray)
+        self.fileSectionArray = [NSMutableArray array];
+    else
+        [self.fileSectionArray removeAllObjects];
+    NSMutableArray* projectFilesArray = [NSMutableArray array];
+    LPFileInfo* npFile = [[LPFileInfo alloc] init];
+    [npFile fillWithName:@"Create Project" withURL:@""];
+    [projectFilesArray addObject:npFile];
+    [projectFilesArray addObjectsFromArray:[[LPFileManager sharedManager] receiveProjectsFilesList]];
+    [self.fileSectionArray addObject:projectFilesArray];
+    [self.fileSectionArray addObject:[[LPFileManager sharedManager] receiveImagesFilesList]];
+}
+
+#pragma mark - UICollectionViewDelegateFlowLayout delegate
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeMake(100, 100);
+}
+
+#pragma mark - UICollectionViewDelegate delegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        _createDialogView.hidden = NO;
+    }else{
+        NSMutableArray* ca = [self.fileSectionArray objectAtIndex:indexPath.section];
+        LPFileInfo* fi = [ca objectAtIndex:indexPath.row];
+    }
+}
+
+#pragma mark - UICollectionViewDataSource delegate
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    LPFileCollCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"fileCollCell" forIndexPath:indexPath];
+    NSMutableArray* ca = [self.fileSectionArray objectAtIndex:indexPath.section];
+    LPFileInfo* fi = [ca objectAtIndex:indexPath.row];
+    [cell fillCellWithName:fi.fiName andImage:[UIImage imageWithContentsOfFile:fi.fiURL]];
+    return cell;
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return [self.fileSectionArray count];
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    NSMutableArray* sa = [self.fileSectionArray objectAtIndex:section];
+    return [sa count];
 }
 
 @end

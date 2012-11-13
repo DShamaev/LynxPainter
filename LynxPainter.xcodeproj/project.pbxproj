@@ -17,6 +17,10 @@
 		C383B4C916479DDC00397907 /* LPLayersManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C383B4C716479DDC00397907 /* LPLayersManagerViewController.xib */; };
 		C384B70316470FAB00A22AFD /* LPSmartLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C384B70216470FAB00A22AFD /* LPSmartLayerManager.m */; };
 		C384B70C164716C900A22AFD /* LPSmartLayerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C384B70B164716C900A22AFD /* LPSmartLayerDelegate.m */; };
+		C3877A931652E9AD00208CAA /* LPFileCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3877A921652E9AD00208CAA /* LPFileCollCell.m */; };
+		C3877A951652E9E000208CAA /* LPFileCollCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3877A941652E9E000208CAA /* LPFileCollCell.xib */; };
+		C3877A991652EE8E00208CAA /* LPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3877A981652EE8E00208CAA /* LPFileManager.m */; };
+		C3877A9D1652EF7B00208CAA /* LPFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C3877A9C1652EF7B00208CAA /* LPFileInfo.m */; };
 		E12578511642686C00119C0E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578501642686C00119C0E /* UIKit.framework */; };
 		E12578531642686C00119C0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578521642686C00119C0E /* Foundation.framework */; };
 		E12578551642686C00119C0E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578541642686C00119C0E /* CoreGraphics.framework */; };
@@ -55,6 +59,13 @@
 		C384B70216470FAB00A22AFD /* LPSmartLayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPSmartLayerManager.m; path = Classes/Model/SmartLayerManager/LPSmartLayerManager.m; sourceTree = "<group>"; };
 		C384B70A164716C900A22AFD /* LPSmartLayerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPSmartLayerDelegate.h; path = Classes/Model/SmartLayerDelegate/LPSmartLayerDelegate.h; sourceTree = "<group>"; };
 		C384B70B164716C900A22AFD /* LPSmartLayerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPSmartLayerDelegate.m; path = Classes/Model/SmartLayerDelegate/LPSmartLayerDelegate.m; sourceTree = "<group>"; };
+		C3877A911652E9AD00208CAA /* LPFileCollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPFileCollCell.h; path = Classes/Cells/FileCollCell/LPFileCollCell.h; sourceTree = "<group>"; };
+		C3877A921652E9AD00208CAA /* LPFileCollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPFileCollCell.m; path = Classes/Cells/FileCollCell/LPFileCollCell.m; sourceTree = "<group>"; };
+		C3877A941652E9E000208CAA /* LPFileCollCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPFileCollCell.xib; path = Classes/Cells/FileCollCell/LPFileCollCell.xib; sourceTree = "<group>"; };
+		C3877A971652EE8E00208CAA /* LPFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPFileManager.h; path = Classes/Model/FileManager/LPFileManager.h; sourceTree = "<group>"; };
+		C3877A981652EE8E00208CAA /* LPFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPFileManager.m; path = Classes/Model/FileManager/LPFileManager.m; sourceTree = "<group>"; };
+		C3877A9B1652EF7B00208CAA /* LPFileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPFileInfo.h; path = Classes/Model/FileInfo/LPFileInfo.h; sourceTree = "<group>"; };
+		C3877A9C1652EF7B00208CAA /* LPFileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPFileInfo.m; path = Classes/Model/FileInfo/LPFileInfo.m; sourceTree = "<group>"; };
 		E125784C1642686C00119C0E /* LynxPainter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LynxPainter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E12578501642686C00119C0E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E12578521642686C00119C0E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -102,6 +113,7 @@
 		C358B4FF1647BDB50004537E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				C3877A8F1652E96100208CAA /* FileCollCell */,
 				C358B5011647BDCE0004537E /* LayerCell */,
 			);
 			name = Cells;
@@ -186,6 +198,34 @@
 				C384B70B164716C900A22AFD /* LPSmartLayerDelegate.m */,
 			);
 			name = SmartLayerDelegate;
+			sourceTree = "<group>";
+		};
+		C3877A8F1652E96100208CAA /* FileCollCell */ = {
+			isa = PBXGroup;
+			children = (
+				C3877A911652E9AD00208CAA /* LPFileCollCell.h */,
+				C3877A921652E9AD00208CAA /* LPFileCollCell.m */,
+				C3877A941652E9E000208CAA /* LPFileCollCell.xib */,
+			);
+			name = FileCollCell;
+			sourceTree = "<group>";
+		};
+		C3877A961652EE6600208CAA /* FileManager */ = {
+			isa = PBXGroup;
+			children = (
+				C3877A971652EE8E00208CAA /* LPFileManager.h */,
+				C3877A981652EE8E00208CAA /* LPFileManager.m */,
+			);
+			name = FileManager;
+			sourceTree = "<group>";
+		};
+		C3877A9A1652EF3A00208CAA /* FileInfo */ = {
+			isa = PBXGroup;
+			children = (
+				C3877A9B1652EF7B00208CAA /* LPFileInfo.h */,
+				C3877A9C1652EF7B00208CAA /* LPFileInfo.m */,
+			);
+			name = FileInfo;
 			sourceTree = "<group>";
 		};
 		E12578411642686C00119C0E = {
@@ -307,6 +347,8 @@
 		E12578AC16429ACD00119C0E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C3877A9A1652EF3A00208CAA /* FileInfo */,
+				C3877A961652EE6600208CAA /* FileManager */,
 				C384B709164716A400A22AFD /* SmartLayerDelegate */,
 				C384B6FF16470F8600A22AFD /* SmartLayerManager */,
 				E12578B21642AB1700119C0E /* SmartLayer */,
@@ -395,6 +437,7 @@
 				C358B5061647BF290004537E /* LPLayerCell.xib in Resources */,
 				E17C7A8716515B33009202BA /* LPCloseProjectDialogViewController.xib in Resources */,
 				C37DF7891651942A00AEAC0B /* LPDrawingManagerViewController.xib in Resources */,
+				C3877A951652E9E000208CAA /* LPFileCollCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +462,9 @@
 				C3818D34164E6AAF008620ED /* LPWorkAreaView.m in Sources */,
 				E17C7A8616515B33009202BA /* LPCloseProjectDialogViewController.m in Sources */,
 				C37DF7881651942A00AEAC0B /* LPDrawingManagerViewController.m in Sources */,
+				C3877A931652E9AD00208CAA /* LPFileCollCell.m in Sources */,
+				C3877A991652EE8E00208CAA /* LPFileManager.m in Sources */,
+				C3877A9D1652EF7B00208CAA /* LPFileInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

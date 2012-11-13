@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface LPFileManager : NSObject
-
++ (LPFileManager *)sharedManager;
+- (NSMutableArray*)receiveProjectsFilesList;
+- (NSMutableArray*)receiveImagesFilesList;
 @end

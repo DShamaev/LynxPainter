@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface LPFileInfo : NSObject
-
+@property (nonatomic,retain) NSString* fiName;
+@property (nonatomic,retain) NSString* fiURL;
+- (void)fillWithName:(NSString*)name withURL:(NSString*)url;
 @end

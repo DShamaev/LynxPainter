@@ -53,6 +53,8 @@
     if(self.formatSC.selectedSegmentIndex == 2){
         [self.delegate saveImageAsLProjectFile:self.cpdFilenameTF.text];
     }
+    [self.delegate.pc dismissPopoverAnimated:YES];
+    [self.delegate.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (IBAction)dontsaveBtnClicked:(id)sender {
