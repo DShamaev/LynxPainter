@@ -72,7 +72,11 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     if(self.isDrawable){
-        signPath = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate.signPath;
+        LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
+        if(del.signPath)
+            signPath = del.signPath;
+        else
+            signPath = CGPathCreateMutable();
         CGPoint p = [self pointFromTouches:touches];
         //signPath = CGPathCreateMutable();
         CGPathMoveToPoint(signPath, NULL, p.x, p.y);
