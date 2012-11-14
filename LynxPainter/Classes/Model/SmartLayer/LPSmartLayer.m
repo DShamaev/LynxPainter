@@ -65,7 +65,6 @@
     }
     CALayer* player = [CALayer layer];
     player.delegate = [layerDelegates objectAtIndex:0];
-    CGRect f = [LPSmartLayerManager sharedManager].rootLayer.frame;
     player.frame = [LPSmartLayerManager sharedManager].rootView.bounds;
     self.smCurrSLayer = player;
     [self addSublayer:player];

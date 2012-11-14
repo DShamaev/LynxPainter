@@ -131,7 +131,6 @@
     [self.view addConstraint:sizeConstr2];
     [self.currSizeConstraints addObject:sizeConstr2];
     self.rootLayer.layer.borderWidth = 1/self.currScale;
-    CGRect f = self.rootLayer.bounds;
 }
 
 - (void)didReceiveMemoryWarning

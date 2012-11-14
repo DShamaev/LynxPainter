@@ -30,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.contentSizeForViewInPopover = self.view.bounds.size;
     self.brsizeTF.text = [NSString stringWithFormat:@"%d",[LPSmartLayerManager sharedManager].currLayer.smLineWidth];
     // Do any additional setup after loading the view from its nib.
 }

@@ -27,6 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.contentSizeForViewInPopover = self.view.bounds.size;
     // Do any additional setup after loading the view from its nib.
 }
 

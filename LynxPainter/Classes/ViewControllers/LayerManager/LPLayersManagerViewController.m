@@ -30,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.contentSizeForViewInPopover = self.view.bounds.size;
     self.selectedIndex = 0;
     UIView *fakeFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.slm = [LPSmartLayerManager sharedManager];

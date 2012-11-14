@@ -373,7 +373,6 @@
 						<string key="NSFrame">{{260, 186}, {40, 41}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -1078,10 +1077,10 @@
 							<reference ref="468892563"/>
 							<reference ref="97787245"/>
 							<reference ref="757511951"/>
-							<reference ref="110345671"/>
 							<reference ref="834968873"/>
 							<reference ref="143095895"/>
 							<reference ref="667786770"/>
+							<reference ref="110345671"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1565,18 +1564,8 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">131</int>
-						<reference key="object" ref="643656768"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">132</int>
-						<reference key="object" ref="887073564"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">133</int>
-						<reference key="object" ref="958953234"/>
+						<int key="objectID">141</int>
+						<reference key="object" ref="776758039"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -1585,8 +1574,18 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">141</int>
-						<reference key="object" ref="776758039"/>
+						<int key="objectID">133</int>
+						<reference key="object" ref="958953234"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">131</int>
+						<reference key="object" ref="643656768"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">132</int>
+						<reference key="object" ref="887073564"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -1743,7 +1742,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">142</int>
+			<int key="maxID">156</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1754,6 +1753,7 @@
 						<string key="WhiteColorBtn:">id</string>
 						<string key="blackColorBtn:">id</string>
 						<string key="blueColorBtn:">id</string>
+						<string key="clearColorBtn:">id</string>
 						<string key="greenColorBtn:">id</string>
 						<string key="redColorBtn:">id</string>
 						<string key="yellowColorBtn:">id</string>
@@ -1769,6 +1769,10 @@
 						</object>
 						<object class="IBActionInfo" key="blueColorBtn:">
 							<string key="name">blueColorBtn:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clearColorBtn:">
+							<string key="name">clearColorBtn:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="greenColorBtn:">
