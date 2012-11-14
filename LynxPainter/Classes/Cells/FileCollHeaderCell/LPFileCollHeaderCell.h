@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface LPFileCollHeaderCell : UICollectionReusableView
+@property (strong, nonatomic) IBOutlet UILabel *fileSectionName;
 
 @end

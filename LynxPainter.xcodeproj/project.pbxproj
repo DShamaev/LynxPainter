@@ -17,6 +17,8 @@
 		C383B4C916479DDC00397907 /* LPLayersManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C383B4C716479DDC00397907 /* LPLayersManagerViewController.xib */; };
 		C384B70316470FAB00A22AFD /* LPSmartLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C384B70216470FAB00A22AFD /* LPSmartLayerManager.m */; };
 		C384B70C164716C900A22AFD /* LPSmartLayerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C384B70B164716C900A22AFD /* LPSmartLayerDelegate.m */; };
+		C38716EE16537B2C005001A7 /* LPFileCollHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C38716ED16537B2C005001A7 /* LPFileCollHeaderCell.m */; };
+		C38716F016537B4E005001A7 /* LPFileCollHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C38716EF16537B4E005001A7 /* LPFileCollHeaderCell.xib */; };
 		C3877A931652E9AD00208CAA /* LPFileCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3877A921652E9AD00208CAA /* LPFileCollCell.m */; };
 		C3877A951652E9E000208CAA /* LPFileCollCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3877A941652E9E000208CAA /* LPFileCollCell.xib */; };
 		C3877A991652EE8E00208CAA /* LPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3877A981652EE8E00208CAA /* LPFileManager.m */; };
@@ -59,6 +61,9 @@
 		C384B70216470FAB00A22AFD /* LPSmartLayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPSmartLayerManager.m; path = Classes/Model/SmartLayerManager/LPSmartLayerManager.m; sourceTree = "<group>"; };
 		C384B70A164716C900A22AFD /* LPSmartLayerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPSmartLayerDelegate.h; path = Classes/Model/SmartLayerDelegate/LPSmartLayerDelegate.h; sourceTree = "<group>"; };
 		C384B70B164716C900A22AFD /* LPSmartLayerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPSmartLayerDelegate.m; path = Classes/Model/SmartLayerDelegate/LPSmartLayerDelegate.m; sourceTree = "<group>"; };
+		C38716EC16537B2C005001A7 /* LPFileCollHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPFileCollHeaderCell.h; path = Classes/Cells/FileCollHeaderCell/LPFileCollHeaderCell.h; sourceTree = "<group>"; };
+		C38716ED16537B2C005001A7 /* LPFileCollHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPFileCollHeaderCell.m; path = Classes/Cells/FileCollHeaderCell/LPFileCollHeaderCell.m; sourceTree = "<group>"; };
+		C38716EF16537B4E005001A7 /* LPFileCollHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPFileCollHeaderCell.xib; path = Classes/Cells/FileCollHeaderCell/LPFileCollHeaderCell.xib; sourceTree = "<group>"; };
 		C3877A911652E9AD00208CAA /* LPFileCollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPFileCollCell.h; path = Classes/Cells/FileCollCell/LPFileCollCell.h; sourceTree = "<group>"; };
 		C3877A921652E9AD00208CAA /* LPFileCollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPFileCollCell.m; path = Classes/Cells/FileCollCell/LPFileCollCell.m; sourceTree = "<group>"; };
 		C3877A941652E9E000208CAA /* LPFileCollCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPFileCollCell.xib; path = Classes/Cells/FileCollCell/LPFileCollCell.xib; sourceTree = "<group>"; };
@@ -113,6 +118,7 @@
 		C358B4FF1647BDB50004537E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				C38716EA16537ACA005001A7 /* FileCollHeaderCell */,
 				C3877A8F1652E96100208CAA /* FileCollCell */,
 				C358B5011647BDCE0004537E /* LayerCell */,
 			);
@@ -198,6 +204,16 @@
 				C384B70B164716C900A22AFD /* LPSmartLayerDelegate.m */,
 			);
 			name = SmartLayerDelegate;
+			sourceTree = "<group>";
+		};
+		C38716EA16537ACA005001A7 /* FileCollHeaderCell */ = {
+			isa = PBXGroup;
+			children = (
+				C38716EC16537B2C005001A7 /* LPFileCollHeaderCell.h */,
+				C38716ED16537B2C005001A7 /* LPFileCollHeaderCell.m */,
+				C38716EF16537B4E005001A7 /* LPFileCollHeaderCell.xib */,
+			);
+			name = FileCollHeaderCell;
 			sourceTree = "<group>";
 		};
 		C3877A8F1652E96100208CAA /* FileCollCell */ = {
@@ -438,6 +454,7 @@
 				E17C7A8716515B33009202BA /* LPCloseProjectDialogViewController.xib in Resources */,
 				C37DF7891651942A00AEAC0B /* LPDrawingManagerViewController.xib in Resources */,
 				C3877A951652E9E000208CAA /* LPFileCollCell.xib in Resources */,
+				C38716F016537B4E005001A7 /* LPFileCollHeaderCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +482,7 @@
 				C3877A931652E9AD00208CAA /* LPFileCollCell.m in Sources */,
 				C3877A991652EE8E00208CAA /* LPFileManager.m in Sources */,
 				C3877A9D1652EF7B00208CAA /* LPFileInfo.m in Sources */,
+				C38716EE16537B2C005001A7 /* LPFileCollHeaderCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

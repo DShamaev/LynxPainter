@@ -9,11 +9,13 @@
 #import "LPHomeViewController.h"
 #import "LPOpenedProjectViewController.h"
 #import "LPFileCollCell.h"
+#import "LPFileCollHeaderCell.h"
 #import "LPFileManager.h"
 #import "LPFileInfo.h"
 
 @interface LPHomeViewController ()
 @property (nonatomic,retain) NSMutableArray* fileSectionArray;
+@property (nonatomic,retain) NSMutableArray* fileSectionNamesArray;
 @end
 
 @implementation LPHomeViewController
@@ -33,6 +35,10 @@
     self.navigationController.navigationBarHidden = YES;
     [self.fileCollView registerClass:[LPFileCollCell class] forCellWithReuseIdentifier:@"fileCollCell"];
     [self.fileCollView registerNib:[UINib nibWithNibName:@"LPFileCollCell" bundle:nil] forCellWithReuseIdentifier:@"fileCollCell"];
+    [self.fileCollView registerClass:[LPFileCollHeaderCell class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"fileCollHeaderCell"];
+    [self.fileCollView registerNib:[UINib nibWithNibName:@"LPFileCollHeaderCell" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"fileCollHeaderCell"];
+    
+    self.fileSectionNamesArray = [NSMutableArray arrayWithObjects:@"Projects",@"Images", nil];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -84,7 +90,7 @@
         [self.fileSectionArray removeAllObjects];
     NSMutableArray* projectFilesArray = [NSMutableArray array];
     LPFileInfo* npFile = [[LPFileInfo alloc] init];
-    [npFile fillWithName:@"Create Project" withURL:@""];
+    [npFile fillWithName:@"Create" withURL:@""];
     [projectFilesArray addObject:npFile];
     [projectFilesArray addObjectsFromArray:[[LPFileManager sharedManager] receiveProjectsFilesList]];
     [self.fileSectionArray addObject:projectFilesArray];
@@ -95,6 +101,10 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake(100, 100);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    return CGSizeMake(collectionView.bounds.size.width, 50);
 }
 
 #pragma mark - UICollectionViewDelegate delegate
@@ -116,6 +126,12 @@
     LPFileInfo* fi = [ca objectAtIndex:indexPath.row];
     [cell fillCellWithName:fi.fiName andImage:[UIImage imageWithContentsOfFile:fi.fiURL]];
     return cell;
+}
+
+- (UICollectionReusableView*)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    LPFileCollHeaderCell* view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"fileCollHeaderCell" forIndexPath:indexPath];
+    [view.fileSectionName setText:[self.fileSectionNamesArray objectAtIndex:indexPath.section]];
+    return view;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
