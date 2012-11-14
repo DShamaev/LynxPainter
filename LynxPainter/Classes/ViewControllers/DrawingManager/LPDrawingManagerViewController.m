@@ -30,6 +30,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    CGFloat hue = 0.0, saturation = 0.0, brightness = 0.0, alpha = 0.0;
+    [[LPSmartLayerManager sharedManager].currLayer.smColor getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
+    [self.hueLabel setText:[NSString stringWithFormat:@"%d",(int)(hue*360)]];
+    [self.saturationLabel setText:[NSString stringWithFormat:@"%d",(int)(saturation*100)]];
+    [self.valueLabel setText:[NSString stringWithFormat:@"%d",(int)(brightness*100)]];
     self.contentSizeForViewInPopover = self.view.bounds.size;
     self.brsizeTF.text = [NSString stringWithFormat:@"%d",[LPSmartLayerManager sharedManager].currLayer.smLineWidth];
     // Do any additional setup after loading the view from its nib.
@@ -83,7 +88,30 @@
     }
 }
 
+- (IBAction)hueValueChanged:(id)sender {
+    [LPSmartLayerManager sharedManager].currLayer.smColor = [UIColor colorWithHue:self.hueSlider.value/360 saturation:self.saturationSlider.value/100 brightness:self.valueSlider.value/100 alpha:1.0];
+    [self notifyAboutColorChange];
+}
+
+- (IBAction)saturationValueChanged:(id)sender {
+    [LPSmartLayerManager sharedManager].currLayer.smColor = [UIColor colorWithHue:self.hueSlider.value/360 saturation:self.saturationSlider.value/100 brightness:self.valueSlider.value/100 alpha:1.0];
+    [self notifyAboutColorChange];
+}
+
+- (IBAction)valueValueChanged:(id)sender {
+    [LPSmartLayerManager sharedManager].currLayer.smColor = [UIColor colorWithHue:self.hueSlider.value/360 saturation:self.saturationSlider.value/100 brightness:self.valueSlider.value/100 alpha:1.0];
+    [self notifyAboutColorChange];
+}
+
 - (void) notifyAboutColorChange{
+    CGFloat hue = 0.0, saturation = 0.0, brightness = 0.0, alpha = 0.0;
+    [[LPSmartLayerManager sharedManager].currLayer.smColor getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
+    [self.hueLabel setText:[NSString stringWithFormat:@"%d",(int)(hue*360)]];
+    [self.saturationLabel setText:[NSString stringWithFormat:@"%d",(int)(saturation*100)]];
+    [self.valueLabel setText:[NSString stringWithFormat:@"%d",(int)(brightness*100)]];
+    self.hueSlider.value = (int)(hue*360);
+    self.saturationSlider.value = (int)(saturation*100);
+    self.valueSlider.value = (int)(brightness*100);
     [self.currColorView setBackgroundColor:[LPSmartLayerManager sharedManager].currLayer.smColor];
     [self.delegate.rootLayer needNewSubPathPath];
 }
