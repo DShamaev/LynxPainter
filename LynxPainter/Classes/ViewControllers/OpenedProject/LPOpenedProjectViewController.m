@@ -221,37 +221,23 @@
 }
 
 -(void)saveProjectAsJPEGImage:(NSString*)filename{
-    NSFileManager* sharedFM = [NSFileManager defaultManager];
-    NSArray* possibleURLs = [sharedFM URLsForDirectory:NSDocumentDirectory
-                                             inDomains:NSUserDomainMask];
-    NSURL* docDir = nil;
-    if ([possibleURLs count]>0) {
-        docDir=[possibleURLs objectAtIndex:0];
-    }
+    NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [homeDomains objectAtIndex:0];
     UIGraphicsBeginImageContext(self.rootLayer.bounds.size);
     [self.rootLayer.layer renderInContext:UIGraphicsGetCurrentContext()];
     NSData* content = UIImageJPEGRepresentation(UIGraphicsGetImageFromCurrentImageContext(), 1.);
     UIGraphicsEndImageContext();
-    if (docDir!=nil) {
-        [content writeToFile:[NSString stringWithFormat:@"%@%@.jpg",docDir,filename] atomically:YES];
-    }
+    [content writeToFile:[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg",filename]] atomically:YES];
 }
 
 -(void)saveProjectAsPNGImage:(NSString*)filename{
-    NSFileManager* sharedFM = [NSFileManager defaultManager];
-    NSArray* possibleURLs = [sharedFM URLsForDirectory:NSDocumentDirectory
-                                             inDomains:NSUserDomainMask];
-    NSURL* docDir = nil;
-    if ([possibleURLs count]>0) {
-        docDir=[possibleURLs objectAtIndex:0];
-    }    
+    NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [homeDomains objectAtIndex:0];
     UIGraphicsBeginImageContext(self.rootLayer.bounds.size);
     [self.rootLayer.layer renderInContext:UIGraphicsGetCurrentContext()];
     NSData* content = UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
     UIGraphicsEndImageContext();
-    if (docDir!=nil) {
-        [content writeToFile:[NSString stringWithFormat:@"%@%@.png",docDir,filename] atomically:YES];
-    }
+    [content writeToFile:[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",filename]] atomically:YES];
 }
 
 -(void)saveImageAsLProjectFile:(NSString*)filename{
