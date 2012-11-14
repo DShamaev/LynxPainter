@@ -23,6 +23,9 @@
 		C3877A951652E9E000208CAA /* LPFileCollCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3877A941652E9E000208CAA /* LPFileCollCell.xib */; };
 		C3877A991652EE8E00208CAA /* LPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3877A981652EE8E00208CAA /* LPFileManager.m */; };
 		C3877A9D1652EF7B00208CAA /* LPFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C3877A9C1652EF7B00208CAA /* LPFileInfo.m */; };
+		C394D59D1653AB6B008A2A90 /* NSData+YBase64String.m in Sources */ = {isa = PBXBuildFile; fileRef = C394D5961653AB6B008A2A90 /* NSData+YBase64String.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C394D59E1653AB6B008A2A90 /* NSString+YBase64toData.m in Sources */ = {isa = PBXBuildFile; fileRef = C394D5981653AB6B008A2A90 /* NSString+YBase64toData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C394D59F1653AB6B008A2A90 /* ybase64.c in Sources */ = {isa = PBXBuildFile; fileRef = C394D5991653AB6B008A2A90 /* ybase64.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E12578511642686C00119C0E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578501642686C00119C0E /* UIKit.framework */; };
 		E12578531642686C00119C0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578521642686C00119C0E /* Foundation.framework */; };
 		E12578551642686C00119C0E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578541642686C00119C0E /* CoreGraphics.framework */; };
@@ -71,6 +74,14 @@
 		C3877A981652EE8E00208CAA /* LPFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPFileManager.m; path = Classes/Model/FileManager/LPFileManager.m; sourceTree = "<group>"; };
 		C3877A9B1652EF7B00208CAA /* LPFileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPFileInfo.h; path = Classes/Model/FileInfo/LPFileInfo.h; sourceTree = "<group>"; };
 		C3877A9C1652EF7B00208CAA /* LPFileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPFileInfo.m; path = Classes/Model/FileInfo/LPFileInfo.m; sourceTree = "<group>"; };
+		C394D5951653AB6B008A2A90 /* NSData+YBase64String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+YBase64String.h"; path = "Classes/External/ybase64/NSData+YBase64String.h"; sourceTree = "<group>"; };
+		C394D5961653AB6B008A2A90 /* NSData+YBase64String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+YBase64String.m"; path = "Classes/External/ybase64/NSData+YBase64String.m"; sourceTree = "<group>"; };
+		C394D5971653AB6B008A2A90 /* NSString+YBase64toData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+YBase64toData.h"; path = "Classes/External/ybase64/NSString+YBase64toData.h"; sourceTree = "<group>"; };
+		C394D5981653AB6B008A2A90 /* NSString+YBase64toData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+YBase64toData.m"; path = "Classes/External/ybase64/NSString+YBase64toData.m"; sourceTree = "<group>"; };
+		C394D5991653AB6B008A2A90 /* ybase64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ybase64.c; path = Classes/External/ybase64/ybase64.c; sourceTree = "<group>"; };
+		C394D59A1653AB6B008A2A90 /* ybase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ybase64.h; path = Classes/External/ybase64/ybase64.h; sourceTree = "<group>"; };
+		C394D59B1653AB6B008A2A90 /* ybase64additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ybase64additions.h; path = Classes/External/ybase64/ybase64additions.h; sourceTree = "<group>"; };
+		C394D59C1653AB6B008A2A90 /* ydefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ydefines.h; path = Classes/External/ybase64/ydefines.h; sourceTree = "<group>"; };
 		E125784C1642686C00119C0E /* LynxPainter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LynxPainter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E12578501642686C00119C0E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E12578521642686C00119C0E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -174,6 +185,7 @@
 		C3818D3D164E95B9008620ED /* External */ = {
 			isa = PBXGroup;
 			children = (
+				C394D5941653AB58008A2A90 /* ybase64 */,
 			);
 			name = External;
 			sourceTree = "<group>";
@@ -242,6 +254,21 @@
 				C3877A9C1652EF7B00208CAA /* LPFileInfo.m */,
 			);
 			name = FileInfo;
+			sourceTree = "<group>";
+		};
+		C394D5941653AB58008A2A90 /* ybase64 */ = {
+			isa = PBXGroup;
+			children = (
+				C394D5951653AB6B008A2A90 /* NSData+YBase64String.h */,
+				C394D5961653AB6B008A2A90 /* NSData+YBase64String.m */,
+				C394D5971653AB6B008A2A90 /* NSString+YBase64toData.h */,
+				C394D5981653AB6B008A2A90 /* NSString+YBase64toData.m */,
+				C394D5991653AB6B008A2A90 /* ybase64.c */,
+				C394D59A1653AB6B008A2A90 /* ybase64.h */,
+				C394D59B1653AB6B008A2A90 /* ybase64additions.h */,
+				C394D59C1653AB6B008A2A90 /* ydefines.h */,
+			);
+			name = ybase64;
 			sourceTree = "<group>";
 		};
 		E12578411642686C00119C0E = {
@@ -483,6 +510,9 @@
 				C3877A991652EE8E00208CAA /* LPFileManager.m in Sources */,
 				C3877A9D1652EF7B00208CAA /* LPFileInfo.m in Sources */,
 				C38716EE16537B2C005001A7 /* LPFileCollHeaderCell.m in Sources */,
+				C394D59D1653AB6B008A2A90 /* NSData+YBase64String.m in Sources */,
+				C394D59E1653AB6B008A2A90 /* NSString+YBase64toData.m in Sources */,
+				C394D59F1653AB6B008A2A90 /* ybase64.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,7 @@
 #import "LPWorkAreaView.h"
 #import "LPCloseProjectDialogViewController.h"
 #import "LPDrawingManagerViewController.h"
+#import "NSData+YBase64String.h"
 
 @interface LPOpenedProjectViewController ()
 @property (strong, nonatomic) NSMutableArray* currSizeConstraints;
@@ -248,14 +249,12 @@
 }
 
 -(void)saveImageAsLProjectFile:(NSString*)filename{
-    NSFileManager* sharedFM = [NSFileManager defaultManager];
-    NSArray* possibleURLs = [sharedFM URLsForDirectory:NSDocumentDirectory
-                                             inDomains:NSUserDomainMask];
-    NSURL* docDir = nil;
-    if ([possibleURLs count]>0) {
-        docDir=[possibleURLs objectAtIndex:0];
-    }
+    NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [homeDomains objectAtIndex:0];
     LPSmartLayerManager* slm = [LPSmartLayerManager sharedManager];
+    NSString *newDir = [documentsDirectory stringByAppendingPathComponent:@"Projects"];
+    [[NSFileManager defaultManager] createDirectoryAtPath:newDir withIntermediateDirectories:YES
+                                                   attributes:nil error: NULL];
     NSString* fileData = @"<LPFileRoot>";
     if([slm.layersArray count]>0){
         [fileData stringByAppendingFormat:@"<LPLayersCount>%d</LPLayersCount>",[slm.layersArray count]];
@@ -282,11 +281,12 @@
         NSData* content = UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
         UIGraphicsEndImageContext();
 
-        [fileData stringByAppendingFormat:@"<LPLayerData>%@</LPLayerData>"];
+        [fileData stringByAppendingFormat:@"<LPLayerData>%@</LPLayerData>",[content base64String]];
         
         [fileData stringByAppendingString:@"</LPFileLayer>"];
     }
     [fileData stringByAppendingString:@"</LPFileRoot>"];
+    [fileData writeToFile:[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"Projects/%@.lpf",filename]] atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
 @end

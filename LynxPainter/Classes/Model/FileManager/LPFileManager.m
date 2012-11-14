@@ -22,7 +22,27 @@
 }
 
 - (NSMutableArray*)receiveProjectsFilesList{
-    return [NSMutableArray array];
+    NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [homeDomains objectAtIndex:0];
+    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:@"Projects"];
+    
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSLog(@"%@",documentsDirectory);
+    NSArray *files = [fileManager contentsOfDirectoryAtPath:documentsDirectory
+                                                      error:nil];
+    
+    NSMutableArray *arrayOfProjects = [[NSMutableArray alloc] init];
+    for (int count = 0; count < files.count; count++) {
+        NSString* fileName = [files objectAtIndex:count];
+        //if hidden file
+        if ([fileName characterAtIndex:0] == '.') {
+            continue;
+        }
+        LPFileInfo* fi = [[LPFileInfo alloc] init];
+        [fi fillWithName:[files objectAtIndex:count] withURL:[documentsDirectory stringByAppendingPathComponent:[files objectAtIndex:count]]];
+        [arrayOfProjects addObject:fi];
+    }
+    return arrayOfProjects;
 }
 - (NSMutableArray*)receiveImagesFilesList{
     NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -36,8 +56,9 @@
     NSMutableArray *arrayOfImages = [[NSMutableArray alloc] init];
     for (int count = 0; count < files.count; count++) {
         NSString* fileName = [files objectAtIndex:count];
-        //if hidden file
-        if ([fileName characterAtIndex:0] == '.') {
+        //if hidden file or not supported image
+        if ([fileName characterAtIndex:0] == '.' || !([fileName rangeOfString:@".png"].location != NSNotFound
+            || [fileName rangeOfString:@".jpg"].location != NSNotFound)) {
             continue;
         }
         LPFileInfo* fi = [[LPFileInfo alloc] init];
