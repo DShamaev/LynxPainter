@@ -27,7 +27,6 @@
     documentsDirectory = [documentsDirectory stringByAppendingPathComponent:@"Projects"];
     
     NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSLog(@"%@",documentsDirectory);
     NSArray *files = [fileManager contentsOfDirectoryAtPath:documentsDirectory
                                                       error:nil];
     
@@ -49,7 +48,6 @@
     NSString *documentsDirectory = [homeDomains objectAtIndex:0];
     
     NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSLog(@"%@",documentsDirectory);
     NSArray *files = [fileManager contentsOfDirectoryAtPath:documentsDirectory
                                                       error:nil];
     

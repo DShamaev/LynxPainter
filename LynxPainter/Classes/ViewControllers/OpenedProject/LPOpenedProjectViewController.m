@@ -257,35 +257,35 @@
                                                    attributes:nil error: NULL];
     NSString* fileData = @"<LPFileRoot>";
     if([slm.layersArray count]>0){
-        [fileData stringByAppendingFormat:@"<LPLayersCount>%d</LPLayersCount>",[slm.layersArray count]];
+        fileData=[fileData stringByAppendingFormat:@"<LPLayersCount>%d</LPLayersCount>",[slm.layersArray count]];
     }
     LPSmartLayer* sl;
     for (int i=0; i<[slm.layersArray count]; i++) {
-        [fileData stringByAppendingString:@"<LPFileLayer>"];
+        fileData=[fileData stringByAppendingString:@"<LPFileLayer>"];
         sl = [slm.layersArray objectAtIndex:i];
-        [fileData stringByAppendingFormat:@"<LPLayerName>%@</LPLayerName>",sl.smName];
-        [fileData stringByAppendingFormat:@"<LPLayerOpacity>%f</LPLayerOpacity>",sl.opacity];
-        [fileData stringByAppendingFormat:@"<LPLayerVisibility>%d</LPLayerVisibility>",!sl.hidden];
-        [fileData stringByAppendingFormat:@"<LPLayerBrushSize>%d</LPLayerBrushSize>",sl.smLineWidth];
-        [fileData stringByAppendingString:@"<LPLayerColor>"];
+        fileData=[fileData stringByAppendingFormat:@"<LPLayerName>%@</LPLayerName>",sl.smName];
+        fileData=[fileData stringByAppendingFormat:@"<LPLayerOpacity>%f</LPLayerOpacity>",sl.opacity];
+        fileData=[fileData stringByAppendingFormat:@"<LPLayerVisibility>%d</LPLayerVisibility>",!sl.hidden];
+        fileData=[fileData stringByAppendingFormat:@"<LPLayerBrushSize>%d</LPLayerBrushSize>",sl.smLineWidth];
+        fileData=[fileData stringByAppendingString:@"<LPLayerColor>"];
         CGFloat red = 0.0, green = 0.0, blue = 0.0, alpha = 0.0;        
         [sl.smColor getRed:&red green:&green blue:&blue alpha:&alpha];
-        [fileData stringByAppendingFormat:@"<LPLayerColorRed>%f</LPLayerColorRed>",red];
-        [fileData stringByAppendingFormat:@"<LPLayerColorGreen>%f</LPLayerColorGreen>",green];
-        [fileData stringByAppendingFormat:@"<LPLayerColorBlue>%f</LPLayerColorBlue>",blue];
-        [fileData stringByAppendingFormat:@"<LPLayerColorAlpha>%f</LPLayerColorAlpha>",alpha];
-        [fileData stringByAppendingString:@"</LayerColor>"];
+        fileData=[fileData stringByAppendingFormat:@"<LPLayerColorRed>%f</LPLayerColorRed>",red];
+        fileData=[fileData stringByAppendingFormat:@"<LPLayerColorGreen>%f</LPLayerColorGreen>",green];
+        fileData=[fileData stringByAppendingFormat:@"<LPLayerColorBlue>%f</LPLayerColorBlue>",blue];
+        fileData=[fileData stringByAppendingFormat:@"<LPLayerColorAlpha>%f</LPLayerColorAlpha>",alpha];
+        fileData=[fileData stringByAppendingString:@"</LayerColor>"];
         
         UIGraphicsBeginImageContext(self.rootLayer.bounds.size);
         [sl renderInContext:UIGraphicsGetCurrentContext()];
         NSData* content = UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
         UIGraphicsEndImageContext();
 
-        [fileData stringByAppendingFormat:@"<LPLayerData>%@</LPLayerData>",[content base64String]];
+        fileData=[fileData stringByAppendingFormat:@"<LPLayerData>%@</LPLayerData>",[content base64String]];
         
-        [fileData stringByAppendingString:@"</LPFileLayer>"];
+        fileData=[fileData stringByAppendingString:@"</LPFileLayer>"];
     }
-    [fileData stringByAppendingString:@"</LPFileRoot>"];
+    fileData=[fileData stringByAppendingString:@"</LPFileRoot>"];
     [fileData writeToFile:[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"Projects/%@.lpf",filename]] atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
