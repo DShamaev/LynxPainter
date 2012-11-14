@@ -135,14 +135,14 @@
 			name = LayerCell;
 			sourceTree = "<group>";
 		};
-		C37DF783165193CE00AEAC0B /* DrawingManager */ = {
+		C37DF783165193CE00AEAC0B /* ToolsManager */ = {
 			isa = PBXGroup;
 			children = (
 				C37DF7851651942A00AEAC0B /* LPDrawingManagerViewController.h */,
 				C37DF7861651942A00AEAC0B /* LPDrawingManagerViewController.m */,
 				C37DF7871651942A00AEAC0B /* LPDrawingManagerViewController.xib */,
 			);
-			name = DrawingManager;
+			name = ToolsManager;
 			sourceTree = "<group>";
 		};
 		C3801394164867A3003C27E3 /* Categories */ = {
@@ -321,7 +321,7 @@
 		E12578761642695F00119C0E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				C37DF783165193CE00AEAC0B /* DrawingManager */,
+				C37DF783165193CE00AEAC0B /* ToolsManager */,
 				E17C7A8116515AB6009202BA /* CloseProjectDialog */,
 				C383B4C316479BCB00397907 /* LayersManager */,
 				E125788116426FB600119C0E /* NavigationController */,
