@@ -31,6 +31,7 @@ typedef enum {
 - (IBAction)showLayersManager:(id)sender;
 - (IBAction)modeChanged:(id)sender;
 - (IBAction)showDrawingManager:(id)sender;
+- (IBAction)undoBtnClicked:(id)sender;
 
 -(void)saveProjectAsJPEGImage:(NSString*)filename;
 -(void)saveProjectAsPNGImage:(NSString*)filename;

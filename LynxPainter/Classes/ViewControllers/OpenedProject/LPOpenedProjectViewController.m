@@ -45,7 +45,7 @@
     currMode = LPWADrawing;
     self.workAreaSV.scrollEnabled = NO;
     [[LPSmartLayerManager sharedManager] setRootLayer:self.rootLayer.layer];
-    [[LPSmartLayerManager sharedManager] setRootView:self.view];
+    [[LPSmartLayerManager sharedManager] setRootView:self.rootLayer];
     currMode = LPWADrawing;
     self.modeSC.selectedSegmentIndex = 0;
     [self.rootLayer setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -57,8 +57,6 @@
     }else
         scaleMult = 800./_currRootLayerWidth;
     [LPSmartLayerManager sharedManager].currScale = scaleMult;
-    LPSmartLayer* nl = [[LPSmartLayerManager sharedManager] addNewLayer];
-    [[LPSmartLayerManager sharedManager] setCurrLayer:nl];
     [self addNewSizeConstraintsWithScale:scaleMult];
     self.rootLayer.layer.borderColor = [UIColor blackColor].CGColor;
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -71,6 +69,11 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    LPSmartLayer* nl = [[LPSmartLayerManager sharedManager] addNewLayer];
+    [[LPSmartLayerManager sharedManager] setCurrLayer:nl];
 }
 
 -(void)addCenterConstraints{
@@ -128,6 +131,7 @@
     [self.view addConstraint:sizeConstr2];
     [self.currSizeConstraints addObject:sizeConstr2];
     self.rootLayer.layer.borderWidth = 1/self.currScale;
+    CGRect f = self.rootLayer.bounds;
 }
 
 - (void)didReceiveMemoryWarning
@@ -178,6 +182,10 @@
     dmvc.delegate = self;
     self.pc = [[UIPopoverController alloc] initWithContentViewController:dmvc];
     [self.pc presentPopoverFromRect:but.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+}
+
+- (IBAction)undoBtnClicked:(id)sender {
+    [[LPSmartLayerManager sharedManager] undo];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
@@ -258,6 +266,8 @@
         [fileData stringByAppendingString:@"<LPFileLayer>"];
         sl = [slm.layersArray objectAtIndex:i];
         [fileData stringByAppendingFormat:@"<LPLayerName>%@</LPLayerName>",sl.smName];
+        [fileData stringByAppendingFormat:@"<LPLayerOpacity>%f</LPLayerOpacity>",sl.opacity];
+        [fileData stringByAppendingFormat:@"<LPLayerVisibility>%d</LPLayerVisibility>",!sl.hidden];
         [fileData stringByAppendingFormat:@"<LPLayerBrushSize>%d</LPLayerBrushSize>",sl.smLineWidth];
         [fileData stringByAppendingString:@"<LPLayerColor>"];
         CGFloat red = 0.0, green = 0.0, blue = 0.0, alpha = 0.0;        
