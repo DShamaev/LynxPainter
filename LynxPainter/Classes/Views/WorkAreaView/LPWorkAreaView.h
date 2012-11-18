@@ -10,7 +10,14 @@
 
 @interface LPWorkAreaView : UIView
 
+typedef enum {
+    WADBrush,
+    WADEraser,
+} WADMode;
+
 @property (nonatomic) BOOL isDrawable;
+@property (nonatomic) WADMode currMode;
+@property (nonatomic) CGPoint startPoint;
 - (void)needNewSubPathPath;
 
 @end

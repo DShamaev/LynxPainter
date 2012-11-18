@@ -37,6 +37,17 @@
     [self.valueLabel setText:[NSString stringWithFormat:@"%d",(int)(brightness*100)]];
     self.contentSizeForViewInPopover = self.view.bounds.size;
     self.brsizeTF.text = [NSString stringWithFormat:@"%d",[LPSmartLayerManager sharedManager].currLayer.smLineWidth];
+    switch ([LPSmartLayerManager sharedManager].rootView.currMode) {
+        case WADBrush:
+            self.toolsSC.selectedSegmentIndex=0;
+            break;
+        case WADEraser:
+            self.toolsSC.selectedSegmentIndex=3;
+            break;
+            
+        default:
+            break;
+    }
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -103,6 +114,15 @@
     [self notifyAboutColorChange];
 }
 
+- (IBAction)toolChanged:(id)sender {
+    if(self.toolsSC.selectedSegmentIndex == 0){
+        [LPSmartLayerManager sharedManager].rootView.currMode = WADBrush;        
+    }
+    if(self.toolsSC.selectedSegmentIndex == 3){
+        [LPSmartLayerManager sharedManager].rootView.currMode = WADEraser;
+    }
+}
+
 - (void) notifyAboutColorChange{
     CGFloat hue = 0.0, saturation = 0.0, brightness = 0.0, alpha = 0.0;
     [[LPSmartLayerManager sharedManager].currLayer.smColor getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
@@ -142,6 +162,6 @@
             //[self.delegate.rootLayer needNewSubPathPath];
         }       
     }
-    return false;
+    return true;
 }
 @end

@@ -9,6 +9,7 @@
 #import "LPSmartLayer.h"
 #import "LPSmartLayerDelegate.h"
 #import "LPSmartLayerManager.h"
+#import "LPWorkAreaView.h"
 
 @interface LPSmartLayer (){
     NSMutableArray* layerDelegates;
@@ -68,6 +69,8 @@
     player.frame = [LPSmartLayerManager sharedManager].rootView.bounds;
     self.smCurrSLayer = player;
     [self addSublayer:player];
+    [self requestNewDelegate];
+    self.delegate  = [layerDelegates lastObject];
 }
 
 - (void)clean {

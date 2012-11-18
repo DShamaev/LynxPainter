@@ -568,7 +568,6 @@
 						<string key="NSFrame">{{268, 324}, {34, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -675,11 +674,28 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">toolsSC</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="905138577"/>
+					</object>
+					<int key="connectionID">269</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="834968873"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">87</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">toolChanged:</string>
+						<reference key="source" ref="905138577"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">13</int>
+					</object>
+					<int key="connectionID">270</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -2789,7 +2805,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">267</int>
+			<int key="maxID">270</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2804,6 +2820,7 @@
 						<string key="hueValueChanged:">id</string>
 						<string key="redColorBtn:">id</string>
 						<string key="saturationValueChanged:">id</string>
+						<string key="toolChanged:">id</string>
 						<string key="valueValueChanged:">id</string>
 						<string key="yellowColorBtn:">id</string>
 					</dictionary>
@@ -2836,6 +2853,10 @@
 							<string key="name">saturationValueChanged:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="toolChanged:">
+							<string key="name">toolChanged:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="valueValueChanged:">
 							<string key="name">valueValueChanged:</string>
 							<string key="candidateClassName">id</string>
@@ -2852,6 +2873,7 @@
 						<string key="hueSlider">UISlider</string>
 						<string key="saturationLabel">UILabel</string>
 						<string key="saturationSlider">UISlider</string>
+						<string key="toolsSC">UISegmentedControl</string>
 						<string key="valueLabel">UILabel</string>
 						<string key="valueSlider">UISlider</string>
 					</dictionary>
@@ -2879,6 +2901,10 @@
 						<object class="IBToOneOutletInfo" key="saturationSlider">
 							<string key="name">saturationSlider</string>
 							<string key="candidateClassName">UISlider</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="toolsSC">
+							<string key="name">toolsSC</string>
+							<string key="candidateClassName">UISegmentedControl</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="valueLabel">
 							<string key="name">valueLabel</string>

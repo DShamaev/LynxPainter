@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *hueLabel;
 @property (strong, nonatomic) IBOutlet UILabel *saturationLabel;
 @property (strong, nonatomic) IBOutlet UILabel *valueLabel;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *toolsSC;
 - (IBAction)redColorBtn:(id)sender;
 - (IBAction)blueColorBtn:(id)sender;
 - (IBAction)greenColorBtn:(id)sender;
@@ -29,5 +30,6 @@
 - (IBAction)hueValueChanged:(id)sender;
 - (IBAction)saturationValueChanged:(id)sender;
 - (IBAction)valueValueChanged:(id)sender;
+- (IBAction)toolChanged:(id)sender;
 
 @end

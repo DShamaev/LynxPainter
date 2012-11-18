@@ -9,6 +9,7 @@
 #import "LPSmartLayerManager.h"
 #import "LPSmartLayer.h"
 #import "LPHistoryManager.h"
+#import "LPWorkAreaView.h"
 
 @interface LPSmartLayerManager ()
 @property (nonatomic) int layerCounter;

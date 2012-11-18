@@ -52,6 +52,7 @@
 - (void)initialization {
     signPath = CGPathCreateMutable();
     self.isDrawable = YES;
+    self.currMode = WADBrush;
 }
 
 /*
@@ -73,26 +74,42 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     if(self.isDrawable){
-        LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
-        if(del.signPath)
-            signPath = del.signPath;
-        else
-            signPath = CGPathCreateMutable();
-        CGPoint p = [self pointFromTouches:touches];
-        //signPath = CGPathCreateMutable();
-        CGPathMoveToPoint(signPath, NULL, p.x, p.y);
+        if(self.currMode == WADBrush){
+            LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
+            if(del.signPath)
+                signPath = del.signPath;
+            else
+                signPath = CGPathCreateMutable();
+            CGPoint p = [self pointFromTouches:touches];
+            CGPathMoveToPoint(signPath, NULL, p.x, p.y);
+        }
+        if(self.currMode == WADEraser){
+            self.startPoint = [self pointFromTouches:touches];
+        }
     }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     if(self.isDrawable){
-        CGPoint p = [self pointFromTouches:touches];
-        CGPathAddLineToPoint(signPath, NULL, p.x, p.y);
-        LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
-        del.signPath = signPath;
-        del.currentColor = [LPSmartLayerManager sharedManager].currLayer.smColor;
-        del.currDrawSize = [LPSmartLayerManager sharedManager].currLayer.smLineWidth;
-        [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];
+        if(self.currMode == WADBrush){
+            CGPoint p = [self pointFromTouches:touches];
+            CGPathAddLineToPoint(signPath, NULL, p.x, p.y);
+            LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
+            del.mode = 0;
+            del.signPath = signPath;
+            del.currentColor = [LPSmartLayerManager sharedManager].currLayer.smColor;
+            del.currDrawSize = [LPSmartLayerManager sharedManager].currLayer.smLineWidth;
+            [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];
+        }
+        if(self.currMode == WADEraser){
+            CGPoint point = [self pointFromTouches:touches];
+            LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.delegate;
+            del.mode = 1;
+            del.points = CGRectMake(self.startPoint.x, self.startPoint.y,self.startPoint.x-point
+                                    .x, self.startPoint.y-point.y);
+            [[LPSmartLayerManager sharedManager].currLayer setNeedsDisplay];
+            self.startPoint = point;
+        }
     }
 }
 

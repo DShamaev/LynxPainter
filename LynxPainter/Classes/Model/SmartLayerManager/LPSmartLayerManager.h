@@ -10,11 +10,12 @@
 #import <QuartzCore/QuartzCore.h>
 
 @class LPSmartLayer;
+@class LPWorkAreaView;
 
 @interface LPSmartLayerManager : NSObject{
     
 }
-@property (nonatomic, strong) UIView *rootView;
+@property (nonatomic, strong) LPWorkAreaView *rootView;
 @property (nonatomic, strong) CALayer *rootLayer;
 @property (nonatomic,retain,readonly) NSMutableArray* layersArray;
 @property (nonatomic,readonly) int currLayerIndex;
