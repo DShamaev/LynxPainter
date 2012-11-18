@@ -8,6 +8,7 @@
 
 #import "LPSmartLayerManager.h"
 #import "LPSmartLayer.h"
+#import "LPHistoryManager.h"
 
 @interface LPSmartLayerManager ()
 @property (nonatomic) int layerCounter;
@@ -86,6 +87,7 @@
 }
 - (void)removeLayer{
     if(self.rootLayer && self.layersArray && [self.layersArray count]>0){
+        [[LPHistoryManager sharedManager] clearItemsForLayer:self.currLayer.smName];
         [self.currLayer removeFromSuperlayer];
         [self.layersArray removeObjectAtIndex:self.currLayerIndex];
         if ([self.layersArray count]>0) {
@@ -101,6 +103,10 @@
             [self.currLayer clear];
         }
     }
+}
+
+- (void)undo{
+    [[LPHistoryManager sharedManager] undo];
 }
 
 @end

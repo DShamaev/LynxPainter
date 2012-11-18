@@ -12,6 +12,7 @@
 		C37DF7881651942A00AEAC0B /* LPDrawingManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C37DF7861651942A00AEAC0B /* LPDrawingManagerViewController.m */; };
 		C37DF7891651942A00AEAC0B /* LPDrawingManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C37DF7871651942A00AEAC0B /* LPDrawingManagerViewController.xib */; };
 		C3801398164867DB003C27E3 /* UIViewController+XIBLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = C3801397164867DB003C27E3 /* UIViewController+XIBLoader.m */; };
+		C380B2E6165975A30082F30D /* LPHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C380B2E5165975A30082F30D /* LPHistoryManager.m */; };
 		C3818D34164E6AAF008620ED /* LPWorkAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3818D33164E6AAF008620ED /* LPWorkAreaView.m */; };
 		C383B4C816479DDC00397907 /* LPLayersManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C383B4C616479DDC00397907 /* LPLayersManagerViewController.m */; };
 		C383B4C916479DDC00397907 /* LPLayersManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C383B4C716479DDC00397907 /* LPLayersManagerViewController.xib */; };
@@ -55,6 +56,8 @@
 		C37DF7871651942A00AEAC0B /* LPDrawingManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPDrawingManagerViewController.xib; path = Classes/ViewControllers/DrawingManager/LPDrawingManagerViewController.xib; sourceTree = "<group>"; };
 		C3801396164867DB003C27E3 /* UIViewController+XIBLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+XIBLoader.h"; path = "Classes/Categories/UIViewController+XIBLoader.h"; sourceTree = "<group>"; };
 		C3801397164867DB003C27E3 /* UIViewController+XIBLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+XIBLoader.m"; path = "Classes/Categories/UIViewController+XIBLoader.m"; sourceTree = "<group>"; };
+		C380B2E4165975A30082F30D /* LPHistoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPHistoryManager.h; path = Classes/Model/HistoryManager/LPHistoryManager.h; sourceTree = "<group>"; };
+		C380B2E5165975A30082F30D /* LPHistoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPHistoryManager.m; path = Classes/Model/HistoryManager/LPHistoryManager.m; sourceTree = "<group>"; };
 		C3818D32164E6AAF008620ED /* LPWorkAreaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPWorkAreaView.h; path = Classes/Views/WorkAreaView/LPWorkAreaView.h; sourceTree = "<group>"; };
 		C3818D33164E6AAF008620ED /* LPWorkAreaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPWorkAreaView.m; path = Classes/Views/WorkAreaView/LPWorkAreaView.m; sourceTree = "<group>"; };
 		C383B4C516479DDC00397907 /* LPLayersManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPLayersManagerViewController.h; path = Classes/ViewControllers/LayerManager/LPLayersManagerViewController.h; sourceTree = "<group>"; };
@@ -171,6 +174,15 @@
 				C3801397164867DB003C27E3 /* UIViewController+XIBLoader.m */,
 			);
 			name = "UIView+XIBLoader";
+			sourceTree = "<group>";
+		};
+		C380B2E2165975220082F30D /* HistoryManager */ = {
+			isa = PBXGroup;
+			children = (
+				C380B2E4165975A30082F30D /* LPHistoryManager.h */,
+				C380B2E5165975A30082F30D /* LPHistoryManager.m */,
+			);
+			name = HistoryManager;
 			sourceTree = "<group>";
 		};
 		C3818D30164E6A74008620ED /* WorkAreaView */ = {
@@ -390,6 +402,7 @@
 		E12578AC16429ACD00119C0E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C380B2E2165975220082F30D /* HistoryManager */,
 				C3877A9A1652EF3A00208CAA /* FileInfo */,
 				C3877A961652EE6600208CAA /* FileManager */,
 				C384B709164716A400A22AFD /* SmartLayerDelegate */,
@@ -513,6 +526,7 @@
 				C394D59D1653AB6B008A2A90 /* NSData+YBase64String.m in Sources */,
 				C394D59E1653AB6B008A2A90 /* NSString+YBase64toData.m in Sources */,
 				C394D59F1653AB6B008A2A90 /* ybase64.c in Sources */,
+				C380B2E6165975A30082F30D /* LPHistoryManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

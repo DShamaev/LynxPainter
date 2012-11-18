@@ -113,7 +113,7 @@
     self.saturationSlider.value = (int)(saturation*100);
     self.valueSlider.value = (int)(brightness*100);
     [self.currColorView setBackgroundColor:[LPSmartLayerManager sharedManager].currLayer.smColor];
-    [self.delegate.rootLayer needNewSubPathPath];
+    //[self.delegate.rootLayer needNewSubPathPath];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
@@ -139,7 +139,7 @@
     if(textField == self.brsizeTF){
         if ((int)([textField.text floatValue]/[LPSmartLayerManager sharedManager].currScale) != [LPSmartLayerManager sharedManager].currLayer.smLineWidth) {
             [LPSmartLayerManager sharedManager].currLayer.smLineWidth = [textField.text floatValue]/self.delegate.currScale;
-            [self.delegate.rootLayer needNewSubPathPath];
+            //[self.delegate.rootLayer needNewSubPathPath];
         }       
     }
     return false;

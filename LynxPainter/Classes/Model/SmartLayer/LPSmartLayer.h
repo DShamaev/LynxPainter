@@ -21,5 +21,6 @@
 
 - (id)initWithName:(NSString*)nName withColor:(UIColor*)nColor withLineWidth:(int)nWidth;
 - (void)clear;
+- (void)removeLastChanges;
 - (void)requestNewDelegate;
 @end

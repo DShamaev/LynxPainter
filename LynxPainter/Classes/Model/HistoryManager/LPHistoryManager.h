@@ -10,4 +10,9 @@
 
 @interface LPHistoryManager : NSObject
 
++ (LPHistoryManager *)sharedManager;
+- (void)addActionWithLayer:(NSString*)tag;
+- (void)clearItemsForLayer:(NSString*)tag;
+- (void)undo;
+
 @end

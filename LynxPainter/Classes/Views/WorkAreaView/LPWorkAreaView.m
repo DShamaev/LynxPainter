@@ -10,6 +10,7 @@
 #import "LPSmartLayerManager.h"
 #import "LPSmartLayer.h"
 #import "LPSmartLayerDelegate.h"
+#import "LPHistoryManager.h"
 
 @interface LPWorkAreaView (){
     CGMutablePathRef signPath;
@@ -93,6 +94,11 @@
         del.currDrawSize = [LPSmartLayerManager sharedManager].currLayer.smLineWidth;
         [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];
     }
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self needNewSubPathPath];
+    [[LPHistoryManager sharedManager] addActionWithLayer:[LPSmartLayerManager sharedManager].currLayer.smName];
 }
 
 - (void)needNewSubPathPath{

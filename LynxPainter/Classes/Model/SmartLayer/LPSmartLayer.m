@@ -70,9 +70,6 @@
     [self addSublayer:player];
 }
 
-- (void) dealloc {
-}
-
 - (void)clean {
     [self initialization];
     [self setNeedsDisplay];
@@ -83,6 +80,13 @@
     self.del.currentColor = self.smColor;
     self.del.currDrawSize = self.smLineWidth;
     [layerDelegates addObject:self.del];
+}
+
+- (void)removeLastChanges{
+    if([self.sublayers count]>1){
+        CALayer* lo = [self.sublayers objectAtIndex:[self.sublayers count]-2];
+        [lo removeFromSuperlayer];
+    }
 }
 
 @end
