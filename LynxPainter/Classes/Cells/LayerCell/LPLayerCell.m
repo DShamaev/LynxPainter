@@ -40,4 +40,12 @@
     }
 }
 
+- (void)fillLayerPreview:(UIImage*)image{
+    self.smLayerPreview.layer.borderColor = [UIColor blackColor].CGColor;
+    self.smLayerPreview.layer.borderWidth = 1;
+    if (image != nil) {
+        [self.smLayerPreview setImage:image];
+    }
+}
+
 @end

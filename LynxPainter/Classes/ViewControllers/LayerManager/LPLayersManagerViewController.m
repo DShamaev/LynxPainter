@@ -14,6 +14,7 @@
 
 @interface LPLayersManagerViewController ()
 @property (nonatomic) int selectedIndex;
+@property (nonatomic) NSMutableArray* previewImagesArray;
 @end
 
 @implementation LPLayersManagerViewController
@@ -30,6 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self createImagesForLayers];
     self.contentSizeForViewInPopover = self.view.bounds.size;
     self.selectedIndex = 0;
     UIView *fakeFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -46,10 +48,22 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)createImagesForLayers{
+    self.previewImagesArray = [NSMutableArray array];
+    LPSmartLayer* sl;
+    int count = [[LPSmartLayerManager sharedManager].layersArray count];
+    for (int i=0; i<count; i++) {
+        sl = [[LPSmartLayerManager sharedManager].layersArray objectAtIndex:i];
+        UIGraphicsBeginImageContext([LPSmartLayerManager sharedManager].rootLayer.bounds.size);
+        [sl renderInContext:UIGraphicsGetCurrentContext()];
+        [self.previewImagesArray addObject:UIGraphicsGetImageFromCurrentImageContext()];
+        UIGraphicsEndImageContext();
+    }
+}
+
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    LPSmartLayer* sl = [self.slm.layersArray objectAtIndex:[self.slm.layersArray count]-indexPath.row-1];
     [self selectLayerWithIndexPath:indexPath];
 }
 
@@ -75,6 +89,7 @@
     LPLayerCell* cell =(LPLayerCell*) [tableView dequeueReusableCellWithIdentifier:@"layerCell"];
     LPSmartLayer* sl = [self.slm.layersArray objectAtIndex:[self.slm.layersArray count]-indexPath.row-1];
     [cell setLayer:sl];
+    [cell fillLayerPreview:[self.previewImagesArray objectAtIndex:[self.slm.layersArray count]-indexPath.row-1]];
     if(indexPath.row == self.selectedIndex){
         [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
         [self selectLayerWithIndexPath:indexPath];
@@ -89,24 +104,28 @@
 
 - (IBAction)createNewLayerBtnClicked:(id)sender {
     [self.slm addNewLayer];
+    [self createImagesForLayers];
     [self.alphaLevelLabel setText:@"100%"];
     [self.layerTable reloadData];
 }
 
 - (IBAction)moveSelectedLayerUpBtnClicked:(id)sender {
     [self.slm moveLayerUp];
+    [self createImagesForLayers];
     self.selectedIndex-=1;
     [self.layerTable reloadData];
 }
 
 - (IBAction)moveSelectedLayerDownBtnClicked:(id)sender {
     [self.slm moveLayerDown];
+    [self createImagesForLayers];
     self.selectedIndex+=1;
     [self.layerTable reloadData];
 }
 
 - (IBAction)removeLayerBtnClicked:(id)sender {
     [self.slm removeLayer];
+    [self createImagesForLayers];
     self.selectedIndex = [self.slm.layersArray count]>0 ? [self.slm.layersArray count]-1 : -1;
     [self.layerTable reloadData];
 }

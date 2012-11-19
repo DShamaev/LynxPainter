@@ -13,7 +13,8 @@
 @interface LPLayerCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *smLayerNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *smVisibilityLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *smLayerPreview;
 
 - (void)setLayer:(LPSmartLayer*)layer;
-
+- (void)fillLayerPreview:(UIImage*)image;
 @end
