@@ -27,6 +27,7 @@
 		C394D59D1653AB6B008A2A90 /* NSData+YBase64String.m in Sources */ = {isa = PBXBuildFile; fileRef = C394D5961653AB6B008A2A90 /* NSData+YBase64String.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C394D59E1653AB6B008A2A90 /* NSString+YBase64toData.m in Sources */ = {isa = PBXBuildFile; fileRef = C394D5981653AB6B008A2A90 /* NSString+YBase64toData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C394D59F1653AB6B008A2A90 /* ybase64.c in Sources */ = {isa = PBXBuildFile; fileRef = C394D5991653AB6B008A2A90 /* ybase64.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E112F2E4165A7EEE0005F559 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = E112F2E1165A7EEE0005F559 /* TBXML.m */; };
 		E12578511642686C00119C0E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578501642686C00119C0E /* UIKit.framework */; };
 		E12578531642686C00119C0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578521642686C00119C0E /* Foundation.framework */; };
 		E12578551642686C00119C0E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578541642686C00119C0E /* CoreGraphics.framework */; };
@@ -85,6 +86,8 @@
 		C394D59A1653AB6B008A2A90 /* ybase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ybase64.h; path = Classes/External/ybase64/ybase64.h; sourceTree = "<group>"; };
 		C394D59B1653AB6B008A2A90 /* ybase64additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ybase64additions.h; path = Classes/External/ybase64/ybase64additions.h; sourceTree = "<group>"; };
 		C394D59C1653AB6B008A2A90 /* ydefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ydefines.h; path = Classes/External/ybase64/ydefines.h; sourceTree = "<group>"; };
+		E112F2E0165A7EEE0005F559 /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBXML.h; path = Classes/External/TBXML/TBXML.h; sourceTree = "<group>"; };
+		E112F2E1165A7EEE0005F559 /* TBXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBXML.m; path = Classes/External/TBXML/TBXML.m; sourceTree = "<group>"; };
 		E125784C1642686C00119C0E /* LynxPainter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LynxPainter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E12578501642686C00119C0E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E12578521642686C00119C0E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -197,6 +200,7 @@
 		C3818D3D164E95B9008620ED /* External */ = {
 			isa = PBXGroup;
 			children = (
+				E112F2DA165A67200005F559 /* TBXML */,
 				C394D5941653AB58008A2A90 /* ybase64 */,
 			);
 			name = External;
@@ -281,6 +285,15 @@
 				C394D59C1653AB6B008A2A90 /* ydefines.h */,
 			);
 			name = ybase64;
+			sourceTree = "<group>";
+		};
+		E112F2DA165A67200005F559 /* TBXML */ = {
+			isa = PBXGroup;
+			children = (
+				E112F2E0165A7EEE0005F559 /* TBXML.h */,
+				E112F2E1165A7EEE0005F559 /* TBXML.m */,
+			);
+			name = TBXML;
 			sourceTree = "<group>";
 		};
 		E12578411642686C00119C0E = {
@@ -527,6 +540,7 @@
 				C394D59E1653AB6B008A2A90 /* NSString+YBase64toData.m in Sources */,
 				C394D59F1653AB6B008A2A90 /* ybase64.c in Sources */,
 				C380B2E6165975A30082F30D /* LPHistoryManager.m in Sources */,
+				E112F2E4165A7EEE0005F559 /* TBXML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

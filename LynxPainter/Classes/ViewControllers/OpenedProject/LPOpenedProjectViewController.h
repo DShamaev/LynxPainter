@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class LPWorkAreaView;
+@class LPFileInfo;
 
 typedef enum {
     LPWATransforming,
@@ -19,6 +20,7 @@ typedef enum {
 @interface LPOpenedProjectViewController : UIViewController<UITextFieldDelegate>{
     LPWAMode currMode;
 }
+@property (strong, nonatomic) LPFileInfo* openedFile;
 @property (strong, nonatomic) UIPopoverController* pc;
 @property (strong, nonatomic) IBOutlet LPWorkAreaView *rootLayer;
 @property (nonatomic) float currScale;

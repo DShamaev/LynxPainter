@@ -12,6 +12,7 @@
 #import "LPFileCollHeaderCell.h"
 #import "LPFileManager.h"
 #import "LPFileInfo.h"
+#import "TBXML.h"
 
 @interface LPHomeViewController ()
 @property (nonatomic,retain) NSMutableArray* fileSectionArray;
@@ -115,6 +116,9 @@
     }else{
         NSMutableArray* ca = [self.fileSectionArray objectAtIndex:indexPath.section];
         LPFileInfo* fi = [ca objectAtIndex:indexPath.row];
+        LPOpenedProjectViewController* projectVC = [[LPOpenedProjectViewController alloc] initWithNibName:@"LPOpenedProjectViewController" bundle:nil];
+        projectVC.openedFile = fi;
+        [self.navigationController pushViewController:projectVC animated:YES];
     }
 }
 

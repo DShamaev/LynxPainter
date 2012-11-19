@@ -15,6 +15,8 @@
 #import "LPCloseProjectDialogViewController.h"
 #import "LPDrawingManagerViewController.h"
 #import "NSData+YBase64String.h"
+#import "TBXML.h"
+#import "LPFileInfo.h"
 
 @interface LPOpenedProjectViewController ()
 @property (strong, nonatomic) NSMutableArray* currSizeConstraints;
@@ -51,7 +53,29 @@
     self.modeSC.selectedSegmentIndex = 0;
     [self.rootLayer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.workAreaSV setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
+    if (self.openedFile) {
+        _currRootLayerWidth = 1;
+        _currRootLayerHeight = 1;
+        NSError* err = nil;
+        NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [homeDomains objectAtIndex:0];
+        NSLog(@"%@",[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"Projects/%@",self.openedFile.fiName]]);
+        TBXML* pf = [[TBXML alloc] initWithXMLString:[NSString stringWithContentsOfFile:[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"Projects/%@",self.openedFile.fiName]] encoding:NSUTF8StringEncoding error:&err] error:&err];
+        TBXMLElement* root = [pf rootXMLElement];
+        if(root){            
+                TBXMLElement* widthEl = [TBXML childElementNamed:@"LPWidth" parentElement:root];
+                if (widthEl) {
+                    _currRootLayerWidth = [[TBXML textForElement:widthEl] intValue];
+                }
+                TBXMLElement* heightEl = [TBXML childElementNamed:@"LPHeight" parentElement:root];
+                if (widthEl) {
+                    _currRootLayerHeight = [[TBXML textForElement:heightEl] intValue];
+                }
+        }else{
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Project file can't be opened" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }
+    }
     BOOL isHeightWouldBeUsedForScale = _currRootLayerHeight > _currRootLayerWidth ? YES : NO;
     float scaleMult=1;
     if(isHeightWouldBeUsedForScale){

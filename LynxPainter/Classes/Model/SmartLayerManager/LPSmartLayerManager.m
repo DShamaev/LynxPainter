@@ -10,6 +10,7 @@
 #import "LPSmartLayer.h"
 #import "LPHistoryManager.h"
 #import "LPWorkAreaView.h"
+#import "TBXML.h"
 
 @interface LPSmartLayerManager ()
 @property (nonatomic) int layerCounter;
@@ -111,6 +112,10 @@
 
 - (void)undo{
     [[LPHistoryManager sharedManager] undo];
+}
+
+- (void)readLayersFromProjectFile:(NSString*)name{
+    
 }
 
 @end

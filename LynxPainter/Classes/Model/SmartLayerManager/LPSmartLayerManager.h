@@ -33,5 +33,6 @@
 - (void)removeLayer;
 - (void)clearLayer;
 - (void)undo;
+- (void)readLayersFromProjectFile:(NSString*)name;
 
 @end
