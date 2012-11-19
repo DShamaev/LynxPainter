@@ -32,7 +32,6 @@
 - (void)moveLayerDown;
 - (void)removeLayer;
 - (void)clearLayer;
-- (void)changeLayerWithVisibility:(BOOL)nVis;
 - (void)undo;
 
 @end

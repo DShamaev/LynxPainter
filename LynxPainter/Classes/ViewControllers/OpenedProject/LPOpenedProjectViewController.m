@@ -51,6 +51,7 @@
     self.modeSC.selectedSegmentIndex = 0;
     [self.rootLayer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.workAreaSV setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
     BOOL isHeightWouldBeUsedForScale = _currRootLayerHeight > _currRootLayerWidth ? YES : NO;
     float scaleMult=1;
     if(isHeightWouldBeUsedForScale){
@@ -256,6 +257,8 @@
     [[NSFileManager defaultManager] createDirectoryAtPath:newDir withIntermediateDirectories:YES
                                                    attributes:nil error: NULL];
     NSString* fileData = @"<LPFileRoot>";
+    fileData=[fileData stringByAppendingFormat:@"<LPWidth>%d</LPWidth>",_currRootLayerWidth];
+    fileData=[fileData stringByAppendingFormat:@"<LPHeight>%d</LPHeight>",_currRootLayerHeight];
     if([slm.layersArray count]>0){
         fileData=[fileData stringByAppendingFormat:@"<LPLayersCount>%d</LPLayersCount>",[slm.layersArray count]];
     }

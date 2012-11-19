@@ -73,7 +73,7 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    if(self.isDrawable){
+    if(self.isDrawable && ![LPSmartLayerManager sharedManager].currLayer.smReadOnly){
         if(self.currMode == WADBrush){
             LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
             if(del.signPath)
@@ -90,7 +90,7 @@
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    if(self.isDrawable){
+    if(self.isDrawable && ![LPSmartLayerManager sharedManager].currLayer.smReadOnly){
         if(self.currMode == WADBrush){
             CGPoint p = [self pointFromTouches:touches];
             CGPathAddLineToPoint(signPath, NULL, p.x, p.y);
@@ -114,8 +114,10 @@
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    [self needNewSubPathPath];
-    [[LPHistoryManager sharedManager] addActionWithLayer:[LPSmartLayerManager sharedManager].currLayer.smName];
+    if(self.isDrawable && ![LPSmartLayerManager sharedManager].currLayer.smReadOnly){
+        [self needNewSubPathPath];
+        [[LPHistoryManager sharedManager] addActionWithLayer:[LPSmartLayerManager sharedManager].currLayer.smName];
+    }
 }
 
 - (void)needNewSubPathPath{

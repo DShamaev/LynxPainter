@@ -12,6 +12,7 @@
 @class LPSmartLayerDelegate;
 
 @interface LPSmartLayer : CALayer
+@property (nonatomic) BOOL smReadOnly;
 @property (nonatomic) int smLineWidth;
 @property (nonatomic,strong) UIColor* smColor;
 @property (nonatomic,strong) NSString* smName;
