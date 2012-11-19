@@ -11,6 +11,7 @@
 
 @class LPSmartLayer;
 @class LPWorkAreaView;
+@class LPFileInfo;
 
 @interface LPSmartLayerManager : NSObject{
     
@@ -33,6 +34,6 @@
 - (void)removeLayer;
 - (void)clearLayer;
 - (void)undo;
-- (void)readLayersFromProjectFile:(NSString*)name;
+- (void)readLayersFromProjectFile:(LPFileInfo*)fi;
 
 @end

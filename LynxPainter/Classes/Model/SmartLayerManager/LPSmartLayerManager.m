@@ -11,6 +11,9 @@
 #import "LPHistoryManager.h"
 #import "LPWorkAreaView.h"
 #import "TBXML.h"
+#import "LPFileInfo.h"
+#import "NSString+YBase64toData.h"
+#import "LPSmartLayerDelegate.h"
 
 @interface LPSmartLayerManager ()
 @property (nonatomic) int layerCounter;
@@ -114,8 +117,63 @@
     [[LPHistoryManager sharedManager] undo];
 }
 
-- (void)readLayersFromProjectFile:(NSString*)name{
-    
+- (void)readLayersFromProjectFile:(LPFileInfo*)fi{
+    NSError* err = nil;
+    NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [homeDomains objectAtIndex:0];
+    TBXML* pf = [[TBXML alloc] initWithXMLString:[NSString stringWithContentsOfFile:[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"Projects/%@",fi.fiName]] encoding:NSUTF8StringEncoding error:&err] error:&err];
+    TBXMLElement* root = [pf rootXMLElement];
+    int count = -1;
+    if(root){
+        TBXMLElement* lcountEl = [TBXML childElementNamed:@"LPLayersCount" parentElement:root];
+        if (lcountEl) {
+            count = [[TBXML textForElement:lcountEl] intValue];
+        }
+        TBXMLElement* layerEl = [TBXML childElementNamed:@"LPFileLayer" parentElement:root];
+        while (layerEl) {
+            TBXMLElement* layerNameEl = [TBXML childElementNamed:@"LPLayerName" parentElement:layerEl];
+            NSString* name = @"";
+            float opac = 1.0;
+            BOOL vis = false;
+            NSData* data;
+            if(layerNameEl)
+                name = [TBXML textForElement:layerNameEl];
+            TBXMLElement* layerOpacityEl = [TBXML childElementNamed:@"LPLayerOpacity" parentElement:layerEl];
+            if(layerOpacityEl)
+                opac = [[TBXML textForElement:layerOpacityEl] floatValue];
+            TBXMLElement* layerVisEl = [TBXML childElementNamed:@"LPLayerVisibility" parentElement:layerEl];
+            if(layerVisEl)
+                vis = [[TBXML textForElement:layerVisEl] boolValue];
+            TBXMLElement* layerDataEl = [TBXML childElementNamed:@"LPLayerData" parentElement:layerEl];
+            if(layerDataEl)
+                data = [[TBXML textForElement:layerDataEl] base64toData];
+            LPSmartLayer* nLayer = [[LPSmartLayer alloc] initWithName:name withColor:[UIColor blackColor] withLineWidth:self.currLayer != nil ? self.currLayer.smLineWidth : 10*self.currScale];
+            nLayer.smReadOnly = NO;
+            CALayer* imageLayer = [CALayer layer];
+            imageLayer.contents = (id)[UIImage imageWithData:data].CGImage;
+            [nLayer addSublayer:imageLayer];
+            
+            if(!self.layersArray)
+                self.layersArray = [NSMutableArray array];
+            [self.layersArray addObject:nLayer];
+            [self.rootLayer addSublayer:nLayer];
+            self.layerCounter +=1;
+            [self setCurrLayer:nLayer];
+            [self setCurrLayerAlpha:opac];
+            [self setCurrLayerVisibility:vis];
+            
+            CALayer* mplayer = [CALayer layer];
+            mplayer.frame = self.currLayer.bounds;
+            [self.currLayer requestNewDelegate];
+            LPSmartLayerDelegate* del = self.currLayer.del;
+            del.signPath = CGPathCreateMutable();
+            mplayer.delegate = del;
+            self.currLayer.smCurrSLayer = mplayer;
+            [self.currLayer addSublayer:mplayer ];
+
+            layerEl = [TBXML nextSiblingNamed:@"LPFileLayer" searchFromElement:layerEl];
+        }
+    }
 }
 
 @end

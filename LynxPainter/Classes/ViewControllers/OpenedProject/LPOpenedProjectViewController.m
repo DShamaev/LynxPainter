@@ -54,27 +54,7 @@
     [self.rootLayer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.workAreaSV setTranslatesAutoresizingMaskIntoConstraints:NO];
     if (self.openedFile) {
-        _currRootLayerWidth = 1;
-        _currRootLayerHeight = 1;
-        NSError* err = nil;
-        NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [homeDomains objectAtIndex:0];
-        NSLog(@"%@",[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"Projects/%@",self.openedFile.fiName]]);
-        TBXML* pf = [[TBXML alloc] initWithXMLString:[NSString stringWithContentsOfFile:[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"Projects/%@",self.openedFile.fiName]] encoding:NSUTF8StringEncoding error:&err] error:&err];
-        TBXMLElement* root = [pf rootXMLElement];
-        if(root){            
-                TBXMLElement* widthEl = [TBXML childElementNamed:@"LPWidth" parentElement:root];
-                if (widthEl) {
-                    _currRootLayerWidth = [[TBXML textForElement:widthEl] intValue];
-                }
-                TBXMLElement* heightEl = [TBXML childElementNamed:@"LPHeight" parentElement:root];
-                if (widthEl) {
-                    _currRootLayerHeight = [[TBXML textForElement:heightEl] intValue];
-                }
-        }else{
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Project file can't be opened" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
-        }
+        [self loadOpenedProjectFile];
     }
     BOOL isHeightWouldBeUsedForScale = _currRootLayerHeight > _currRootLayerWidth ? YES : NO;
     float scaleMult=1;
@@ -97,9 +77,37 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+- (void)loadOpenedProjectFile{
+    _currRootLayerWidth = 1;
+    _currRootLayerHeight = 1;
+    NSError* err = nil;
+    NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [homeDomains objectAtIndex:0];
+    NSLog(@"%@",[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"Projects/%@",self.openedFile.fiName]]);
+    TBXML* pf = [[TBXML alloc] initWithXMLString:[NSString stringWithContentsOfFile:[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"Projects/%@",self.openedFile.fiName]] encoding:NSUTF8StringEncoding error:&err] error:&err];
+    TBXMLElement* root = [pf rootXMLElement];
+    if(root){
+        TBXMLElement* widthEl = [TBXML childElementNamed:@"LPWidth" parentElement:root];
+        if (widthEl) {
+            _currRootLayerWidth = [[TBXML textForElement:widthEl] intValue];
+        }
+        TBXMLElement* heightEl = [TBXML childElementNamed:@"LPHeight" parentElement:root];
+        if (widthEl) {
+            _currRootLayerHeight = [[TBXML textForElement:heightEl] intValue];
+        }
+    }else{
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Project file can't be opened" message:[err localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    }
+}
+
 -(void)viewDidAppear:(BOOL)animated{
-    LPSmartLayer* nl = [[LPSmartLayerManager sharedManager] addNewLayer];
-    [[LPSmartLayerManager sharedManager] setCurrLayer:nl];
+    if(self.openedFile){
+        [[LPSmartLayerManager sharedManager] readLayersFromProjectFile:self.openedFile];
+    }else{
+        LPSmartLayer* nl = [[LPSmartLayerManager sharedManager] addNewLayer];
+        [[LPSmartLayerManager sharedManager] setCurrLayer:nl];
+    }
 }
 
 -(void)addCenterConstraints{
@@ -293,15 +301,6 @@
         fileData=[fileData stringByAppendingFormat:@"<LPLayerName>%@</LPLayerName>",sl.smName];
         fileData=[fileData stringByAppendingFormat:@"<LPLayerOpacity>%f</LPLayerOpacity>",sl.opacity];
         fileData=[fileData stringByAppendingFormat:@"<LPLayerVisibility>%d</LPLayerVisibility>",!sl.hidden];
-        fileData=[fileData stringByAppendingFormat:@"<LPLayerBrushSize>%d</LPLayerBrushSize>",sl.smLineWidth];
-        fileData=[fileData stringByAppendingString:@"<LPLayerColor>"];
-        CGFloat red = 0.0, green = 0.0, blue = 0.0, alpha = 0.0;        
-        [sl.smColor getRed:&red green:&green blue:&blue alpha:&alpha];
-        fileData=[fileData stringByAppendingFormat:@"<LPLayerColorRed>%f</LPLayerColorRed>",red];
-        fileData=[fileData stringByAppendingFormat:@"<LPLayerColorGreen>%f</LPLayerColorGreen>",green];
-        fileData=[fileData stringByAppendingFormat:@"<LPLayerColorBlue>%f</LPLayerColorBlue>",blue];
-        fileData=[fileData stringByAppendingFormat:@"<LPLayerColorAlpha>%f</LPLayerColorAlpha>",alpha];
-        fileData=[fileData stringByAppendingString:@"</LayerColor>"];
         
         UIGraphicsBeginImageContext(self.rootLayer.bounds.size);
         [sl renderInContext:UIGraphicsGetCurrentContext()];
