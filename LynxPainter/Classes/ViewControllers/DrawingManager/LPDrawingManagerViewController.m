@@ -41,8 +41,17 @@
         case WADBrush:
             self.toolsSC.selectedSegmentIndex=0;
             break;
-        case WADEraser:
+        case WADRect:
+            self.toolsSC.selectedSegmentIndex=1;
+            break;
+        case WADEllipse:
+            self.toolsSC.selectedSegmentIndex=2;
+            break;
+        case WADLine:
             self.toolsSC.selectedSegmentIndex=3;
+            break;
+        case WADEraser:
+            self.toolsSC.selectedSegmentIndex=4;
             break;
             
         default:
@@ -118,7 +127,16 @@
     if(self.toolsSC.selectedSegmentIndex == 0){
         [LPSmartLayerManager sharedManager].rootView.currMode = WADBrush;        
     }
+    if(self.toolsSC.selectedSegmentIndex == 1){
+        [LPSmartLayerManager sharedManager].rootView.currMode = WADRect;
+    }
+    if(self.toolsSC.selectedSegmentIndex == 2){
+        [LPSmartLayerManager sharedManager].rootView.currMode = WADEllipse;
+    }
     if(self.toolsSC.selectedSegmentIndex == 3){
+        [LPSmartLayerManager sharedManager].rootView.currMode = WADLine;
+    }
+    if(self.toolsSC.selectedSegmentIndex == 4){
         [LPSmartLayerManager sharedManager].rootView.currMode = WADEraser;
     }
 }

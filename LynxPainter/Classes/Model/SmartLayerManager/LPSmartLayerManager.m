@@ -117,6 +117,10 @@
     [[LPHistoryManager sharedManager] undo];
 }
 
+- (void)partialUndo{
+    [self.currLayer removeLastTemporaryChanges];
+}
+
 - (void)readLayersFromProjectFile:(LPFileInfo*)fi{
     NSError* err = nil;
     NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -165,8 +169,7 @@
             
             CALayer* mplayer = [CALayer layer];
             mplayer.frame = self.currLayer.bounds;
-            [self.currLayer requestNewDelegate];
-            LPSmartLayerDelegate* del = self.currLayer.del;
+            LPSmartLayerDelegate* del = [self.currLayer requestNewDelegate];
             del.signPath = CGPathCreateMutable();
             mplayer.delegate = del;
             self.currLayer.smCurrSLayer = mplayer;

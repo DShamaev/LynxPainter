@@ -14,5 +14,6 @@
 - (void)addActionWithLayer:(NSString*)tag;
 - (void)clearItemsForLayer:(NSString*)tag;
 - (void)undo;
+- (void)partialUndo;
 
 @end

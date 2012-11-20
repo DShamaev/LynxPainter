@@ -69,8 +69,7 @@
     player.frame = [LPSmartLayerManager sharedManager].rootView.bounds;
     self.smCurrSLayer = player;
     [self addSublayer:player];
-    [self requestNewDelegate];
-    self.delegate  = [layerDelegates lastObject];
+    self.delegate  = [self requestNewDelegate];
 }
 
 - (void)clean {
@@ -78,17 +77,26 @@
     [self setNeedsDisplay];
 }
 
-- (void)requestNewDelegate{
-    self.del = [[LPSmartLayerDelegate alloc] init];
-    self.del.currentColor = self.smColor;
-    self.del.currDrawSize = self.smLineWidth;
-    [layerDelegates addObject:self.del];
+- (LPSmartLayerDelegate*)requestNewDelegate{
+    LPSmartLayerDelegate* del = [[LPSmartLayerDelegate alloc] init];
+    del.currentColor = self.smColor;
+    del.currDrawSize = self.smLineWidth;
+    [layerDelegates addObject:del];
+    return del;
 }
 
 - (void)removeLastChanges{
     if([self.sublayers count]>1){
         CALayer* lo = [self.sublayers objectAtIndex:[self.sublayers count]-2];
         [lo removeFromSuperlayer];
+    }
+}
+
+- (void)removeLastTemporaryChanges{
+    if([self.sublayers count]>0){
+        CALayer* lo = [self.sublayers lastObject];
+        [lo removeFromSuperlayer];
+        self.smCurrSLayer = [self.sublayers lastObject];
     }
 }
 

@@ -12,6 +12,9 @@
 
 typedef enum {
     WADBrush,
+    WADRect,
+    WADEllipse,
+    WADLine,
     WADEraser,
 } WADMode;
 

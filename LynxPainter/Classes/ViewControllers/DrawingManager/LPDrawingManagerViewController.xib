@@ -204,15 +204,17 @@
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBNumberOfSegments">4</int>
+						<int key="IBNumberOfSegments">5</int>
 						<int key="IBSelectedSegmentIndex">0</int>
 						<array key="IBSegmentTitles">
-							<string>Pencil</string>
-							<string>Shapes</string>
-							<string>Text</string>
-							<string>Eraser</string>
+							<string>Penc</string>
+							<string>Rect</string>
+							<string>Ell</string>
+							<string>Line</string>
+							<string>Eras</string>
 						</array>
 						<array class="NSMutableArray" key="IBSegmentWidths">
+							<real value="0.0"/>
 							<real value="0.0"/>
 							<real value="0.0"/>
 							<real value="0.0"/>
@@ -223,8 +225,10 @@
 							<boolean value="YES"/>
 							<boolean value="YES"/>
 							<boolean value="YES"/>
+							<boolean value="YES"/>
 						</array>
 						<array class="NSMutableArray" key="IBSegmentContentOffsets">
+							<string>{0, 0}</string>
 							<string>{0, 0}</string>
 							<string>{0, 0}</string>
 							<string>{0, 0}</string>
@@ -232,6 +236,7 @@
 						</array>
 						<array class="NSMutableArray" key="IBSegmentImages">
 							<object class="NSNull" id="4"/>
+							<reference ref="4"/>
 							<reference ref="4"/>
 							<reference ref="4"/>
 							<reference ref="4"/>
@@ -568,6 +573,7 @@
 						<string key="NSFrame">{{268, 324}, {34, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -1768,7 +1774,6 @@
 								<int key="contentType">3</int>
 							</object>
 							<reference ref="169674061"/>
-							<reference ref="905138577"/>
 							<reference ref="847159584"/>
 							<reference ref="652032227"/>
 							<reference ref="468892563"/>
@@ -1789,6 +1794,7 @@
 							<reference ref="600858521"/>
 							<reference ref="845927632"/>
 							<reference ref="667786770"/>
+							<reference ref="905138577"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -2775,7 +2781,7 @@
 				<string key="74.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="75.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<boolean value="NO" key="75.IBViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
-				<integer value="3" key="75.IUISegmentedControlInspectorSelectedSegmentMetadataKey"/>
+				<integer value="4" key="75.IUISegmentedControlInspectorSelectedSegmentMetadataKey"/>
 				<string key="78.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="79.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="80.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
