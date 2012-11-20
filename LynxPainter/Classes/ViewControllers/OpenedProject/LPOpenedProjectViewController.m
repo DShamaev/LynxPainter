@@ -305,9 +305,8 @@
         UIGraphicsBeginImageContext(self.rootLayer.bounds.size);
         [sl renderInContext:UIGraphicsGetCurrentContext()];
         NSData* content = UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
-        UIGraphicsEndImageContext();
-
         fileData=[fileData stringByAppendingFormat:@"<LPLayerData>%@</LPLayerData>",[content base64String]];
+        UIGraphicsEndImageContext();        
         
         fileData=[fileData stringByAppendingString:@"</LPFileLayer>"];
     }

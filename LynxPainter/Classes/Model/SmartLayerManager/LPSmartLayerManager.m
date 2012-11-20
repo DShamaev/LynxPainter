@@ -135,7 +135,7 @@
             NSString* name = @"";
             float opac = 1.0;
             BOOL vis = false;
-            NSData* data;
+            NSData* data = nil;
             if(layerNameEl)
                 name = [TBXML textForElement:layerNameEl];
             TBXMLElement* layerOpacityEl = [TBXML childElementNamed:@"LPLayerOpacity" parentElement:layerEl];
@@ -151,6 +151,7 @@
             nLayer.smReadOnly = NO;
             CALayer* imageLayer = [CALayer layer];
             imageLayer.contents = (id)[UIImage imageWithData:data].CGImage;
+            imageLayer.frame = self.rootView.bounds;
             [nLayer addSublayer:imageLayer];
             
             if(!self.layersArray)
