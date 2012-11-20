@@ -96,6 +96,7 @@
     [projectFilesArray addObjectsFromArray:[[LPFileManager sharedManager] receiveProjectsFilesList]];
     [self.fileSectionArray addObject:projectFilesArray];
     [self.fileSectionArray addObject:[[LPFileManager sharedManager] receiveImagesFilesList]];
+    [self.fileCollView reloadData];
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout delegate
