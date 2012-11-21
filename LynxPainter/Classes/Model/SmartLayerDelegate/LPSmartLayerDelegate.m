@@ -40,6 +40,15 @@
     if(self.mode == 5){
         CGContextStrokeEllipseInRect(context, self.points);
     }
+    if(self.mode == 6){
+        CGFloat dashPatt[] = {20.0,8.0};
+        CGContextSetLineDash(context, 0, dashPatt, 2);
+        CGContextAddPath(context, signPath);
+        CGContextSetLineCap(context,kCGLineCapRound);
+        CGContextSetLineJoin(context, kCGLineCapRound);
+        CGContextStrokePath(context);
+
+    }
 }
 
 @end
