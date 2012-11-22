@@ -24,20 +24,21 @@
     if(self.mode == 1){
         CGContextClipToRect(context, self.points);
     }
+    if(self.mode == 3){
+        CGContextStrokeRect(context, self.points);
+    }
+    if(self.mode == 5){
+        CGContextStrokeEllipseInRect(context, self.points);
+    }
+    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
     if(self.mode == 2){
         CGFloat dashPatt[] = {20.0,8.0};
         CGContextSetLineDash(context, 0, dashPatt, 2);
         CGContextStrokeRect(context, self.points);
     }
-    if(self.mode == 3){
-        CGContextStrokeRect(context, self.points);
-    }
     if(self.mode == 4){
         CGFloat dashPatt[] = {20.0,8.0};
         CGContextSetLineDash(context, 0, dashPatt, 2);
-        CGContextStrokeEllipseInRect(context, self.points);
-    }
-    if(self.mode == 5){
         CGContextStrokeEllipseInRect(context, self.points);
     }
     if(self.mode == 6){
