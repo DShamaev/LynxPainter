@@ -303,10 +303,16 @@
         fileData=[fileData stringByAppendingFormat:@"<LPLayerVisibility>%d</LPLayerVisibility>",!sl.hidden];
         
         UIGraphicsBeginImageContext(self.rootLayer.bounds.size);
+        float opac = sl.opacity;
+        BOOL vis = sl.hidden;
+        sl.hidden = NO;
+        sl.opacity = 1.0;
         [sl renderInContext:UIGraphicsGetCurrentContext()];
         NSData* content = UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
         fileData=[fileData stringByAppendingFormat:@"<LPLayerData>%@</LPLayerData>",[content base64String]];
-        UIGraphicsEndImageContext();        
+        sl.opacity = opac;
+        sl.hidden = vis;
+        UIGraphicsEndImageContext();
         
         fileData=[fileData stringByAppendingString:@"</LPFileLayer>"];
     }
