@@ -15,5 +15,6 @@
 - (void)clearItemsForLayer:(NSString*)tag;
 - (void)undo;
 - (void)partialUndo;
+- (void)clearHistoryData;
 
 @end

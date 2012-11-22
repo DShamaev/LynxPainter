@@ -57,4 +57,8 @@
     }
 }
 
+- (void)clearHistoryData{
+    [self.history removeAllObjects];
+}
+
 @end
