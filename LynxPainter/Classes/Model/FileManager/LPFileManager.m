@@ -66,4 +66,22 @@
     return arrayOfImages;
 }
 
+- (void)deleteFileWithInfo:(LPFileInfo*)fi withType:(BOOL)isProjectFile{
+    NSError *error;
+    NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [homeDomains objectAtIndex:0];
+    
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    if(isProjectFile){
+        documentsDirectory = [documentsDirectory stringByAppendingFormat:@"/Projects/%@",fi.fiName];
+    }else{
+        documentsDirectory = [documentsDirectory stringByAppendingPathComponent:fi.fiName];
+    }
+    NSLog(@"%@",documentsDirectory);
+    [fileManager removeItemAtPath:documentsDirectory error:&error];
+    if (error) {
+        [[[UIAlertView alloc] initWithTitle:@"File manager error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+    } 
+}
+
 @end

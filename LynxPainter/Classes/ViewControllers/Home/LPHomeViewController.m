@@ -115,11 +115,52 @@
     if (indexPath.section == 0 && indexPath.row == 0) {
         _createDialogView.hidden = NO;
     }else{
-        NSMutableArray* ca = [self.fileSectionArray objectAtIndex:indexPath.section];
+        selectedFileIP = indexPath;
+        if(indexPath.section == 0){
+            fileActionsMode = NO;
+            fileActionsSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Cancel" otherButtonTitles:@"Open project file", @"Delete project file", nil];
+        }else{
+            fileActionsMode = YES;
+            fileActionsSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Cancel" otherButtonTitles:@"Delete image", nil];
+        }
+        [fileActionsSheet showInView:self.view];
+        /*NSMutableArray* ca = [self.fileSectionArray objectAtIndex:indexPath.section];
         LPFileInfo* fi = [ca objectAtIndex:indexPath.row];
         LPOpenedProjectViewController* projectVC = [[LPOpenedProjectViewController alloc] initWithNibName:@"LPOpenedProjectViewController" bundle:nil];
         projectVC.openedFile = fi;
-        [self.navigationController pushViewController:projectVC animated:YES];
+        [self.navigationController pushViewController:projectVC animated:YES];*/
+    }
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (actionSheet == fileActionsSheet) {
+        NSMutableArray* ca = [self.fileSectionArray objectAtIndex:selectedFileIP.section];
+        LPFileInfo* fi = [ca objectAtIndex:selectedFileIP.row];
+        LPOpenedProjectViewController* projectVC;
+        if(fileActionsMode == 0){
+            switch (buttonIndex) {
+                case 1:                    
+                    projectVC = [[LPOpenedProjectViewController alloc] initWithNibName:@"LPOpenedProjectViewController" bundle:nil];
+                    projectVC.openedFile = fi;
+                    [self.navigationController pushViewController:projectVC animated:YES];
+                    break;
+                case 2:
+                    [[LPFileManager sharedManager] deleteFileWithInfo:fi withType:YES];
+                default:
+                    break;
+            }
+        }else{
+            switch (buttonIndex) {
+                case 1:
+                    [[LPFileManager sharedManager] deleteFileWithInfo:fi withType:NO];
+                default:
+                    break;
+            }
+
+        }
+        [self updateFileSectionArray];
     }
 }
 

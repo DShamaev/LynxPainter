@@ -16,8 +16,6 @@
 }
 
 - (void)initialization;
-- (CGPoint)pointFromTouches:(NSSet*)touches;
-
 @end
 
 
@@ -72,7 +70,7 @@
     self.delegate  = [self requestNewDelegate];
 }
 
-- (void)clean {
+- (void)clear {
     [self initialization];
     [self setNeedsDisplay];
 }

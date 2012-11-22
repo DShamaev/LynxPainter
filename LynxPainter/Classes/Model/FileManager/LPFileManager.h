@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class LPFileInfo;
+
 @interface LPFileManager : NSObject
 + (LPFileManager *)sharedManager;
 - (NSMutableArray*)receiveProjectsFilesList;
 - (NSMutableArray*)receiveImagesFilesList;
+- (void)deleteFileWithInfo:(LPFileInfo*)fi withType:(BOOL)isProjectFile;
 @end

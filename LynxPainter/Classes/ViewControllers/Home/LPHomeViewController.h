@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LPHomeViewController : UIViewController<UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@interface LPHomeViewController : UIViewController<UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIActionSheetDelegate>{
+    UIActionSheet* fileActionsSheet;
+    BOOL fileActionsMode; // NO - project file; YES - image file;
+    NSIndexPath* selectedFileIP;
+}
 @property (strong, nonatomic) IBOutlet UIView *createDialogView;
 @property (strong, nonatomic) IBOutlet UITextField *rlWidthTF;
 @property (strong, nonatomic) IBOutlet UITextField *rlHeightTF;
