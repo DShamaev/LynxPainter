@@ -8,6 +8,7 @@
 
 #import "LPCloseProjectDialogViewController.h"
 #import "LPOpenedProjectViewController.h"
+#import "LPSmartLayerManager.h"
 
 @interface LPCloseProjectDialogViewController ()
 
@@ -56,10 +57,12 @@
     }
     [self.delegate.pc dismissPopoverAnimated:YES];
     [self.delegate.navigationController popToRootViewControllerAnimated:YES];
+    [[LPSmartLayerManager sharedManager] clearManagerData];
 }
 
 - (IBAction)dontsaveBtnClicked:(id)sender {
     [self.delegate.pc dismissPopoverAnimated:YES];
     [self.delegate.navigationController popToRootViewControllerAnimated:YES];
+    [[LPSmartLayerManager sharedManager] clearManagerData];
 }
 @end

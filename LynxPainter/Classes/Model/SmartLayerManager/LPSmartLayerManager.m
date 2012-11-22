@@ -180,4 +180,13 @@
     }
 }
 
+- (void)clearManagerData{
+    self.currLayerIndex = -1;
+    self.currLayer = nil;
+    self.layersArray = nil;
+    self.rootLayer = nil;
+    self.rootView = nil;
+    self.currScale = 1;
+}
+
 @end
