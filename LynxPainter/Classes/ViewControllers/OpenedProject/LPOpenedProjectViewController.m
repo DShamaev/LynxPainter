@@ -18,7 +18,9 @@
 #import "TBXML.h"
 #import "LPFileInfo.h"
 
-@interface LPOpenedProjectViewController ()
+@interface LPOpenedProjectViewController (){
+    float tempScale;
+}
 @property (strong, nonatomic) NSMutableArray* currSizeConstraints;
 @property (strong, nonatomic) NSMutableArray* currCenterConstraints;
 @end
@@ -45,13 +47,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.rootLayer setTranslatesAutoresizingMaskIntoConstraints:NO];
     currMode = LPWADrawing;
     self.workAreaSV.scrollEnabled = NO;
     [[LPSmartLayerManager sharedManager] setRootLayer:self.rootLayer.layer];
     [[LPSmartLayerManager sharedManager] setRootView:self.rootLayer];
     currMode = LPWADrawing;
     self.modeSC.selectedSegmentIndex = 0;
-    [self.rootLayer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.workAreaSV setTranslatesAutoresizingMaskIntoConstraints:NO];
     if (self.openedFile) {
         [self loadOpenedProjectFile];
@@ -74,6 +76,8 @@
                                              selector:@selector(keyboardClose:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
+    UIPinchGestureRecognizer* pgr = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
+    [self.workAreaSV addGestureRecognizer:pgr];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -138,12 +142,11 @@
 -(void)addNewSizeConstraintsWithScale:(float)nScale{
     if([self.currSizeConstraints count]){
         [self.view removeConstraints:self.currSizeConstraints];
-        [self.currSizeConstraints removeAllObjects];\
+        [self.currSizeConstraints removeAllObjects];
     }
     self.currScale = nScale;
     self.rootLayer.transform = CGAffineTransformMakeScale(self.currScale, self.currScale);
     self.scaleValueTF.text = [NSString stringWithFormat:@"%.0f%%",self.currScale*100];
-    [self.rootLayer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addCenterConstraints];
     
     NSLayoutConstraint* sizeConstr = [NSLayoutConstraint constraintWithItem:self.rootLayer
@@ -321,6 +324,36 @@
     }
     fileData=[fileData stringByAppendingString:@"</LPFileRoot>"];
     [fileData writeToFile:[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"Projects/%@.lpf",filename]] atomically:YES encoding:NSUTF8StringEncoding error:nil];
+}
+
+- (IBAction)handlePinch:(UIGestureRecognizer *)sender {
+    UIPinchGestureRecognizer* recognizer = (UIPinchGestureRecognizer*)sender;
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        tempScale = [LPSmartLayerManager sharedManager].currScale;
+    } else if (recognizer.state == UIGestureRecognizerStateEnded ||
+               recognizer.state == UIGestureRecognizerStateCancelled ||
+               recognizer.state == UIGestureRecognizerStateFailed)
+    {
+        float scale= 1;
+        if (tempScale*recognizer.scale > 300) {
+            scale = 300;
+        }else if(tempScale*recognizer.scale<0.01){
+            scale = 0.01;
+        }else{
+            scale = tempScale*recognizer.scale;
+        }
+        [LPSmartLayerManager sharedManager].currScale = scale;
+    }else{
+        float scale= 1;
+        if (tempScale*recognizer.scale > 300) {
+            scale = 300;
+        }else if(tempScale*recognizer.scale<0.01){
+            scale = 0.01;
+        }else{
+            scale = tempScale*recognizer.scale;
+        }
+        [self addNewSizeConstraintsWithScale:scale];
+    }      
 }
 
 @end
