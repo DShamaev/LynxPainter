@@ -11,6 +11,8 @@
 #import "LPSmartLayer.h"
 #import "LPSmartLayerDelegate.h"
 #import "LPHistoryManager.h"
+#import "LPEraserDelegate.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface LPWorkAreaView (){
     CGMutablePathRef signPath;
@@ -53,6 +55,7 @@
 - (void)initialization {
     signPath = CGPathCreateMutable();
     self.isDrawable = YES;
+    self.isDraggable = NO;
     self.currMode = WADBrush;
 }
 
@@ -74,6 +77,7 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    self.startPoint = [self pointFromTouches:touches];
     if(self.isDrawable && ![LPSmartLayerManager sharedManager].currLayer.smReadOnly){
         isMaskDrawn = NO;
         if(self.currMode == WADBrush){
@@ -84,12 +88,6 @@
                 signPath = CGPathCreateMutable();
             CGPoint p = [self pointFromTouches:touches];
             CGPathMoveToPoint(signPath, NULL, p.x, p.y);
-        }
-        if(self.currMode == WADEraser){
-            self.startPoint = [self pointFromTouches:touches];
-        }
-        if(self.currMode == WADRect || self.currMode == WADEllipse || self.currMode == WADLine){
-            self.startPoint = [self pointFromTouches:touches];
         }
     }
 }
@@ -108,11 +106,16 @@
         }
         if(self.currMode == WADEraser){
             CGPoint point = [self pointFromTouches:touches];
-            LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.delegate;
-            del.mode = 1;
-            del.points = CGRectMake(self.startPoint.x, self.startPoint.y,self.startPoint.x-point
-                                    .x, self.startPoint.y-point.y);
-            [[LPSmartLayerManager sharedManager].currLayer setNeedsDisplay];
+            LPSmartLayerDelegate* del;
+            NSArray* la = [LPSmartLayerManager sharedManager].currLayer.sublayers;
+            for (int i=0; i<[la count]; i++) {
+                CALayer* l = [la objectAtIndex:i];
+                del = l.delegate;
+                del.mode = 1;
+                del.points = CGRectMake(self.startPoint.x, self.startPoint.y,self.startPoint.x-point
+                                        .x, self.startPoint.y-point.y);
+                [l setNeedsDisplay];
+            }            
             self.startPoint = point;
         }
         if(self.currMode == WADLine){
@@ -148,6 +151,12 @@
             [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];
             [self needNewSubPathPath];
         }
+    }
+    if(self.isDraggable){
+        CGPoint p = [self pointFromTouches:touches];
+        [LPSmartLayerManager sharedManager].currLayer.transform = CATransform3DConcat([LPSmartLayerManager sharedManager].currLayer.transform, CATransform3DMakeTranslation(p.x-self.startPoint.x, p.y-self.startPoint.y, 0));
+        self.startPoint = p;
+        //(CG)CGAffineTransformConcat([LPSmartLayerManager sharedManager].currLayer.transform, CGAffineTransformMakeTranslation(p.x-self.startPoint.x, p.y-self.startPoint.y));
     }
 }
 

@@ -194,18 +194,21 @@
         self.workAreaSV.scrollEnabled = NO;
         currMode = LPWADrawing;
         self.rootLayer.isDrawable = YES;
+        self.rootLayer.isDraggable = NO;
     }
     //TRANSFORMING
     if(self.modeSC.selectedSegmentIndex == 1){
         self.workAreaSV.scrollEnabled = YES;
         currMode = LPWATransforming;
         self.rootLayer.isDrawable = NO;
+        self.rootLayer.isDraggable = NO;
     }
     //LAYER
     if(self.modeSC.selectedSegmentIndex == 2){
         self.workAreaSV.scrollEnabled = NO;
         currMode = LPWALayer;
         self.rootLayer.isDrawable = NO;
+        self.rootLayer.isDraggable = YES;
     }
 }
 

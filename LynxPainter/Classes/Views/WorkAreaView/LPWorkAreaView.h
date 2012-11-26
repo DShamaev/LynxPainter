@@ -19,6 +19,7 @@ typedef enum {
 } WADMode;
 
 @property (nonatomic) BOOL isDrawable;
+@property (nonatomic) BOOL isDraggable;
 @property (nonatomic) WADMode currMode;
 @property (nonatomic) CGPoint startPoint;
 - (void)needNewSubPathPath;
