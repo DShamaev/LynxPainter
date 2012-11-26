@@ -11,7 +11,6 @@
 #import "LPSmartLayer.h"
 #import "LPSmartLayerDelegate.h"
 #import "LPHistoryManager.h"
-#import "LPEraserDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface LPWorkAreaView (){
