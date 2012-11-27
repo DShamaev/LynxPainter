@@ -8,7 +8,6 @@
 
 #import "LPOpenedProjectViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "LPLayersManagerViewController.h"
 #import "LPSmartLayerManager.h"
 #import "LPSmartLayer.h"
 #import "LPWorkAreaView.h"
@@ -17,6 +16,7 @@
 #import "NSData+YBase64String.h"
 #import "TBXML.h"
 #import "LPFileInfo.h"
+#import "LPImagePickerViewController.h"
 
 @interface LPOpenedProjectViewController (){
     float tempScale;
@@ -187,6 +187,7 @@
 - (IBAction)showLayersManager:(id)sender {
     UIButton* but = (UIButton*)sender;
     LPLayersManagerViewController* lmvc = [[LPLayersManagerViewController alloc] initWithNibName:@"LPLayersManagerViewController" bundle:nil];
+    lmvc.delegate = self;
     self.pc = [[UIPopoverController alloc] initWithContentViewController:lmvc];
     [self.pc presentPopoverFromRect:but.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
 }
@@ -355,5 +356,72 @@
         [self addNewSizeConstraintsWithScale:scale];
     }      
 }
+
+- (void)showImagePickerWithSourceType:(UIImagePickerControllerSourceType)sourceType {
+    if (self.imagePickerPopover && self.imagePickerPopover.isPopoverVisible) {
+        return;
+    }
+    
+    UIImagePickerController *imagePicker = [[LPImagePickerViewController alloc] init];
+    imagePicker.delegate = self;
+    imagePicker.sourceType = sourceType;
+    imagePicker.allowsEditing = YES;
+    
+    if (sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {        
+        self.imagePickerPopover = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
+        [self.imagePickerPopover presentPopoverFromRect:CGRectMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2, 1.0, 1.0) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+    } else {
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    }
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (actionSheet == imagePickerActionsSheet) {
+        
+         switch (buttonIndex) {
+             case 1:
+                 if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+                     [self showImagePickerWithSourceType:UIImagePickerControllerSourceTypeCamera];
+                 }
+                 break;
+             case 2:
+                 if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
+                     [self showImagePickerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+                 }
+                default:
+                    break;
+            }
+    }
+}
+
+#pragma mark - ImagePickerDelegate
+
+-(void)showImagePickerDialog{
+    if (self.pc && self.pc.isPopoverVisible) {
+        [self.pc dismissPopoverAnimated:YES];
+    }
+    if ((self.imagePickerPopover && self.imagePickerPopover.isPopoverVisible) || (imagePickerActionsSheet && imagePickerActionsSheet.isVisible)) {
+        return;
+    }
+    
+    imagePickerActionsSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Cancel" otherButtonTitles:@"Import from camera", @"Import from library", nil];
+    [imagePickerActionsSheet showInView:self.view];
+}
+
+#pragma mark -
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *pickedImage = [info objectForKey:UIImagePickerControllerEditedImage];
+    [[LPSmartLayerManager sharedManager] addNewImageLayer:pickedImage];
+       
+    if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
+        [self.imagePickerPopover dismissPopoverAnimated:YES];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
 
 @end

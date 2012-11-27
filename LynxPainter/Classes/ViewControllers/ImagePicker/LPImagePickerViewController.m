@@ -14,25 +14,13 @@
 
 @implementation LPImagePickerViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (BOOL)shouldAutorotate
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    return NO;
 }
 
-- (void)viewDidLoad
+-(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    return UIInterfaceOrientationPortrait;
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 @end

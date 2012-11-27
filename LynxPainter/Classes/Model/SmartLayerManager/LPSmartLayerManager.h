@@ -26,6 +26,7 @@
 + (LPSmartLayerManager *)sharedManager;
 
 - (LPSmartLayer*)addNewLayer;
+- (LPSmartLayer*)addNewImageLayer:(UIImage*)image;
 - (void)setCurrLayerWithIndex:(int)nIndex;
 - (void)setCurrLayerVisibility:(BOOL)vis;
 - (void)setCurrLayerAlpha:(float)alpha;

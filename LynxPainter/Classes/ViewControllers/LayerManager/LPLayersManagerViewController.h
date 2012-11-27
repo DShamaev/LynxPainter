@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ImagePickerDelegate <NSObject>
+
+@required
+-(void)showImagePickerDialog;
+@end
+
 @class LPSmartLayerManager;
 
 @interface LPLayersManagerViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
@@ -17,11 +23,13 @@
 @property (strong, nonatomic) IBOutlet UIButton *changeVisButton;
 @property (strong, nonatomic) IBOutlet UISlider *alphaSlider;
 @property (strong, nonatomic) IBOutlet UILabel *alphaLevelLabel;
+@property (strong, nonatomic) id<ImagePickerDelegate> delegate;
 - (IBAction)createNewLayerBtnClicked:(id)sender;
 - (IBAction)moveSelectedLayerUpBtnClicked:(id)sender;
 - (IBAction)moveSelectedLayerDownBtnClicked:(id)sender;
 - (IBAction)removeLayerBtnClicked:(id)sender;
 - (IBAction)changeVisBtnClicked:(id)sender;
 - (IBAction)changeAlphaValue:(id)sender;
+- (IBAction)createIL:(id)sender;
 
 @end

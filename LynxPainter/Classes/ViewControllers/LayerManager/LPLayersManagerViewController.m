@@ -144,4 +144,9 @@
         [self.alphaLevelLabel setText:[NSString stringWithFormat:@"%d%%",(int)(self.slm.currLayer.opacity*100)]];
     }
 }
+
+- (IBAction)createIL:(id)sender {
+    if(self.delegate && [self.delegate respondsToSelector:@selector(showImagePickerDialog)])
+       [self.delegate showImagePickerDialog];
+}
 @end

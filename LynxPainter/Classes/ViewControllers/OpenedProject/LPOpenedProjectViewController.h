@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LPLayersManagerViewController.h"
 
 @class LPWorkAreaView;
 @class LPFileInfo;
@@ -17,9 +18,11 @@ typedef enum {
     LPWALayer
 } LPWAMode;
 
-@interface LPOpenedProjectViewController : UIViewController<UITextFieldDelegate>{
+@interface LPOpenedProjectViewController : UIViewController<UITextFieldDelegate,ImagePickerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     LPWAMode currMode;
+    UIActionSheet* imagePickerActionsSheet;
 }
+@property (strong, nonatomic) UIPopoverController *imagePickerPopover;
 @property (strong, nonatomic) LPFileInfo* openedFile;
 @property (strong, nonatomic) UIPopoverController* pc;
 @property (strong, nonatomic) IBOutlet LPWorkAreaView *rootLayer;

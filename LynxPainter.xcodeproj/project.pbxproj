@@ -24,6 +24,7 @@
 		C3877A951652E9E000208CAA /* LPFileCollCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3877A941652E9E000208CAA /* LPFileCollCell.xib */; };
 		C3877A991652EE8E00208CAA /* LPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3877A981652EE8E00208CAA /* LPFileManager.m */; };
 		C3877A9D1652EF7B00208CAA /* LPFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C3877A9C1652EF7B00208CAA /* LPFileInfo.m */; };
+		C391B56C1664AED500F914DB /* LPImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C391B56B1664AED500F914DB /* LPImagePickerViewController.m */; };
 		C394D59D1653AB6B008A2A90 /* NSData+YBase64String.m in Sources */ = {isa = PBXBuildFile; fileRef = C394D5961653AB6B008A2A90 /* NSData+YBase64String.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C394D59E1653AB6B008A2A90 /* NSString+YBase64toData.m in Sources */ = {isa = PBXBuildFile; fileRef = C394D5981653AB6B008A2A90 /* NSString+YBase64toData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C394D59F1653AB6B008A2A90 /* ybase64.c in Sources */ = {isa = PBXBuildFile; fileRef = C394D5991653AB6B008A2A90 /* ybase64.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -78,6 +79,8 @@
 		C3877A981652EE8E00208CAA /* LPFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPFileManager.m; path = Classes/Model/FileManager/LPFileManager.m; sourceTree = "<group>"; };
 		C3877A9B1652EF7B00208CAA /* LPFileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPFileInfo.h; path = Classes/Model/FileInfo/LPFileInfo.h; sourceTree = "<group>"; };
 		C3877A9C1652EF7B00208CAA /* LPFileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPFileInfo.m; path = Classes/Model/FileInfo/LPFileInfo.m; sourceTree = "<group>"; };
+		C391B56A1664AED500F914DB /* LPImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPImagePickerViewController.h; path = Classes/ViewControllers/ImagePicker/LPImagePickerViewController.h; sourceTree = "<group>"; };
+		C391B56B1664AED500F914DB /* LPImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPImagePickerViewController.m; path = Classes/ViewControllers/ImagePicker/LPImagePickerViewController.m; sourceTree = "<group>"; };
 		C394D5951653AB6B008A2A90 /* NSData+YBase64String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+YBase64String.h"; path = "Classes/External/ybase64/NSData+YBase64String.h"; sourceTree = "<group>"; };
 		C394D5961653AB6B008A2A90 /* NSData+YBase64String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+YBase64String.m"; path = "Classes/External/ybase64/NSData+YBase64String.m"; sourceTree = "<group>"; };
 		C394D5971653AB6B008A2A90 /* NSString+YBase64toData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+YBase64toData.h"; path = "Classes/External/ybase64/NSString+YBase64toData.h"; sourceTree = "<group>"; };
@@ -272,6 +275,15 @@
 			name = FileInfo;
 			sourceTree = "<group>";
 		};
+		C391B5681664AE6000F914DB /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				C391B56A1664AED500F914DB /* LPImagePickerViewController.h */,
+				C391B56B1664AED500F914DB /* LPImagePickerViewController.m */,
+			);
+			name = ImagePicker;
+			sourceTree = "<group>";
+		};
 		C394D5941653AB58008A2A90 /* ybase64 */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,6 +385,7 @@
 		E12578761642695F00119C0E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C391B5681664AE6000F914DB /* ImagePicker */,
 				C37DF783165193CE00AEAC0B /* ToolsManager */,
 				E17C7A8116515AB6009202BA /* CloseProjectDialog */,
 				C383B4C316479BCB00397907 /* LayersManager */,
@@ -541,6 +554,7 @@
 				C394D59F1653AB6B008A2A90 /* ybase64.c in Sources */,
 				C380B2E6165975A30082F30D /* LPHistoryManager.m in Sources */,
 				E112F2E4165A7EEE0005F559 /* TBXML.m in Sources */,
+				C391B56C1664AED500F914DB /* LPImagePickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

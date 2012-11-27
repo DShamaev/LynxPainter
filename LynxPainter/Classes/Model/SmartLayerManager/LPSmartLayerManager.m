@@ -91,6 +91,24 @@
     }
     return nil;
 }
+
+- (LPSmartLayer*)addNewImageLayer:(UIImage*)image{
+    if(self.rootLayer){
+        LPSmartLayer* nLayer = [[LPSmartLayer alloc] initWithName:[NSString stringWithFormat:@"Layer %d",_layerCounter] withColor:[UIColor blackColor] withLineWidth:self.currLayer != nil ? self.currLayer.smLineWidth : 10*self.currScale];
+        nLayer.smReadOnly = YES;
+        if(!self.layersArray)
+            self.layersArray = [NSMutableArray array];
+        [self.layersArray addObject:nLayer];
+        [self.rootLayer addSublayer:nLayer];
+        self.layerCounter +=1;
+        CALayer* imageLayer = [CALayer layer];
+        imageLayer.contents = (id)image.CGImage;
+        imageLayer.frame = self.rootView.bounds;
+        [nLayer addSublayer:imageLayer];
+        return nLayer;
+    }
+    return nil;
+}
 - (void)removeLayer{
     if(self.rootLayer && self.layersArray && [self.layersArray count]>0){
         [[LPHistoryManager sharedManager] clearItemsForLayer:self.currLayer.smName];
