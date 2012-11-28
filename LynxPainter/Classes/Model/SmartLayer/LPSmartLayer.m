@@ -56,6 +56,8 @@
     self.del = [[LPSmartLayerDelegate alloc] init];
     self.del.currentColor = self.smColor;
     self.del.currDrawSize = self.smLineWidth;
+    self.del.pathPoints = [NSMutableArray array];
+    self.del.eraserRects = [NSMutableArray array];
     layerDelegates = [NSMutableArray array];
     [layerDelegates addObject:self.del];
     NSArray* sl = [self sublayers];
@@ -79,6 +81,8 @@
     LPSmartLayerDelegate* del = [[LPSmartLayerDelegate alloc] init];
     del.currentColor = self.smColor;
     del.currDrawSize = self.smLineWidth;
+    del.pathPoints = [NSMutableArray array];
+    del.eraserRects = [NSMutableArray array];
     [layerDelegates addObject:del];
     return del;
 }
