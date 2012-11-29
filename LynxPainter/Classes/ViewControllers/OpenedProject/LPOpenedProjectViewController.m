@@ -374,7 +374,7 @@
     
     if (sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {        
         self.imagePickerPopover = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
-        [self.imagePickerPopover presentPopoverFromRect:CGRectMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2, 1.0, 1.0) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+        [self.imagePickerPopover presentPopoverFromRect:CGRectMake(0, 44, 1.0, 1.0) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     } else {
         [self presentViewController:imagePicker animated:YES completion:nil];
     }
