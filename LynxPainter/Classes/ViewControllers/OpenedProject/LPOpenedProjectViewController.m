@@ -48,13 +48,16 @@
 {
     [super viewDidLoad];
     [self.rootLayer setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.workAreaSV setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
     currMode = LPWADrawing;
     self.workAreaSV.scrollEnabled = NO;
+    self.currCenterConstraints = [NSMutableArray array];
+    self.currSizeConstraints = [NSMutableArray array];
     [[LPSmartLayerManager sharedManager] setRootLayer:self.rootLayer.layer];
     [[LPSmartLayerManager sharedManager] setRootView:self.rootLayer];
     currMode = LPWADrawing;
     self.modeSC.selectedSegmentIndex = 0;
-    [self.workAreaSV setTranslatesAutoresizingMaskIntoConstraints:NO];
     if (self.openedFile) {
         [self loadOpenedProjectFile];
     }
@@ -65,6 +68,7 @@
     }else
         scaleMult = 800./_currRootLayerWidth;
     [LPSmartLayerManager sharedManager].currScale = scaleMult;
+    //[self addCenterConstraints];
     [self addNewSizeConstraintsWithScale:scaleMult];
     self.rootLayer.layer.borderColor = [UIColor blackColor].CGColor;
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -116,7 +120,7 @@
 
 -(void)addCenterConstraints{
     if([self.currCenterConstraints count]){
-        [self.view removeConstraints:self.currCenterConstraints];
+        [self.workAreaSV removeConstraints:self.currCenterConstraints];
         [self.currCenterConstraints removeAllObjects];
     }
     NSLayoutConstraint* posConstr = [NSLayoutConstraint constraintWithItem:self.rootLayer
@@ -126,7 +130,7 @@
                                                                  attribute:NSLayoutAttributeCenterX
                                                                 multiplier:1.0
                                                                   constant:0.0];
-    [self.view addConstraint:posConstr];
+    [self.workAreaSV addConstraint:posConstr];
     [self.currCenterConstraints addObject:posConstr];
     NSLayoutConstraint* posConstr2 = [NSLayoutConstraint constraintWithItem:self.rootLayer
                                              attribute:NSLayoutAttributeCenterY
@@ -135,19 +139,18 @@
                                              attribute:NSLayoutAttributeCenterY
                                             multiplier:1.0
                                               constant:0.0];
-    [self.view addConstraint:posConstr2];
+    [self.workAreaSV addConstraint:posConstr2];
     [self.currCenterConstraints addObject:posConstr2];
 }
 
 -(void)addNewSizeConstraintsWithScale:(float)nScale{
     if([self.currSizeConstraints count]){
-        [self.view removeConstraints:self.currSizeConstraints];
+        [self.workAreaSV removeConstraints:self.currSizeConstraints];
         [self.currSizeConstraints removeAllObjects];
     }
     self.currScale = nScale;
     self.rootLayer.transform = CGAffineTransformMakeScale(self.currScale, self.currScale);
     self.scaleValueTF.text = [NSString stringWithFormat:@"%.0f%%",self.currScale*100];
-    [self addCenterConstraints];
     
     NSLayoutConstraint* sizeConstr = [NSLayoutConstraint constraintWithItem:self.rootLayer
                                                                   attribute:NSLayoutAttributeHeight
@@ -156,7 +159,7 @@
                                                                   attribute:NSLayoutAttributeHeight
                                                                  multiplier:0.0
                                                                    constant:_currRootLayerHeight*self.currScale];
-    [self.view addConstraint:sizeConstr];
+    [self.workAreaSV addConstraint:sizeConstr];
     [self.currSizeConstraints addObject:sizeConstr];
     NSLayoutConstraint* sizeConstr2 = [NSLayoutConstraint constraintWithItem:self.rootLayer
                                               attribute:NSLayoutAttributeWidth
@@ -165,7 +168,7 @@
                                               attribute:NSLayoutAttributeWidth
                                              multiplier:0.0
                                                constant:_currRootLayerWidth*self.currScale];
-    [self.view addConstraint:sizeConstr2];
+    [self.workAreaSV addConstraint:sizeConstr2];
     [self.currSizeConstraints addObject:sizeConstr2];
     self.rootLayer.layer.borderWidth = 1/self.currScale;
 }
