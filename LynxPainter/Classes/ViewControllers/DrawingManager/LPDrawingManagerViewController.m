@@ -33,8 +33,11 @@
     CGFloat hue = 0.0, saturation = 0.0, brightness = 0.0, alpha = 0.0;
     [[LPSmartLayerManager sharedManager].currLayer.smColor getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
     [self.hueLabel setText:[NSString stringWithFormat:@"%d",(int)(hue*360)]];
+    self.hueSlider.value =(int)(hue*360);
     [self.saturationLabel setText:[NSString stringWithFormat:@"%d",(int)(saturation*100)]];
+    self.saturationSlider.value = (int)(saturation*100);
     [self.valueLabel setText:[NSString stringWithFormat:@"%d",(int)(brightness*100)]];
+    self.valueSlider.value = (int)(brightness*100);
     self.contentSizeForViewInPopover = self.view.bounds.size;
     self.brsizeTF.text = [NSString stringWithFormat:@"%d",(int)([LPSmartLayerManager sharedManager].currLayer.smLineWidth*self.delegate.currScale)];
     switch ([LPSmartLayerManager sharedManager].rootView.currMode) {
