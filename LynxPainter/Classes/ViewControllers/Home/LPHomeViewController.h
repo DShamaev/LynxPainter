@@ -11,6 +11,7 @@
 @interface LPHomeViewController : UIViewController<UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIActionSheetDelegate>{
     UIActionSheet* fileActionsSheet;
     BOOL fileActionsMode; // NO - project file; YES - image file;
+    BOOL hasImages;
     NSIndexPath* selectedFileIP;
 }
 @property (strong, nonatomic) IBOutlet UIView *createDialogView;

@@ -21,7 +21,7 @@
     return sharedInstance;
 }
 
-- (NSMutableArray*)receiveProjectsFilesList{
+- (NSArray*)receiveProjectsFilesList{
     NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [homeDomains objectAtIndex:0];
     documentsDirectory = [documentsDirectory stringByAppendingPathComponent:@"Projects"];
@@ -43,7 +43,7 @@
     }
     return arrayOfProjects;
 }
-- (NSMutableArray*)receiveImagesFilesList{
+- (NSArray*)receiveImagesFilesList{
     NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [homeDomains objectAtIndex:0];
     

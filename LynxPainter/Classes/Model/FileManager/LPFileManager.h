@@ -12,7 +12,7 @@
 
 @interface LPFileManager : NSObject
 + (LPFileManager *)sharedManager;
-- (NSMutableArray*)receiveProjectsFilesList;
-- (NSMutableArray*)receiveImagesFilesList;
+- (NSArray*)receiveProjectsFilesList;
+- (NSArray*)receiveImagesFilesList;
 - (void)deleteFileWithInfo:(LPFileInfo*)fi withType:(BOOL)isProjectFile;
 @end

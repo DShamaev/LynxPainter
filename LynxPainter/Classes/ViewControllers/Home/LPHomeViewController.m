@@ -34,6 +34,7 @@
 {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
+    hasImages = NO;
     [self.fileCollView registerClass:[LPFileCollCell class] forCellWithReuseIdentifier:@"fileCollCell"];
     [self.fileCollView registerNib:[UINib nibWithNibName:@"LPFileCollCell" bundle:nil] forCellWithReuseIdentifier:@"fileCollCell"];
     [self.fileCollView registerClass:[LPFileCollHeaderCell class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"fileCollHeaderCell"];
@@ -95,7 +96,9 @@
     [projectFilesArray addObject:npFile];
     [projectFilesArray addObjectsFromArray:[[LPFileManager sharedManager] receiveProjectsFilesList]];
     [self.fileSectionArray addObject:projectFilesArray];
-    [self.fileSectionArray addObject:[[LPFileManager sharedManager] receiveImagesFilesList]];
+    NSArray* imArray = [[LPFileManager sharedManager] receiveImagesFilesList];
+    hasImages = [imArray count] > 0 ? YES : NO;
+    [self.fileSectionArray addObject:imArray];
     [self.fileCollView reloadData];
 }
 
@@ -181,6 +184,9 @@
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    if (!hasImages) {
+        return 1;
+    }
     return [self.fileSectionArray count];
 }
 
