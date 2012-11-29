@@ -15,7 +15,50 @@
 {
     CGContextSetStrokeColorWithColor(context, self.currentColor.CGColor);
     CGContextSetLineWidth(context, self.currDrawSize);
-    CGContextSetBlendMode(context, kCGBlendModeNormal);
+    if(self.mode == 0){
+        [self getSP];
+        CGContextAddPath(context, signPath);
+        CGContextSetLineCap(context,kCGLineCapRound);
+        CGContextSetLineJoin(context, kCGLineCapRound);
+        CGContextStrokePath(context);
+    }
+    if(self.mode == 1){
+        CGContextSetLineCap(context, kCGLineCapRound);
+        CGContextSetLineWidth(context, self.currDrawSize);
+        CGContextSetBlendMode(context, kCGBlendModeClear);
+        CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
+        CGContextAddPath(context, signPath);
+        CGContextStrokePath(context);
+    }
+    if(self.mode == 3){
+        CGContextStrokeRect(context, self.points);
+    }
+    if(self.mode == 5){
+        CGContextStrokeEllipseInRect(context, self.points);
+    }
+    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
+    if(self.mode == 2){
+        CGFloat dashPatt[] = {20.0,8.0};
+        CGContextSetLineDash(context, 0, dashPatt, 2);
+        CGContextStrokeRect(context, self.points);
+    }
+    if(self.mode == 4){
+        CGFloat dashPatt[] = {20.0,8.0};
+        CGContextSetLineDash(context, 0, dashPatt, 2);
+        CGContextStrokeEllipseInRect(context, self.points);
+    }
+    if(self.mode == 6){
+        CGFloat dashPatt[] = {20.0,8.0};
+        CGContextSetLineDash(context, 0, dashPatt, 2);
+        CGContextAddPath(context, signPath);
+        CGContextSetLineCap(context,kCGLineCapRound);
+        CGContextSetLineJoin(context, kCGLineCapRound);
+        CGContextStrokePath(context);
+
+    }
+}
+
+- (void)getSP{
     signPath = CGPathCreateMutable();
     BOOL wasInER = NO;
     for (int i=0; i<[self.pathPoints count]; i++) {
@@ -44,46 +87,6 @@
         }else{
             CGPathAddLineToPoint(signPath, nil, p.x, p.y);
         }
-    }
-    if(self.mode == 0){
-        CGContextAddPath(context, signPath);
-        CGContextSetLineCap(context,kCGLineCapRound);
-        CGContextSetLineJoin(context, kCGLineCapRound);
-        CGContextStrokePath(context);
-    }
-    if(self.mode == 1){
-        CGContextSetLineCap(context, kCGLineCapRound);
-        CGContextSetLineWidth(context, self.currDrawSize);
-        CGContextSetBlendMode(context, kCGBlendModeClear);
-        CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
-        CGContextAddPath(context, signPath);
-        CGContextStrokePath(context);
-    }
-    if(self.mode == 3){
-        CGContextStrokeRect(context, self.points);
-    }
-    if(self.mode == 5){
-        CGContextStrokeEllipseInRect(context, self.points);
-    }
-    CGContextSetStrokeColorWithColor(context, [UIColor clearColor].CGColor);
-    if(self.mode == 2){
-        CGFloat dashPatt[] = {20.0,8.0};
-        CGContextSetLineDash(context, 0, dashPatt, 2);
-        CGContextStrokeRect(context, self.points);
-    }
-    if(self.mode == 4){
-        CGFloat dashPatt[] = {20.0,8.0};
-        CGContextSetLineDash(context, 0, dashPatt, 2);
-        CGContextStrokeEllipseInRect(context, self.points);
-    }
-    if(self.mode == 6){
-        CGFloat dashPatt[] = {20.0,8.0};
-        CGContextSetLineDash(context, 0, dashPatt, 2);
-        CGContextAddPath(context, signPath);
-        CGContextSetLineCap(context,kCGLineCapRound);
-        CGContextSetLineJoin(context, kCGLineCapRound);
-        CGContextStrokePath(context);
-
     }
 }
 
