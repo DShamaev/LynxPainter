@@ -79,7 +79,7 @@
     self.startPoint = [self pointFromTouches:touches];
     if(self.isDrawable && ![LPSmartLayerManager sharedManager].currLayer.smReadOnly){
         isMaskDrawn = NO;
-        if(self.currMode == WADBrush || self.currMode == WADEraser){
+        if(self.currMode == WADBrush || self.currMode == WADLine){
             LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
             /*if(del.signPath)
                 signPath = del.signPath;
@@ -117,21 +117,6 @@
                                         .x, self.startPoint.y-point.y)]];
                 [l setNeedsDisplay];
             }
-            /*LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
-            del.mode = 1;
-            del.points = CGRectMake(self.startPoint.x, self.startPoint.y,self.startPoint.x-point
-                                        .x, self.startPoint.y-point.y);
-            [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];
-            self.startPoint = point;*/
-            /*CGPoint p = [self pointFromTouches:touches];
-            CGPathAddLineToPoint(signPath, NULL, p.x, p.y);
-            LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
-            del.mode = 1;
-            //del.signPath = signPath;
-            [del.pathPoints addObject:[NSValue valueWithCGPoint:p]];
-            del.currentColor = [LPSmartLayerManager sharedManager].currLayer.smColor;
-            del.currDrawSize = [LPSmartLayerManager sharedManager].currLayer.smLineWidth;
-            [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];*/
         }
         if(self.currMode == WADLine){
             if(isMaskDrawn)
@@ -197,12 +182,10 @@
                 [[LPSmartLayerManager sharedManager] partialUndo];
             isMaskDrawn = YES;
             CGPoint p = [self pointFromTouches:touches];
-            signPath = CGPathCreateMutable();
-            CGPathMoveToPoint(signPath, NULL, self.startPoint.x, self.startPoint.y);
-            CGPathAddLineToPoint(signPath, NULL, p.x, p.y);
             LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
             del.mode = 0;
-            del.signPath = signPath;
+            //del.signPath = signPath;
+            [del.pathPoints addObject:[NSValue valueWithCGPoint:p]];
             del.currentColor = [LPSmartLayerManager sharedManager].currLayer.smColor;
             del.currDrawSize = [LPSmartLayerManager sharedManager].currLayer.smLineWidth;
             [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];
