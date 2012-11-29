@@ -21,6 +21,6 @@
 
 -(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
 {
-    return UIInterfaceOrientationPortrait;
+    return UIInterfaceOrientationLandscapeLeft;
 }
 @end
