@@ -113,10 +113,11 @@
                 CALayer* l = [la objectAtIndex:i];
                 del = l.delegate;
                 del.mode = 0;
-                [del.eraserRects addObject:[NSValue valueWithCGRect:CGRectMake(self.startPoint.x, self.startPoint.y,self.startPoint.x-point
-                                        .x, self.startPoint.y-point.y)]];
+                [del.eraserRects addObject:[NSValue valueWithCGRect:CGRectMake(self.startPoint.x, self.startPoint.y,point
+                                                                                            .x-self.startPoint.x, point.y-self.startPoint.y)]];
                 [l setNeedsDisplay];
             }
+            self.startPoint = point;
         }
         if(self.currMode == WADLine){
             if(isMaskDrawn)

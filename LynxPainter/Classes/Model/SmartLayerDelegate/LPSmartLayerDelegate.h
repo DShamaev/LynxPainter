@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#define LEFT  1  /* 0001 */
+#define RIGHT 2  /* 0010 */
+#define BOT   4  /* 0100 */
+#define TOP   8  /* 1000 */
+
 @interface LPSmartLayerDelegate : NSObject
 //0 - drawing pencil; 1 - eraser; 2 - rect mask; 3 - rect
 @property (nonatomic) int mode;

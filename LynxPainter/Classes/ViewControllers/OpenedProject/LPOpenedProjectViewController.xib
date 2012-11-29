@@ -254,7 +254,7 @@
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<int key="IBUIButtonType">1</int>
-								<string key="IBUINormalTitle">Drawing</string>
+								<string key="IBUINormalTitle">Tools</string>
 								<reference key="IBUIHighlightedTitleColor" ref="778244670"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
@@ -309,6 +309,7 @@
 								<string key="NSFrame">{{112, 41}, {800, 600}}</string>
 								<reference key="NSSuperview" ref="1014804027"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<string key="NSAntiCompressionPriority">{750, 750}</string>
 								<reference key="IBUIBackgroundColor" ref="778244670"/>
@@ -1841,7 +1842,6 @@
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="closeProject:">id</string>
-						<string key="handlePinch:">UIGestureRecognizer</string>
 						<string key="modeChanged:">id</string>
 						<string key="showDrawingManager:">id</string>
 						<string key="showLayersManager:">id</string>
@@ -1851,10 +1851,6 @@
 						<object class="IBActionInfo" key="closeProject:">
 							<string key="name">closeProject:</string>
 							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="handlePinch:">
-							<string key="name">handlePinch:</string>
-							<string key="candidateClassName">UIGestureRecognizer</string>
 						</object>
 						<object class="IBActionInfo" key="modeChanged:">
 							<string key="name">modeChanged:</string>
