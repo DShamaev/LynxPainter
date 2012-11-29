@@ -36,7 +36,7 @@
     [self.saturationLabel setText:[NSString stringWithFormat:@"%d",(int)(saturation*100)]];
     [self.valueLabel setText:[NSString stringWithFormat:@"%d",(int)(brightness*100)]];
     self.contentSizeForViewInPopover = self.view.bounds.size;
-    self.brsizeTF.text = [NSString stringWithFormat:@"%d",[LPSmartLayerManager sharedManager].currLayer.smLineWidth];
+    self.brsizeTF.text = [NSString stringWithFormat:@"%d",(int)([LPSmartLayerManager sharedManager].currLayer.smLineWidth*self.delegate.currScale)];
     switch ([LPSmartLayerManager sharedManager].rootView.currMode) {
         case WADBrush:
             self.toolsSC.selectedSegmentIndex=0;
