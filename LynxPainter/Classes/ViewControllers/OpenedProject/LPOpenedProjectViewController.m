@@ -331,33 +331,35 @@
 }
 
 - (IBAction)handlePinch:(UIGestureRecognizer *)sender {
-    UIPinchGestureRecognizer* recognizer = (UIPinchGestureRecognizer*)sender;
-    if (recognizer.state == UIGestureRecognizerStateBegan) {
-        tempScale = [LPSmartLayerManager sharedManager].currScale;
-    } else if (recognizer.state == UIGestureRecognizerStateEnded ||
-               recognizer.state == UIGestureRecognizerStateCancelled ||
-               recognizer.state == UIGestureRecognizerStateFailed)
-    {
-        float scale= 1;
-        if (tempScale*recognizer.scale > 300) {
-            scale = 300;
-        }else if(tempScale*recognizer.scale<0.01){
-            scale = 0.01;
+    if(!self.rootLayer.isDrawable){
+        UIPinchGestureRecognizer* recognizer = (UIPinchGestureRecognizer*)sender;
+        if (recognizer.state == UIGestureRecognizerStateBegan) {
+            tempScale = [LPSmartLayerManager sharedManager].currScale;
+        } else if (recognizer.state == UIGestureRecognizerStateEnded ||
+                   recognizer.state == UIGestureRecognizerStateCancelled ||
+                   recognizer.state == UIGestureRecognizerStateFailed)
+        {
+            float scale= 1;
+            if (tempScale*recognizer.scale > 300) {
+                scale = 300;
+            }else if(tempScale*recognizer.scale<0.01){
+                scale = 0.01;
+            }else{
+                scale = tempScale*recognizer.scale;
+            }
+            [LPSmartLayerManager sharedManager].currScale = scale;
         }else{
-            scale = tempScale*recognizer.scale;
+            float scale= 1;
+            if (tempScale*recognizer.scale > 300) {
+                scale = 300;
+            }else if(tempScale*recognizer.scale<0.01){
+                scale = 0.01;
+            }else{
+                scale = tempScale*recognizer.scale;
+            }
+            [self addNewSizeConstraintsWithScale:scale];
         }
-        [LPSmartLayerManager sharedManager].currScale = scale;
-    }else{
-        float scale= 1;
-        if (tempScale*recognizer.scale > 300) {
-            scale = 300;
-        }else if(tempScale*recognizer.scale<0.01){
-            scale = 0.01;
-        }else{
-            scale = tempScale*recognizer.scale;
-        }
-        [self addNewSizeConstraintsWithScale:scale];
-    }      
+    }
 }
 
 - (void)showImagePickerWithSourceType:(UIImagePickerControllerSourceType)sourceType {
