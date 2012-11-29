@@ -55,7 +55,13 @@
     for (int i=0; i<count; i++) {
         sl = [[LPSmartLayerManager sharedManager].layersArray objectAtIndex:i];
         UIGraphicsBeginImageContext([LPSmartLayerManager sharedManager].rootLayer.bounds.size);
+        float opac = sl.opacity;
+        BOOL vis = sl.hidden;
+        sl.hidden = NO;
+        sl.opacity = 1.0;
         [sl renderInContext:UIGraphicsGetCurrentContext()];
+        sl.opacity = opac;
+        sl.hidden = vis;
         [self.previewImagesArray addObject:UIGraphicsGetImageFromCurrentImageContext()];
         UIGraphicsEndImageContext();
     }
