@@ -250,8 +250,19 @@
     double y = (A1*C2 - A2*C1)/det;
     CGRect rect = CGRectMake(pa.x, pa.y, pb.x-pa.x, pb.y-pa.y);
     CGRect rect2 = CGRectMake(pc.x, pc.y, pd.x-pc.x, pd.y-pc.y);
+    BOOL isAbsent = YES;
     if (CGRectContainsPoint(rect, CGPointMake(x, y)) && CGRectContainsPoint(rect2, CGPointMake(x, y))) {
-        [self.eraserRects addObject:[NSValue valueWithCGRect:CGRectMake(x-self.currEraserSize/2, y-self.currEraserSize/2, self.currEraserSize, self.currEraserSize)]];
+        CGRect ner = CGRectMake(x-self.currEraserSize/2, y-self.currEraserSize/2, self.currEraserSize, self.currEraserSize);
+        for(int i=0;i<[self.eraserRects count];i++){
+            NSValue* np = [self.eraserRects objectAtIndex:i];
+            CGRect r = [np CGRectValue];
+            if(CGRectContainsRect(ner, r)){
+                [self.eraserRects replaceObjectAtIndex:i withObject:[NSValue valueWithCGRect:ner]];
+                isAbsent = NO;
+            }
+        }
+        if(isAbsent)
+            [self.eraserRects addObject:[NSValue valueWithCGRect:ner]];
     }
     return;
 }
