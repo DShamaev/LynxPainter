@@ -17,10 +17,13 @@
 //0 - drawing pencil; 1 - eraser; 2 - rect mask; 3 - rect
 @property (nonatomic) int mode;
 @property(nonatomic,assign) CGMutablePathRef signPath;
+
 @property (nonatomic,strong) NSMutableArray* pathPoints;
+@property (nonatomic,strong) NSMutableArray* eraserPoints;
+
 @property (nonatomic,strong) UIColor* currentColor;
 @property (nonatomic,assign) int currDrawSize;
+@property (nonatomic,assign) int currEraserSize;
 @property (nonatomic) CGRect points;
-@property (nonatomic,strong) NSMutableArray* eraserRects;
 
 @end

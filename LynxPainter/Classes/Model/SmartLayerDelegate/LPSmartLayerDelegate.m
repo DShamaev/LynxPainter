@@ -8,7 +8,11 @@
 
 #import "LPSmartLayerDelegate.h"
 
-@interface LPSmartLayerDelegate ()
+@interface LPSmartLayerDelegate (){
+    CGPoint shiftedPoint1;
+    CGPoint shiftedPoint2;
+}
+@property (nonatomic,strong) NSMutableArray* eraserRects;
 - (int)pointCode:(CGPoint)p toRect:(CGRect)rect;
 @end
 
@@ -22,12 +26,29 @@
     if(self.mode == 0){
         [self getSP];
         
+        //eraser rects
         /*CGContextSetStrokeColorWithColor(context, [[UIColor greenColor] CGColor]);
         for (int i2=0; i2<[self.eraserRects count]; i2++) {
             NSValue* nr = [self.eraserRects objectAtIndex:i2];
             CGRect eraserRect = [nr CGRectValue];
             CGContextStrokeRect(context, eraserRect);
+        }*/
+        CGContextSetStrokeColorWithColor(context, self.currentColor.CGColor);
+        //eraser path
+        /*CGContextSetStrokeColorWithColor(context, [[UIColor greenColor] CGColor]);
+        CGMutablePathRef p = CGPathCreateMutable();
+        if ([self.eraserPoints count]>0) {
+            NSValue* nr = [self.eraserPoints objectAtIndex:0];
+            CGPoint p1 = [nr CGPointValue];
+            CGPathMoveToPoint(p, nil, p1.x, p1.y);
         }
+        for (int i2=1; i2<[self.eraserPoints count]; i2++) {
+            NSValue* nr = [self.eraserPoints objectAtIndex:i2];
+            CGPoint p1 = [nr CGPointValue];
+            CGPathAddLineToPoint(p, nil, p1.x, p1.y);
+        }
+        CGContextAddPath(context,p);
+        CGContextStrokePath(context);
         CGContextSetStrokeColorWithColor(context, self.currentColor.CGColor);*/
         
         CGContextAddPath(context, signPath);
@@ -72,6 +93,9 @@
 }
 
 - (void)getSP{
+    if(!self.eraserRects)
+        self.eraserRects = [NSMutableArray array];
+    [self fillEraserRects];
     signPath = CGPathCreateMutable();
     CGPoint p1,p2;
     BOOL wasInER;
@@ -100,8 +124,9 @@
                 }
                 if(!CGPointEqualToPoint(p2, CGPointZero) && [self clipLineBetweenPointA:p1 andPointB:p2 withRect:eraserRect]) {
                     wasInER = YES;
-                    [self.pathPoints replaceObjectAtIndex:i withObject:[NSValue valueWithCGPoint:p2]];
-                    [self.pathPoints replaceObjectAtIndex:i-1 withObject:[NSValue valueWithCGPoint:p1]];
+                    CGPathAddLineToPoint(signPath, nil, shiftedPoint1.x, shiftedPoint1.y);
+                    CGPathMoveToPoint(signPath, nil, shiftedPoint2.x, shiftedPoint2.y);
+                    CGPathAddLineToPoint(signPath, nil, p2.x, p2.y);
                     break;
                 }
                 if (CGPointEqualToPoint(p2, CGPointZero)) {
@@ -111,10 +136,7 @@
             if (CGPointEqualToPoint(p2, CGPointZero)) {
                 break;
             }
-            if (wasInER) {
-                CGPathAddLineToPoint(signPath, nil, p1.x, p1.y);
-                CGPathMoveToPoint(signPath, nil, p2.x, p2.y);
-            }else{
+            if (!wasInER) {
                 CGPathAddLineToPoint(signPath, nil, p2.x, p2.y);
             }
         }else{
@@ -175,6 +197,8 @@
             pb = c;
         }
     }
+    shiftedPoint1 = pa;
+    shiftedPoint2 = pb;
     
     /* оба кода равны 0, следовательно обе точки в прямоугольнике */
     return YES;
@@ -185,6 +209,51 @@
             ((p.x > CGRectGetMaxX(rect)) ? RIGHT : 0) +
             ((p.y < CGRectGetMinY(rect)) ? BOT : 0)   +
             ((p.y > CGRectGetMaxY(rect)) ? TOP : 0));
+}
+
+- (void)fillEraserRects{
+    if([self.eraserPoints count]>0){
+        if([self.eraserPoints count]>1 && [self.pathPoints count]>1){
+            for (int i=0; i< [self.pathPoints count]-1; i++) {
+                NSValue* np = [self.pathPoints objectAtIndex:i];
+                CGPoint p1 = [np CGPointValue];
+                np = [self.pathPoints objectAtIndex:i+1];
+                CGPoint p2 = [np CGPointValue];
+                for (int j=0; j< [self.eraserPoints count]-1; j++) {
+                    NSValue* nep = [self.eraserPoints objectAtIndex:j];
+                    CGPoint ep1 = [nep CGPointValue];
+                    nep = [self.eraserPoints objectAtIndex:j+1];
+                    CGPoint ep2 = [nep CGPointValue];
+                    [self buildIntersectionBetweenLinePointA:p1 andPointB:p2 withLine2PointC:ep1 andPointD:ep2];
+                }
+            }
+        }else{
+            NSValue* np = [self.eraserPoints objectAtIndex:0];
+            CGPoint ep = [np CGPointValue];
+            [self.eraserRects addObject:[NSValue valueWithCGRect:CGRectMake(ep.x-self.currDrawSize/2, ep.y-self.currDrawSize/2, self.currDrawSize, self.currDrawSize)]];
+        }
+    }
+}
+
+- (void)buildIntersectionBetweenLinePointA:(CGPoint)pa andPointB:(CGPoint)pb withLine2PointC:(CGPoint)pc andPointD:(CGPoint)pd{
+    double A1 = pb.y - pa.y;
+    double B1 = pa.x - pb.x;
+    double C1 = A1 * pa.x + B1 * pa.y;
+    double A2 = pd.y - pc.y;
+    double B2 = pc.x - pd.x;
+    double C2 = A2 * pc.x + B2 * pc.y;
+    double det = A1*B2 - A2*B1;
+    if(det == 0){
+        return;
+    }
+    double x = (B2*C1 - B1*C2)/det;
+    double y = (A1*C2 - A2*C1)/det;
+    CGRect rect = CGRectMake(pa.x, pa.y, pb.x-pa.x, pb.y-pa.y);
+    CGRect rect2 = CGRectMake(pc.x, pc.y, pd.x-pc.x, pd.y-pc.y);
+    if (CGRectContainsPoint(rect, CGPointMake(x, y)) && CGRectContainsPoint(rect2, CGPointMake(x, y))) {
+        [self.eraserRects addObject:[NSValue valueWithCGRect:CGRectMake(x-self.currEraserSize/2, y-self.currEraserSize/2, self.currEraserSize, self.currEraserSize)]];
+    }
+    return;
 }
 
 @end

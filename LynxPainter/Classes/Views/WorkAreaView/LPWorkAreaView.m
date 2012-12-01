@@ -81,13 +81,14 @@
         isMaskDrawn = NO;
         if(self.currMode == WADBrush || self.currMode == WADLine){
             LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
-            /*if(del.signPath)
-                signPath = del.signPath;
-            else
-                signPath = CGPathCreateMutable();*/
             CGPoint p = [self pointFromTouches:touches];
             [del.pathPoints addObject:[NSValue valueWithCGPoint:p]];
             //CGPathMoveToPoint(signPath, NULL, p.x, p.y);
+        }
+        if(self.currMode == WADEraser){
+            LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
+            CGPoint p = [self pointFromTouches:touches];
+            [del.eraserPoints addObject:[NSValue valueWithCGPoint:p]];
         }
     }
 }
@@ -113,8 +114,8 @@
                 CALayer* l = [la objectAtIndex:i];
                 del = l.delegate;
                 del.mode = 0;
-                [del.eraserRects addObject:[NSValue valueWithCGRect:CGRectMake(self.startPoint.x, self.startPoint.y,point
-                                                                                            .x-self.startPoint.x, point.y-self.startPoint.y)]];
+                del.currEraserSize = [LPSmartLayerManager sharedManager].currLayer.smLineWidth;
+                [del.eraserPoints addObject:[NSValue valueWithCGPoint:point]];
                 [l setNeedsDisplay];
             }
             self.startPoint = point;

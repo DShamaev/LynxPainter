@@ -57,7 +57,7 @@
     self.del.currentColor = self.smColor;
     self.del.currDrawSize = self.smLineWidth;
     self.del.pathPoints = [NSMutableArray array];
-    self.del.eraserRects = [NSMutableArray array];
+    self.del.eraserPoints = [NSMutableArray array];
     layerDelegates = [NSMutableArray array];
     [layerDelegates addObject:self.del];
     NSArray* sl = [self sublayers];
@@ -82,7 +82,7 @@
     del.currentColor = self.smColor;
     del.currDrawSize = self.smLineWidth;
     del.pathPoints = [NSMutableArray array];
-    del.eraserRects = [NSMutableArray array];
+    del.eraserPoints = [NSMutableArray array];
     [layerDelegates addObject:del];
     return del;
 }
