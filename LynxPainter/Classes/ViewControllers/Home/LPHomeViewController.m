@@ -72,7 +72,7 @@
         NSCharacterSet* nonNumbers = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
         if([sc scanCharactersFromSet:nonNumbers intoString:&string])
             return false;
-        NSString* actValue = [NSString stringWithFormat:@"%@%@",textField.text,string];
+        NSString* actValue = actValue = [NSString stringWithFormat:@"%@%@",textField.text,string];
         if([actValue intValue]<1){
             [textField setText:@"1"];
             return false;
@@ -83,6 +83,13 @@
         }
     }
     return true;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    if(textField == self.rlHeightTF || textField == self.rlWidthTF){
+        if([@"" isEqualToString:textField.text])
+            textField.text = @"1";
+    }
 }
 
 - (void)updateFileSectionArray{
