@@ -28,6 +28,10 @@
 		C394D59D1653AB6B008A2A90 /* NSData+YBase64String.m in Sources */ = {isa = PBXBuildFile; fileRef = C394D5961653AB6B008A2A90 /* NSData+YBase64String.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C394D59E1653AB6B008A2A90 /* NSString+YBase64toData.m in Sources */ = {isa = PBXBuildFile; fileRef = C394D5981653AB6B008A2A90 /* NSString+YBase64toData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C394D59F1653AB6B008A2A90 /* ybase64.c in Sources */ = {isa = PBXBuildFile; fileRef = C394D5991653AB6B008A2A90 /* ybase64.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E101C3F0166CFB5D00A9F0E2 /* LPGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E101C3EE166CFB5D00A9F0E2 /* LPGalleryViewController.m */; };
+		E101C3F1166CFB5D00A9F0E2 /* LPGalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E101C3EF166CFB5D00A9F0E2 /* LPGalleryViewController.xib */; };
+		E101C3F5166CFBA200A9F0E2 /* LPHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E101C3F3166CFBA200A9F0E2 /* LPHomeViewController.m */; };
+		E101C3F6166CFBA200A9F0E2 /* LPHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E101C3F4166CFBA200A9F0E2 /* LPHomeViewController.xib */; };
 		E112F2E4165A7EEE0005F559 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = E112F2E1165A7EEE0005F559 /* TBXML.m */; };
 		E12578511642686C00119C0E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578501642686C00119C0E /* UIKit.framework */; };
 		E12578531642686C00119C0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578521642686C00119C0E /* Foundation.framework */; };
@@ -38,8 +42,6 @@
 		E12578631642686C00119C0E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E12578621642686C00119C0E /* Default.png */; };
 		E12578651642686C00119C0E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E12578641642686C00119C0E /* Default@2x.png */; };
 		E12578671642686C00119C0E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E12578661642686C00119C0E /* Default-568h@2x.png */; };
-		E1257890164271E100119C0E /* LPHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E125788E164271E100119C0E /* LPHomeViewController.m */; };
-		E1257891164271E100119C0E /* LPHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E125788F164271E100119C0E /* LPHomeViewController.xib */; };
 		E1257894164271ED00119C0E /* LPNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1257893164271ED00119C0E /* LPNavigationController.m */; };
 		E12578A11642790500119C0E /* LPOpenedProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E125789F1642790500119C0E /* LPOpenedProjectViewController.m */; };
 		E12578A21642790500119C0E /* LPOpenedProjectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E12578A01642790500119C0E /* LPOpenedProjectViewController.xib */; };
@@ -89,6 +91,12 @@
 		C394D59A1653AB6B008A2A90 /* ybase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ybase64.h; path = Classes/External/ybase64/ybase64.h; sourceTree = "<group>"; };
 		C394D59B1653AB6B008A2A90 /* ybase64additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ybase64additions.h; path = Classes/External/ybase64/ybase64additions.h; sourceTree = "<group>"; };
 		C394D59C1653AB6B008A2A90 /* ydefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ydefines.h; path = Classes/External/ybase64/ydefines.h; sourceTree = "<group>"; };
+		E101C3ED166CFB5D00A9F0E2 /* LPGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPGalleryViewController.h; path = Classes/ViewControllers/Gallery/LPGalleryViewController.h; sourceTree = "<group>"; };
+		E101C3EE166CFB5D00A9F0E2 /* LPGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPGalleryViewController.m; path = Classes/ViewControllers/Gallery/LPGalleryViewController.m; sourceTree = "<group>"; };
+		E101C3EF166CFB5D00A9F0E2 /* LPGalleryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPGalleryViewController.xib; path = Classes/ViewControllers/Gallery/LPGalleryViewController.xib; sourceTree = "<group>"; };
+		E101C3F2166CFBA200A9F0E2 /* LPHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPHomeViewController.h; path = Classes/ViewControllers/Home/LPHomeViewController.h; sourceTree = "<group>"; };
+		E101C3F3166CFBA200A9F0E2 /* LPHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPHomeViewController.m; path = Classes/ViewControllers/Home/LPHomeViewController.m; sourceTree = "<group>"; };
+		E101C3F4166CFBA200A9F0E2 /* LPHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPHomeViewController.xib; path = Classes/ViewControllers/Home/LPHomeViewController.xib; sourceTree = "<group>"; };
 		E112F2E0165A7EEE0005F559 /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBXML.h; path = Classes/External/TBXML/TBXML.h; sourceTree = "<group>"; };
 		E112F2E1165A7EEE0005F559 /* TBXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBXML.m; path = Classes/External/TBXML/TBXML.m; sourceTree = "<group>"; };
 		E125784C1642686C00119C0E /* LynxPainter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LynxPainter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,9 +112,6 @@
 		E12578621642686C00119C0E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E12578641642686C00119C0E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E12578661642686C00119C0E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		E125788D164271E100119C0E /* LPHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPHomeViewController.h; path = Classes/ViewControllers/Home/LPHomeViewController.h; sourceTree = "<group>"; };
-		E125788E164271E100119C0E /* LPHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPHomeViewController.m; path = Classes/ViewControllers/Home/LPHomeViewController.m; sourceTree = "<group>"; };
-		E125788F164271E100119C0E /* LPHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPHomeViewController.xib; path = Classes/ViewControllers/Home/LPHomeViewController.xib; sourceTree = "<group>"; };
 		E1257892164271ED00119C0E /* LPNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPNavigationController.h; path = Classes/ViewControllers/NavigationController/LPNavigationController.h; sourceTree = "<group>"; };
 		E1257893164271ED00119C0E /* LPNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPNavigationController.m; path = Classes/ViewControllers/NavigationController/LPNavigationController.m; sourceTree = "<group>"; };
 		E125789E1642790500119C0E /* LPOpenedProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPOpenedProjectViewController.h; path = Classes/ViewControllers/OpenedProject/LPOpenedProjectViewController.h; sourceTree = "<group>"; };
@@ -299,6 +304,16 @@
 			name = ybase64;
 			sourceTree = "<group>";
 		};
+		E101C3EC166CFB0200A9F0E2 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E101C3F2166CFBA200A9F0E2 /* LPHomeViewController.h */,
+				E101C3F3166CFBA200A9F0E2 /* LPHomeViewController.m */,
+				E101C3F4166CFBA200A9F0E2 /* LPHomeViewController.xib */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
 		E112F2DA165A67200005F559 /* TBXML */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,25 +400,26 @@
 		E12578761642695F00119C0E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E101C3EC166CFB0200A9F0E2 /* Home */,
 				C391B5681664AE6000F914DB /* ImagePicker */,
 				C37DF783165193CE00AEAC0B /* ToolsManager */,
 				E17C7A8116515AB6009202BA /* CloseProjectDialog */,
 				C383B4C316479BCB00397907 /* LayersManager */,
 				E125788116426FB600119C0E /* NavigationController */,
-				E12578771642696E00119C0E /* Home */,
+				E12578771642696E00119C0E /* Gallery */,
 				E12578A31642790B00119C0E /* OpenedProject */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-		E12578771642696E00119C0E /* Home */ = {
+		E12578771642696E00119C0E /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
-				E125788D164271E100119C0E /* LPHomeViewController.h */,
-				E125788E164271E100119C0E /* LPHomeViewController.m */,
-				E125788F164271E100119C0E /* LPHomeViewController.xib */,
+				E101C3ED166CFB5D00A9F0E2 /* LPGalleryViewController.h */,
+				E101C3EE166CFB5D00A9F0E2 /* LPGalleryViewController.m */,
+				E101C3EF166CFB5D00A9F0E2 /* LPGalleryViewController.xib */,
 			);
-			name = Home;
+			name = Gallery;
 			sourceTree = "<group>";
 		};
 		E125788116426FB600119C0E /* NavigationController */ = {
@@ -513,7 +529,6 @@
 				E12578631642686C00119C0E /* Default.png in Resources */,
 				E12578651642686C00119C0E /* Default@2x.png in Resources */,
 				E12578671642686C00119C0E /* Default-568h@2x.png in Resources */,
-				E1257891164271E100119C0E /* LPHomeViewController.xib in Resources */,
 				E12578A21642790500119C0E /* LPOpenedProjectViewController.xib in Resources */,
 				C383B4C916479DDC00397907 /* LPLayersManagerViewController.xib in Resources */,
 				C358B5061647BF290004537E /* LPLayerCell.xib in Resources */,
@@ -521,6 +536,8 @@
 				C37DF7891651942A00AEAC0B /* LPDrawingManagerViewController.xib in Resources */,
 				C3877A951652E9E000208CAA /* LPFileCollCell.xib in Resources */,
 				C38716F016537B4E005001A7 /* LPFileCollHeaderCell.xib in Resources */,
+				E101C3F1166CFB5D00A9F0E2 /* LPGalleryViewController.xib in Resources */,
+				E101C3F6166CFBA200A9F0E2 /* LPHomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,7 +550,6 @@
 			files = (
 				E125785D1642686C00119C0E /* main.m in Sources */,
 				E12578611642686C00119C0E /* LPAppDelegate.m in Sources */,
-				E1257890164271E100119C0E /* LPHomeViewController.m in Sources */,
 				E1257894164271ED00119C0E /* LPNavigationController.m in Sources */,
 				E12578A11642790500119C0E /* LPOpenedProjectViewController.m in Sources */,
 				E12578AF16429B3200119C0E /* LPSmartLayer.m in Sources */,
@@ -555,6 +571,8 @@
 				C380B2E6165975A30082F30D /* LPHistoryManager.m in Sources */,
 				E112F2E4165A7EEE0005F559 /* TBXML.m in Sources */,
 				C391B56C1664AED500F914DB /* LPImagePickerViewController.m in Sources */,
+				E101C3F0166CFB5D00A9F0E2 /* LPGalleryViewController.m in Sources */,
+				E101C3F5166CFBA200A9F0E2 /* LPHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,6 +614,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -618,6 +637,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;

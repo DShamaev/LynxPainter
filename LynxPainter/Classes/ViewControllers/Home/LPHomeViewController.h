@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LPHomeViewController : UIViewController
+- (IBAction)createProjectFromHome:(id)sender;
+- (IBAction)openExistedFile:(id)sender;
 
 @end

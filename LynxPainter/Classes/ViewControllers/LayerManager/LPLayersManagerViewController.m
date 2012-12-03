@@ -39,6 +39,10 @@
     self.layerTable.tableFooterView = fakeFooterView;
     [self.layerTable registerClass:[LPLayerCell class] forCellReuseIdentifier:@"layerCell"];
     [self.layerTable registerNib:[UINib nibWithNibName:@"LPLayerCell" bundle:nil] forCellReuseIdentifier:@"layerCell"];
+    canMoveCells = NO;
+    UILongPressGestureRecognizer* lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLP:)];
+    [self.view addGestureRecognizer:lpgr];
+
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -107,25 +111,32 @@
     return 90;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return canMoveCells;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    
+    NSObject* sobj = [self.slm.layersArray objectAtIndex:sourceIndexPath.row];
+    NSObject* dobj = [self.slm.layersArray objectAtIndex:destinationIndexPath.row];
+    [self.slm.layersArray replaceObjectAtIndex:sourceIndexPath.row withObject:dobj];
+    [self.slm.layersArray replaceObjectAtIndex:destinationIndexPath.row withObject:sobj];
+    
+    canMoveCells = NO;
+    self.layerTable.editing = NO;
+    [self.slm moveLayerToIndex:destinationIndexPath.row];
+    [self.layerTable reloadData];
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleNone;
+}
 
 - (IBAction)createNewLayerBtnClicked:(id)sender {
     [self.slm addNewLayer];
     [self createImagesForLayers];
     [self.alphaLevelLabel setText:@"100%"];
-    [self.layerTable reloadData];
-}
-
-- (IBAction)moveSelectedLayerUpBtnClicked:(id)sender {
-    [self.slm moveLayerUp];
-    [self createImagesForLayers];
-    self.selectedIndex-=1;
-    [self.layerTable reloadData];
-}
-
-- (IBAction)moveSelectedLayerDownBtnClicked:(id)sender {
-    [self.slm moveLayerDown];
-    [self createImagesForLayers];
-    self.selectedIndex+=1;
     [self.layerTable reloadData];
 }
 
@@ -155,4 +166,11 @@
     if(self.delegate && [self.delegate respondsToSelector:@selector(showImagePickerDialog)])
        [self.delegate showImagePickerDialog];
 }
+
+- (IBAction)handleLP:(UILongPressGestureRecognizer *)sender {
+    canMoveCells = YES;
+    self.layerTable.editing = YES;
+    [self.layerTable reloadData];
+}
+
 @end

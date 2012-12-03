@@ -17,6 +17,7 @@
 #import "TBXML.h"
 #import "LPFileInfo.h"
 #import "LPImagePickerViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface LPOpenedProjectViewController (){
     float tempScale;
@@ -64,9 +65,10 @@
     BOOL isHeightWouldBeUsedForScale = _currRootLayerHeight > _currRootLayerWidth ? YES : NO;
     float scaleMult=1;
     if(isHeightWouldBeUsedForScale){
-        scaleMult = 600./_currRootLayerHeight;
+        scaleMult = 768./_currRootLayerHeight;
     }else
-        scaleMult = 800./_currRootLayerWidth;
+        scaleMult = 1024./_currRootLayerWidth;
+    NSLog(@"%f",(float)(1024./_currRootLayerWidth));
     [LPSmartLayerManager sharedManager].currScale = scaleMult;
     //[self addCenterConstraints];
     [self addNewSizeConstraintsWithScale:scaleMult];
@@ -331,7 +333,7 @@
 }
 
 - (IBAction)handlePinch:(UIGestureRecognizer *)sender {
-    if(!self.rootLayer.isDrawable){
+    if(!self.rootLayer.isDrawable && !self.rootLayer.isDraggable){
         UIPinchGestureRecognizer* recognizer = (UIPinchGestureRecognizer*)sender;
         if (recognizer.state == UIGestureRecognizerStateBegan) {
             tempScale = [LPSmartLayerManager sharedManager].currScale;

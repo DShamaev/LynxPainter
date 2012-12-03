@@ -78,6 +78,18 @@
     }
 }
 
+- (void)moveLayerToIndex:(int)nindex{
+    if(self.rootLayer && self.layersArray && [self.layersArray count]>1){
+            LPSmartLayer* nLayer = [self.layersArray objectAtIndex:nindex];
+            LPSmartLayer* oLayer = [self.layersArray objectAtIndex:self.currLayerIndex];
+            [self.layersArray removeObjectAtIndex:self.currLayerIndex];
+            [self.layersArray insertObject:nLayer atIndex:self.currLayerIndex];
+            [self.layersArray removeObjectAtIndex:nindex];
+            [self.layersArray insertObject:oLayer atIndex:nindex];
+            self.currLayerIndex=nindex;
+    }
+}
+
 - (LPSmartLayer*)addNewLayer{
     if(self.rootLayer){
         LPSmartLayer* nLayer = [[LPSmartLayer alloc] initWithName:[NSString stringWithFormat:@"Layer %d",_layerCounter] withColor:[UIColor blackColor] withLineWidth:self.currLayer != nil ? self.currLayer.smLineWidth : 10*self.currScale];
@@ -205,6 +217,7 @@
     self.rootLayer = nil;
     self.rootView = nil;
     self.currScale = 1;
+    self.layerCounter = 0;
 }
 
 @end

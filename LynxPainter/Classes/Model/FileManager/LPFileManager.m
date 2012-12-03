@@ -43,6 +43,44 @@
     }
     return arrayOfProjects;
 }
+
+/*- (NSArray*)receiveRecentProjectsFilesList{
+    NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [homeDomains objectAtIndex:0];
+    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:@"Projects"];
+    
+    NSArray *docFileList = [[NSFileManager defaultManager] subpathsAtPath:documentsDirectory];
+    NSEnumerator *docEnumerator = [docFileList objectEnumerator];
+    NSString *docFilePath;
+    NSDate *lastModifiedDate = [NSDate dateWithTimeIntervalSince1970:0];
+    NSString *lastModifiedFilePath = @"";
+    
+    while ((docFilePath = [docEnumerator nextObject])) {
+        NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:docFilePath];
+        NSDictionary *fileAttributes = [[NSFileManager defaultManager]  attributesOfItemAtPath:fullPath error:nil];
+        NSDate* currentModifiedDate = [fileAttributes fileModificationDate];
+        
+        if (lastModifiedDate < fileModificationDate) {
+            fileModificationDate = lastModifiedDate;
+            lastModifiedFilePath = fullPath;
+        }
+    }
+    
+    
+    NSMutableArray *arrayOfProjects = [[NSMutableArray alloc] init];
+    for (int count = 0; count < files.count; count++) {
+        NSString* fileName = [files objectAtIndex:count];
+        //if hidden file
+        if ([fileName characterAtIndex:0] == '.') {
+            continue;
+        }
+        LPFileInfo* fi = [[LPFileInfo alloc] init];
+        [fi fillWithName:[files objectAtIndex:count] withURL:[documentsDirectory stringByAppendingPathComponent:[files objectAtIndex:count]]];
+        [arrayOfProjects addObject:fi];
+    }
+    return arrayOfProjects;
+}*/
+
 - (NSArray*)receiveImagesFilesList{
     NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [homeDomains objectAtIndex:0];

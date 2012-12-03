@@ -16,7 +16,9 @@
 
 @class LPSmartLayerManager;
 
-@interface LPLayersManagerViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface LPLayersManagerViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
+    BOOL canMoveCells;
+}
 
 @property (strong, nonatomic) LPSmartLayerManager *slm;
 @property (strong, nonatomic) IBOutlet UITableView *layerTable;
@@ -25,8 +27,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *alphaLevelLabel;
 @property (strong, nonatomic) id<ImagePickerDelegate> delegate;
 - (IBAction)createNewLayerBtnClicked:(id)sender;
-- (IBAction)moveSelectedLayerUpBtnClicked:(id)sender;
-- (IBAction)moveSelectedLayerDownBtnClicked:(id)sender;
 - (IBAction)removeLayerBtnClicked:(id)sender;
 - (IBAction)changeVisBtnClicked:(id)sender;
 - (IBAction)changeAlphaValue:(id)sender;

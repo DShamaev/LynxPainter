@@ -14,6 +14,7 @@
 @interface LPSmartLayer : CALayer
 @property (nonatomic) BOOL smReadOnly;
 @property (nonatomic) int smLineWidth;
+@property (nonatomic) CGFloat smRotAngle;
 @property (nonatomic,strong) UIColor* smColor;
 @property (nonatomic,strong) NSString* smName;
 @property (nonatomic,assign) CALayer* smCurrSLayer;

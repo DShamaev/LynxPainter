@@ -51,6 +51,7 @@
 }
 
 - (void)initialization {
+    self.smRotAngle = 0;
     self.signPath = CGPathCreateMutable();
     [self setBackgroundColor:[UIColor clearColor].CGColor];
     self.del = [[LPSmartLayerDelegate alloc] init];

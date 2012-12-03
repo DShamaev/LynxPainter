@@ -7,6 +7,7 @@
 //
 
 #import "LPHomeViewController.h"
+#import "LPGalleryViewController.h"
 
 @interface LPHomeViewController ()
 
@@ -26,6 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBarHidden = YES;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -35,4 +37,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)createProjectFromHome:(id)sender {
+    LPGalleryViewController* galVC = [[LPGalleryViewController alloc] initWithNibName:@"LPGalleryViewController" bundle:nil];    
+    [self.navigationController pushViewController:galVC animated:YES];
+    galVC.createDialogView.hidden = NO;
+}
+
+- (IBAction)openExistedFile:(id)sender {
+    LPGalleryViewController* galVC = [[LPGalleryViewController alloc] initWithNibName:@"LPGalleryViewController" bundle:nil];
+    [self.navigationController pushViewController:galVC animated:YES];
+}
 @end

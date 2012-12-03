@@ -30,8 +30,7 @@
 - (void)setCurrLayerWithIndex:(int)nIndex;
 - (void)setCurrLayerVisibility:(BOOL)vis;
 - (void)setCurrLayerAlpha:(float)alpha;
-- (void)moveLayerUp;
-- (void)moveLayerDown;
+- (void)moveLayerToIndex:(int)nindex;
 - (void)removeLayer;
 - (void)clearLayer;
 - (void)undo;
