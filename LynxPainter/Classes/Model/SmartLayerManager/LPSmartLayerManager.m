@@ -107,7 +107,7 @@
 - (LPSmartLayer*)addNewImageLayer:(UIImage*)image{
     if(self.rootLayer){
         LPSmartLayer* nLayer = [[LPSmartLayer alloc] initWithName:[NSString stringWithFormat:@"Layer %d",_layerCounter] withColor:[UIColor blackColor] withLineWidth:self.currLayer != nil ? self.currLayer.smLineWidth : 10*self.currScale];
-        nLayer.smReadOnly = YES;
+        nLayer.smReadOnly = NO;
         if(!self.layersArray)
             self.layersArray = [NSMutableArray array];
         [self.layersArray addObject:nLayer];

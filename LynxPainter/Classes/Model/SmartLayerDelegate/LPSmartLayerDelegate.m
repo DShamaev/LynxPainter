@@ -57,10 +57,11 @@
         CGContextStrokePath(context);
     }
     if(self.mode == 1){
+        [self getSP];
         CGContextSetLineCap(context, kCGLineCapRound);
         CGContextSetLineWidth(context, self.currDrawSize);
-        CGContextSetBlendMode(context, kCGBlendModeClear);
-        CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
+        CGContextSetBlendMode(context, kCGBlendModeDestinationOut);
+        CGContextSetStrokeColorWithColor(context, [[UIColor blackColor] CGColor]);
         CGContextAddPath(context, signPath);
         CGContextStrokePath(context);
     }

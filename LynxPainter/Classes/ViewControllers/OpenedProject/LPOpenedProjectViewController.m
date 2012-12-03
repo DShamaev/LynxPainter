@@ -68,7 +68,6 @@
         scaleMult = 768./_currRootLayerHeight;
     }else
         scaleMult = 1024./_currRootLayerWidth;
-    NSLog(@"%f",(float)(1024./_currRootLayerWidth));
     [LPSmartLayerManager sharedManager].currScale = scaleMult;
     //[self addCenterConstraints];
     [self addNewSizeConstraintsWithScale:scaleMult];
