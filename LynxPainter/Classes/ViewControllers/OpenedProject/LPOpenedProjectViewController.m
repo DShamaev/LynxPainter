@@ -150,6 +150,10 @@
         [self.currSizeConstraints removeAllObjects];
     }
     self.currScale = nScale;
+    if(self.currScale != 1){
+        
+    }
+    self.scaleView.hidden = self.curr
     self.rootLayer.transform = CGAffineTransformMakeScale(self.currScale, self.currScale);
     self.scaleValueTF.text = [NSString stringWithFormat:@"%.0f%%",self.currScale*100];
     

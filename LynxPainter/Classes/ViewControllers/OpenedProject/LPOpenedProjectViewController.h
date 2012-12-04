@@ -32,6 +32,8 @@ typedef enum {
 @property (strong, nonatomic) IBOutlet UITextField *scaleValueTF;
 @property (strong, nonatomic) IBOutlet UIScrollView *workAreaSV;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *modeSC;
+@property (strong, nonatomic) IBOutlet UILabel *scaleLabel;
+@property (strong, nonatomic) IBOutlet UIView *scaleView;
 - (IBAction)closeProject:(id)sender;
 - (IBAction)showLayersManager:(id)sender;
 - (IBAction)modeChanged:(id)sender;
