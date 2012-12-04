@@ -72,6 +72,7 @@
         CGContextStrokeEllipseInRect(context, self.points);
     }
     CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
+    CGContextSetLineWidth(context, 5);
     if(self.mode == 2){
         CGFloat dashPatt[] = {20.0,8.0};
         CGContextSetLineDash(context, 0, dashPatt, 2);

@@ -16,6 +16,7 @@
 @interface LPWorkAreaView (){
     CGMutablePathRef signPath;
     BOOL isMaskDrawn;
+    NSMutableArray* ppointsArray;
 }
 
 @end
@@ -80,9 +81,14 @@
     if(self.isDrawable && ![LPSmartLayerManager sharedManager].currLayer.smReadOnly){
         isMaskDrawn = NO;
         if(self.currMode == WADBrush || self.currMode == WADLine /**/ || self.currMode == WADEraser /**/){
+            if(!ppointsArray)
+                ppointsArray = [NSMutableArray array];
+            else
+                [ppointsArray removeAllObjects];
             LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
             CGPoint p = [self pointFromTouches:touches];
             [del.pathPoints addObject:[NSValue valueWithCGPoint:p]];
+            [ppointsArray addObject:[NSValue valueWithCGPoint:p]];
             //CGPathMoveToPoint(signPath, NULL, p.x, p.y);
         }
         /*if(self.currMode == WADEraser){
@@ -139,6 +145,7 @@
             LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
             del.mode = 6;
             del.signPath = signPath;
+            [del.pathPoints addObject:[NSValue valueWithCGPoint:p]];
             del.currentColor = [LPSmartLayerManager sharedManager].currLayer.smColor;
             del.currDrawSize = [LPSmartLayerManager sharedManager].currLayer.smLineWidth;
             [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];
@@ -195,7 +202,8 @@
             LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
             del.mode = 0;
             //del.signPath = signPath;
-            [del.pathPoints addObject:[NSValue valueWithCGPoint:p]];
+            [ppointsArray addObject:[NSValue valueWithCGPoint:p]];
+            [del.pathPoints addObjectsFromArray:ppointsArray];
             del.currentColor = [LPSmartLayerManager sharedManager].currLayer.smColor;
             del.currDrawSize = [LPSmartLayerManager sharedManager].currLayer.smLineWidth;
             [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];
