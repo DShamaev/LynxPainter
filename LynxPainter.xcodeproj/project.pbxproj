@@ -28,6 +28,16 @@
 		C394D59D1653AB6B008A2A90 /* NSData+YBase64String.m in Sources */ = {isa = PBXBuildFile; fileRef = C394D5961653AB6B008A2A90 /* NSData+YBase64String.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C394D59E1653AB6B008A2A90 /* NSString+YBase64toData.m in Sources */ = {isa = PBXBuildFile; fileRef = C394D5981653AB6B008A2A90 /* NSString+YBase64toData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C394D59F1653AB6B008A2A90 /* ybase64.c in Sources */ = {isa = PBXBuildFile; fileRef = C394D5991653AB6B008A2A90 /* ybase64.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C3A73859166F84E0005AD0F5 /* new_btn_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A73851166F84E0005AD0F5 /* new_btn_selected.png */; };
+		C3A7385A166F84E0005AD0F5 /* new_btn_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A73852166F84E0005AD0F5 /* new_btn_selected@2x.png */; };
+		C3A7385B166F84E0005AD0F5 /* new_btn_unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A73853166F84E0005AD0F5 /* new_btn_unselected.png */; };
+		C3A7385C166F84E0005AD0F5 /* new_btn_unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A73854166F84E0005AD0F5 /* new_btn_unselected@2x.png */; };
+		C3A7385D166F84E0005AD0F5 /* open_btn_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A73855166F84E0005AD0F5 /* open_btn_selected.png */; };
+		C3A7385E166F84E0005AD0F5 /* open_btn_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A73856166F84E0005AD0F5 /* open_btn_selected@2x.png */; };
+		C3A7385F166F84E0005AD0F5 /* open_btn_unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A73857166F84E0005AD0F5 /* open_btn_unselected.png */; };
+		C3A73860166F84E0005AD0F5 /* open_btn_unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A73858166F84E0005AD0F5 /* open_btn_unselected@2x.png */; };
+		C3A73863166F853E005AD0F5 /* main_back.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A73861166F853E005AD0F5 /* main_back.png */; };
+		C3A73864166F853E005AD0F5 /* main_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A73862166F853E005AD0F5 /* main_back@2x.png */; };
 		E101C3F0166CFB5D00A9F0E2 /* LPGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E101C3EE166CFB5D00A9F0E2 /* LPGalleryViewController.m */; };
 		E101C3F1166CFB5D00A9F0E2 /* LPGalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E101C3EF166CFB5D00A9F0E2 /* LPGalleryViewController.xib */; };
 		E101C3F5166CFBA200A9F0E2 /* LPHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E101C3F3166CFBA200A9F0E2 /* LPHomeViewController.m */; };
@@ -91,6 +101,16 @@
 		C394D59A1653AB6B008A2A90 /* ybase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ybase64.h; path = Classes/External/ybase64/ybase64.h; sourceTree = "<group>"; };
 		C394D59B1653AB6B008A2A90 /* ybase64additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ybase64additions.h; path = Classes/External/ybase64/ybase64additions.h; sourceTree = "<group>"; };
 		C394D59C1653AB6B008A2A90 /* ydefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ydefines.h; path = Classes/External/ybase64/ydefines.h; sourceTree = "<group>"; };
+		C3A73851166F84E0005AD0F5 /* new_btn_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = new_btn_selected.png; path = Images/new_btn_selected.png; sourceTree = "<group>"; };
+		C3A73852166F84E0005AD0F5 /* new_btn_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "new_btn_selected@2x.png"; path = "Images/new_btn_selected@2x.png"; sourceTree = "<group>"; };
+		C3A73853166F84E0005AD0F5 /* new_btn_unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = new_btn_unselected.png; path = Images/new_btn_unselected.png; sourceTree = "<group>"; };
+		C3A73854166F84E0005AD0F5 /* new_btn_unselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "new_btn_unselected@2x.png"; path = "Images/new_btn_unselected@2x.png"; sourceTree = "<group>"; };
+		C3A73855166F84E0005AD0F5 /* open_btn_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = open_btn_selected.png; path = Images/open_btn_selected.png; sourceTree = "<group>"; };
+		C3A73856166F84E0005AD0F5 /* open_btn_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "open_btn_selected@2x.png"; path = "Images/open_btn_selected@2x.png"; sourceTree = "<group>"; };
+		C3A73857166F84E0005AD0F5 /* open_btn_unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = open_btn_unselected.png; path = Images/open_btn_unselected.png; sourceTree = "<group>"; };
+		C3A73858166F84E0005AD0F5 /* open_btn_unselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "open_btn_unselected@2x.png"; path = "Images/open_btn_unselected@2x.png"; sourceTree = "<group>"; };
+		C3A73861166F853E005AD0F5 /* main_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = main_back.png; path = Images/main_back.png; sourceTree = "<group>"; };
+		C3A73862166F853E005AD0F5 /* main_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "main_back@2x.png"; path = "Images/main_back@2x.png"; sourceTree = "<group>"; };
 		E101C3ED166CFB5D00A9F0E2 /* LPGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPGalleryViewController.h; path = Classes/ViewControllers/Gallery/LPGalleryViewController.h; sourceTree = "<group>"; };
 		E101C3EE166CFB5D00A9F0E2 /* LPGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPGalleryViewController.m; path = Classes/ViewControllers/Gallery/LPGalleryViewController.m; sourceTree = "<group>"; };
 		E101C3EF166CFB5D00A9F0E2 /* LPGalleryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPGalleryViewController.xib; path = Classes/ViewControllers/Gallery/LPGalleryViewController.xib; sourceTree = "<group>"; };
@@ -304,6 +324,23 @@
 			name = ybase64;
 			sourceTree = "<group>";
 		};
+		C3A7384F166F84C4005AD0F5 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C3A73861166F853E005AD0F5 /* main_back.png */,
+				C3A73862166F853E005AD0F5 /* main_back@2x.png */,
+				C3A73851166F84E0005AD0F5 /* new_btn_selected.png */,
+				C3A73852166F84E0005AD0F5 /* new_btn_selected@2x.png */,
+				C3A73853166F84E0005AD0F5 /* new_btn_unselected.png */,
+				C3A73854166F84E0005AD0F5 /* new_btn_unselected@2x.png */,
+				C3A73855166F84E0005AD0F5 /* open_btn_selected.png */,
+				C3A73856166F84E0005AD0F5 /* open_btn_selected@2x.png */,
+				C3A73857166F84E0005AD0F5 /* open_btn_unselected.png */,
+				C3A73858166F84E0005AD0F5 /* open_btn_unselected@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		E101C3EC166CFB0200A9F0E2 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,6 +391,7 @@
 		E12578561642686C00119C0E /* LynxPainter */ = {
 			isa = PBXGroup;
 			children = (
+				C3A7384F166F84C4005AD0F5 /* Images */,
 				E125786D1642687E00119C0E /* Classes */,
 				E125785F1642686C00119C0E /* LPAppDelegate.h */,
 				E12578601642686C00119C0E /* LPAppDelegate.m */,
@@ -538,6 +576,16 @@
 				C38716F016537B4E005001A7 /* LPFileCollHeaderCell.xib in Resources */,
 				E101C3F1166CFB5D00A9F0E2 /* LPGalleryViewController.xib in Resources */,
 				E101C3F6166CFBA200A9F0E2 /* LPHomeViewController.xib in Resources */,
+				C3A73859166F84E0005AD0F5 /* new_btn_selected.png in Resources */,
+				C3A7385A166F84E0005AD0F5 /* new_btn_selected@2x.png in Resources */,
+				C3A7385B166F84E0005AD0F5 /* new_btn_unselected.png in Resources */,
+				C3A7385C166F84E0005AD0F5 /* new_btn_unselected@2x.png in Resources */,
+				C3A7385D166F84E0005AD0F5 /* open_btn_selected.png in Resources */,
+				C3A7385E166F84E0005AD0F5 /* open_btn_selected@2x.png in Resources */,
+				C3A7385F166F84E0005AD0F5 /* open_btn_unselected.png in Resources */,
+				C3A73860166F84E0005AD0F5 /* open_btn_unselected@2x.png in Resources */,
+				C3A73863166F853E005AD0F5 /* main_back.png in Resources */,
+				C3A73864166F853E005AD0F5 /* main_back@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
