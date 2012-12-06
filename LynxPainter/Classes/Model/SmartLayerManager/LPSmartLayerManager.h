@@ -29,6 +29,7 @@
 - (LPSmartLayer*)addNewImageLayer:(UIImage*)image;
 - (void)setCurrLayerWithIndex:(int)nIndex;
 - (void)setCurrLayerVisibility:(BOOL)vis;
+- (void)setLayerWithIndex:(int)idx withVisibility:(BOOL)vis;
 - (void)setCurrLayerAlpha:(float)alpha;
 - (void)moveLayerFromIndex:(int)oindex ToIndex:(int)nindex;
 - (void)removeLayer;

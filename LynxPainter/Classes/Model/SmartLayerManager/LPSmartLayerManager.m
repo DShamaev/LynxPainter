@@ -219,4 +219,9 @@
     self.layerCounter = 0;
 }
 
+- (void)setLayerWithIndex:(int)idx withVisibility:(BOOL)vis{
+    LPSmartLayer* sl = [self.layersArray objectAtIndex:idx];
+    sl.hidden = !vis;
+}
+
 @end

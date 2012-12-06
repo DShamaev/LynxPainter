@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LPLayerCell.h"
 
 @protocol ImagePickerDelegate <NSObject>
 
@@ -16,7 +17,7 @@
 
 @class LPSmartLayerManager;
 
-@interface LPLayersManagerViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
+@interface LPLayersManagerViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,LPLayerCellDelegate>{
     BOOL canMoveCells;
 }
 

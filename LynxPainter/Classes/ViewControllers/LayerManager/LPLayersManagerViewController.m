@@ -9,7 +9,6 @@
 #import "LPLayersManagerViewController.h"
 #import "LPSmartLayerManager.h"
 #import "LPSmartLayer.h"
-#import "LPLayerCell.h"
 #import "UIViewController+XIBLoader.h"
 
 @interface LPLayersManagerViewController ()
@@ -104,6 +103,8 @@
         [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
         [self selectLayerWithIndexPath:indexPath];
     }
+    cell.delegate = self;
+    cell.idx = indexPath.row;
     return cell;
 }
 
@@ -166,6 +167,13 @@
 - (IBAction)handleLP:(UILongPressGestureRecognizer *)sender {
     canMoveCells = YES;
     self.layerTable.editing = YES;
+    [self.layerTable reloadData];
+}
+
+#pragma mark - LPProjectCellDelegate
+
+- (void)changeLayerVisibilityWithIndex:(int)idx andValue:(BOOL)vis{
+    [[LPSmartLayerManager sharedManager] setLayerWithIndex:[self.slm.layersArray count]-idx-1 withVisibility:vis];
     [self.layerTable reloadData];
 }
 

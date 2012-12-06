@@ -31,12 +31,18 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)changeVisBtnClicked:(id)sender {
+    if(self.delegate && [self.delegate respondsToSelector:@selector(changeLayerVisibilityWithIndex:andValue:)]){
+        [self.delegate changeLayerVisibilityWithIndex:self.idx andValue:[self.smVisibilityButton.titleLabel.text isEqualToString:@"X"] ? YES : NO];
+    }
+}
+
 - (void)setLayer:(LPSmartLayer*)layer{
     [self.smLayerNameLabel setText:layer.smName];
     if(layer.hidden){
-       [self.smVisibilityLabel setText:@"X"];
+        [self.smVisibilityButton setTitle:@"X" forState:UIControlStateNormal];
     }else{
-        [self.smVisibilityLabel setText:@"V"];
+        [self.smVisibilityButton setTitle:@"V" forState:UIControlStateNormal];
     }
 }
 
