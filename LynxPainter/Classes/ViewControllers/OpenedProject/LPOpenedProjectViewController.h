@@ -34,6 +34,7 @@ typedef enum {
 @property (strong, nonatomic) IBOutlet UISegmentedControl *modeSC;
 @property (strong, nonatomic) IBOutlet UILabel *scaleLabel;
 @property (strong, nonatomic) IBOutlet UIView *scaleView;
+@property (nonatomic) BOOL openedFileModeIsProject;
 - (IBAction)closeProject:(id)sender;
 - (IBAction)showLayersManager:(id)sender;
 - (IBAction)modeChanged:(id)sender;

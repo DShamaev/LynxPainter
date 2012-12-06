@@ -25,7 +25,9 @@
 }
 
 - (IBAction)deleteFile:(id)sender {
-    
+    if(self.delegate && [self.delegate respondsToSelector:@selector(deleteFileWithIndexPath:)]){
+        [self.delegate deleteFileWithIndexPath:self.idp];
+    }
 }
 
 /*

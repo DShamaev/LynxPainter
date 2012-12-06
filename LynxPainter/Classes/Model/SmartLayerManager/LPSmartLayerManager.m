@@ -151,6 +151,27 @@
     [self.currLayer removeLastTemporaryChanges];
 }
 
+- (void)readImageFile:(LPFileInfo*)fi{
+    NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [homeDomains objectAtIndex:0];
+    UIImage* img = [UIImage imageWithContentsOfFile:[documentsDirectory stringByAppendingPathComponent:fi.fiName]];
+    LPSmartLayer* nLayer = [[LPSmartLayer alloc] initWithName:[NSString stringWithFormat:@"Layer %d",_layerCounter] withColor:[UIColor blackColor] withLineWidth:self.currLayer != nil ? self.currLayer.smLineWidth : 10*self.currScale];
+    nLayer.smReadOnly = YES;
+    CALayer* imageLayer = [CALayer layer];
+    imageLayer.contents = (id)img.CGImage;
+    imageLayer.frame = self.rootView.bounds;
+    [nLayer addSublayer:imageLayer];
+    
+    if(!self.layersArray)
+        self.layersArray = [NSMutableArray array];
+    [self.layersArray addObject:nLayer];
+    [self.rootLayer addSublayer:nLayer];
+    self.layerCounter +=1;
+    [self setCurrLayer:nLayer];
+    [self setCurrLayerAlpha:1.0];
+    [self setCurrLayerVisibility:YES];
+}
+
 - (void)readProjectFile:(LPFileInfo*)fi{
     NSArray* arr = [[LPFileManager sharedManager] readLayersFromProjectFile:fi];
     for (int i=0; i< [arr count]; i++) {

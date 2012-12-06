@@ -37,5 +37,6 @@
 - (void)partialUndo;
 - (void)clearManagerData;
 - (void)readProjectFile:(LPFileInfo*)fi;
+- (void)readImageFile:(LPFileInfo*)fi;
 
 @end

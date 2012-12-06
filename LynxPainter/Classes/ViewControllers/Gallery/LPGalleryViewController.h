@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LPFileCollCell.h"
 
 @class LPFileInfo;
 
-@interface LPGalleryViewController : UIViewController<UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIActionSheetDelegate>{
+@interface LPGalleryViewController : UIViewController<UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,LPFileCollCellDelegate>{
     UIActionSheet* fileActionsSheet;
     BOOL fileActionsMode; // NO - project file; YES - image file;
     BOOL hasImages;

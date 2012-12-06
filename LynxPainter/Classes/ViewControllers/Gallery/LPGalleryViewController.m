@@ -8,7 +8,6 @@
 
 #import "LPGalleryViewController.h"
 #import "LPOpenedProjectViewController.h"
-#import "LPFileCollCell.h"
 #import "LPFileCollHeaderCell.h"
 #import "LPFileManager.h"
 #import "LPFileInfo.h"
@@ -126,55 +125,20 @@
     if (indexPath.section == 0 && indexPath.row == 0) {
         _createDialogView.hidden = NO;
     }else{
-        selectedFileIP = indexPath;
-        if(indexPath.section == 0){
-            fileActionsMode = NO;
-            fileActionsSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Cancel" otherButtonTitles:@"Open project file", @"Delete project file", nil];
-        }else{
-            fileActionsMode = YES;
-            fileActionsSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Cancel" otherButtonTitles:@"Delete image", nil];
-        }
-        [fileActionsSheet showInView:self.view];
-        /*NSMutableArray* ca = [self.fileSectionArray objectAtIndex:indexPath.section];
+        NSMutableArray* ca = [self.fileSectionArray objectAtIndex:indexPath.section];
         LPFileInfo* fi = [ca objectAtIndex:indexPath.row];
-        LPOpenedProjectViewController* projectVC = [[LPOpenedProjectViewController alloc] initWithNibName:@"LPOpenedProjectViewController" bundle:nil];
-        projectVC.openedFile = fi;
-        [self.navigationController pushViewController:projectVC animated:YES];*/
-    }
-}
-
-#pragma mark - UIActionSheetDelegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (actionSheet == fileActionsSheet) {
-        NSMutableArray* ca = [self.fileSectionArray objectAtIndex:selectedFileIP.section];
-        LPFileInfo* fi = [ca objectAtIndex:selectedFileIP.row];
-        if(fileActionsMode == 0){
-            switch (buttonIndex) {
-                case 1:                    
-                    [self openProject:fi];
-                    break;
-                case 2:
-                    [[LPFileManager sharedManager] deleteFileWithInfo:fi withType:YES];
-                default:
-                    break;
-            }
+        if(indexPath.section == 0){
+            [self openProject:fi withMode:YES];
         }else{
-            switch (buttonIndex) {
-                case 1:
-                    [[LPFileManager sharedManager] deleteFileWithInfo:fi withType:NO];
-                default:
-                    break;
-            }
-
+            [self openProject:fi withMode:NO];
         }
-        [self updateFileSectionArray];
     }
 }
 
-- (void)openProject:(LPFileInfo*)fi{
+- (void)openProject:(LPFileInfo*)fi withMode:(BOOL)isProject{
     LPOpenedProjectViewController* projectVC = [[LPOpenedProjectViewController alloc] initWithNibName:@"LPOpenedProjectViewController" bundle:nil];
     projectVC.openedFile = fi;
+    projectVC.openedFileModeIsProject = isProject;
     [self.navigationController pushViewController:projectVC animated:YES];
 }
 
@@ -185,6 +149,8 @@
     NSMutableArray* ca = [self.fileSectionArray objectAtIndex:indexPath.section];
     LPFileInfo* fi = [ca objectAtIndex:indexPath.row];
     [cell fillCellWithName:fi.fiName andImage:[UIImage imageWithContentsOfFile:fi.fiURL]];
+    cell.delegate = self;
+    cell.idp = indexPath;
     return cell;
 }
 
@@ -204,6 +170,15 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     NSMutableArray* sa = [self.fileSectionArray objectAtIndex:section];
     return [sa count];
+}
+
+#pragma mark - LPFileCollCell delegate
+
+- (void)deleteFileWithIndexPath:(NSIndexPath*)idp{
+    NSMutableArray* files = [self.fileSectionArray objectAtIndex:idp.section];
+    LPFileInfo* fi = [files objectAtIndex:idp.row];
+    [[LPFileManager sharedManager] deleteFileWithInfo:fi withType:idp.section == 0];
+    [self updateFileSectionArray];
 }
 
 @end

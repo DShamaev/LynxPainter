@@ -37,14 +37,6 @@
     return self;
 }
 
--(void)keyboardShow:(NSNotification*)aNotification{
-    
-}
-
--(void)keyboardClose:(NSNotification*)aNotification{
-    
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -60,7 +52,10 @@
     currMode = LPWADrawing;
     self.modeSC.selectedSegmentIndex = 0;
     if (self.openedFile) {
-        [self loadOpenedProjectFile];
+        if(self.openedFileModeIsProject)
+            [self loadOpenedProjectFile];
+        else
+            [self createFromImageFile];
     }
     BOOL isHeightWouldBeUsedForScale = _currRootLayerHeight > _currRootLayerWidth ? YES : NO;
     float scaleMult=1;
@@ -72,18 +67,23 @@
     //[self addCenterConstraints];
     [self addNewSizeConstraintsWithScale:scaleMult];
     self.rootLayer.layer.borderColor = [UIColor blackColor].CGColor;
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardClose:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
     UIPinchGestureRecognizer* pgr = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
     [self.workAreaSV addGestureRecognizer:pgr];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)createFromImageFile{
+    _currRootLayerWidth = 1;
+    _currRootLayerHeight = 1;
+    NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [homeDomains objectAtIndex:0];
+    NSLog(@"%@",[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",self.openedFile.fiName]]);
+    UIImage* img = [UIImage imageWithContentsOfFile:[documentsDirectory stringByAppendingPathComponent:self.openedFile.fiName]];
+    if (img) {
+        _currRootLayerWidth = img.size.width;
+        _currRootLayerHeight = img.size.height;
+        
+    }
 }
 
 - (void)loadOpenedProjectFile{
@@ -112,7 +112,10 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     if(self.openedFile){
-        [[LPSmartLayerManager sharedManager] readProjectFile:self.openedFile];
+        if(self.openedFileModeIsProject)
+            [[LPSmartLayerManager sharedManager] readProjectFile:self.openedFile];
+        else
+            [[LPSmartLayerManager sharedManager] readImageFile:self.openedFile];
     }else{
         LPSmartLayer* nl = [[LPSmartLayerManager sharedManager] addNewLayer];
         [[LPSmartLayerManager sharedManager] setCurrLayer:nl];
@@ -150,9 +153,6 @@
         [self.currSizeConstraints removeAllObjects];
     }
     self.currScale = nScale;
-    if(self.currScale != 1){
-        
-    }
     self.scaleView.hidden = (self.currScale > 1.00 && self.currScale < 1.01)  ? YES : NO;
     self.rootLayer.transform = CGAffineTransformMakeScale(self.currScale, self.currScale);
     self.scaleValueTF.text = [NSString stringWithFormat:@"%.0f%%",self.currScale*100];
