@@ -60,6 +60,9 @@
         default:
             break;
     }
+    
+    self.currColorView.layer.borderColor = [UIColor blackColor].CGColor;
+    self.currColorView.layer.borderWidth = 1;
     // Do any additional setup after loading the view from its nib.
 }
 
