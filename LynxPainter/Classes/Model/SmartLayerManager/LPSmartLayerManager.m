@@ -78,12 +78,16 @@
     }
 }
 
-- (void)moveLayerToIndex:(int)nindex{
+- (void)moveLayerFromIndex:(int)oindex ToIndex:(int)nindex{
     if(self.rootLayer && self.layersArray && [self.layersArray count]>1){
             LPSmartLayer* nLayer = [self.layersArray objectAtIndex:nindex];
-            LPSmartLayer* oLayer = [self.layersArray objectAtIndex:self.currLayerIndex];
-            [self.layersArray removeObjectAtIndex:self.currLayerIndex];
-            [self.layersArray insertObject:nLayer atIndex:self.currLayerIndex];
+            LPSmartLayer* oLayer = [self.layersArray objectAtIndex:oindex];
+            [nLayer removeFromSuperlayer];
+            [oLayer removeFromSuperlayer];
+            [self.rootLayer insertSublayer:oLayer atIndex:nindex];            
+            [self.rootLayer insertSublayer:nLayer atIndex:oindex];
+            [self.layersArray removeObjectAtIndex:oindex];
+            [self.layersArray insertObject:nLayer atIndex:oindex];
             [self.layersArray removeObjectAtIndex:nindex];
             [self.layersArray insertObject:oLayer atIndex:nindex];
             self.currLayerIndex=nindex;

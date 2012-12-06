@@ -117,14 +117,10 @@
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
     
-    NSObject* sobj = [self.slm.layersArray objectAtIndex:sourceIndexPath.row];
-    NSObject* dobj = [self.slm.layersArray objectAtIndex:destinationIndexPath.row];
-    [self.slm.layersArray replaceObjectAtIndex:sourceIndexPath.row withObject:dobj];
-    [self.slm.layersArray replaceObjectAtIndex:destinationIndexPath.row withObject:sobj];
-    
     canMoveCells = NO;
     self.layerTable.editing = NO;
-    [self.slm moveLayerToIndex:destinationIndexPath.row];
+    [self.slm moveLayerFromIndex:[self.slm.layersArray count] - sourceIndexPath.row-1 ToIndex:[self.slm.layersArray count] - destinationIndexPath.row-1];
+    [self createImagesForLayers];
     [self.layerTable reloadData];
 }
 
