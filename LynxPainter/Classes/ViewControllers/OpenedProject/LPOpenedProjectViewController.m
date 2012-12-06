@@ -153,7 +153,9 @@
         [self.currSizeConstraints removeAllObjects];
     }
     self.currScale = nScale;
-    self.scaleView.hidden = (self.currScale > 1.00 && self.currScale < 1.01)  ? YES : NO;
+    self.scaleView.hidden = (self.currScale >= 1.00 && self.currScale < 1.01)  ? YES : NO;
+    if(!self.scaleView.hidden)
+        self.scaleLabel.text = [NSString stringWithFormat:@"%.0f%%",self.currScale*100];
     self.rootLayer.transform = CGAffineTransformMakeScale(self.currScale, self.currScale);
     self.scaleValueTF.text = [NSString stringWithFormat:@"%.0f%%",self.currScale*100];
     
