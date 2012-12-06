@@ -35,7 +35,7 @@
 - (void)clearLayer;
 - (void)undo;
 - (void)partialUndo;
-- (void)readLayersFromProjectFile:(LPFileInfo*)fi;
 - (void)clearManagerData;
+- (void)readProjectFile:(LPFileInfo*)fi;
 
 @end

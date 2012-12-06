@@ -44,6 +44,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    if(self.of)
+        [self openProject:self.of];
     [self updateFileSectionArray];
 }
 
@@ -147,13 +149,10 @@
     if (actionSheet == fileActionsSheet) {
         NSMutableArray* ca = [self.fileSectionArray objectAtIndex:selectedFileIP.section];
         LPFileInfo* fi = [ca objectAtIndex:selectedFileIP.row];
-        LPOpenedProjectViewController* projectVC;
         if(fileActionsMode == 0){
             switch (buttonIndex) {
                 case 1:                    
-                    projectVC = [[LPOpenedProjectViewController alloc] initWithNibName:@"LPOpenedProjectViewController" bundle:nil];
-                    projectVC.openedFile = fi;
-                    [self.navigationController pushViewController:projectVC animated:YES];
+                    [self openProject:fi];
                     break;
                 case 2:
                     [[LPFileManager sharedManager] deleteFileWithInfo:fi withType:YES];
@@ -171,6 +170,12 @@
         }
         [self updateFileSectionArray];
     }
+}
+
+- (void)openProject:(LPFileInfo*)fi{
+    LPOpenedProjectViewController* projectVC = [[LPOpenedProjectViewController alloc] initWithNibName:@"LPOpenedProjectViewController" bundle:nil];
+    projectVC.openedFile = fi;
+    [self.navigationController pushViewController:projectVC animated:YES];
 }
 
 #pragma mark - UICollectionViewDataSource delegate

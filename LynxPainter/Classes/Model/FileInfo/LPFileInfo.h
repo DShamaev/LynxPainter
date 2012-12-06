@@ -11,5 +11,6 @@
 @interface LPFileInfo : NSObject
 @property (nonatomic,retain) NSString* fiName;
 @property (nonatomic,retain) NSString* fiURL;
+@property (nonatomic,strong) NSDate* fiModDate;
 - (void)fillWithName:(NSString*)name withURL:(NSString*)url;
 @end

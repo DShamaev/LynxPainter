@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class LPFileInfo;
+
 @interface LPGalleryViewController : UIViewController<UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIActionSheetDelegate>{
     UIActionSheet* fileActionsSheet;
     BOOL fileActionsMode; // NO - project file; YES - image file;
@@ -18,7 +20,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *rlWidthTF;
 @property (strong, nonatomic) IBOutlet UITextField *rlHeightTF;
 @property (strong, nonatomic) IBOutlet UICollectionView *fileCollView;
+@property (strong, nonatomic) LPFileInfo* of;
 - (IBAction)createNewProjectDialogBtnClicked:(id)sender;
 - (IBAction)closeNewProjectDialogBtnClicked:(id)sender;
+- (void)openProject:(LPFileInfo*)fi;
 
 @end

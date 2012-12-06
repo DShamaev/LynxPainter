@@ -57,6 +57,11 @@
 		E12578A21642790500119C0E /* LPOpenedProjectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E12578A01642790500119C0E /* LPOpenedProjectViewController.xib */; };
 		E12578AF16429B3200119C0E /* LPSmartLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E12578AE16429B3200119C0E /* LPSmartLayer.m */; };
 		E12578B116429F3C00119C0E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12578B016429F3C00119C0E /* QuartzCore.framework */; };
+		E16311BC1670CF1800DA3EA8 /* LPProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E16311BB1670CF1800DA3EA8 /* LPProjectCell.m */; };
+		E16311BE1670CF3500DA3EA8 /* LPProjectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E16311BD1670CF3500DA3EA8 /* LPProjectCell.xib */; };
+		E16311C11670D18B00DA3EA8 /* del_project.png in Resources */ = {isa = PBXBuildFile; fileRef = E16311BF1670D18B00DA3EA8 /* del_project.png */; };
+		E16311C21670D18B00DA3EA8 /* del_project@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E16311C01670D18B00DA3EA8 /* del_project@2x.png */; };
+		E16311C61670D7BD00DA3EA8 /* LPLayerData.m in Sources */ = {isa = PBXBuildFile; fileRef = E16311C51670D7BD00DA3EA8 /* LPLayerData.m */; };
 		E17C7A8616515B33009202BA /* LPCloseProjectDialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E17C7A8416515B33009202BA /* LPCloseProjectDialogViewController.m */; };
 		E17C7A8716515B33009202BA /* LPCloseProjectDialogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E17C7A8516515B33009202BA /* LPCloseProjectDialogViewController.xib */; };
 /* End PBXBuildFile section */
@@ -140,6 +145,13 @@
 		E12578AD16429B3200119C0E /* LPSmartLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPSmartLayer.h; path = Classes/Model/SmartLayer/LPSmartLayer.h; sourceTree = "<group>"; };
 		E12578AE16429B3200119C0E /* LPSmartLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPSmartLayer.m; path = Classes/Model/SmartLayer/LPSmartLayer.m; sourceTree = "<group>"; };
 		E12578B016429F3C00119C0E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E16311BA1670CF1800DA3EA8 /* LPProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPProjectCell.h; path = Classes/Cells/ProjectCell/LPProjectCell.h; sourceTree = "<group>"; };
+		E16311BB1670CF1800DA3EA8 /* LPProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPProjectCell.m; path = Classes/Cells/ProjectCell/LPProjectCell.m; sourceTree = "<group>"; };
+		E16311BD1670CF3500DA3EA8 /* LPProjectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPProjectCell.xib; path = Classes/Cells/ProjectCell/LPProjectCell.xib; sourceTree = "<group>"; };
+		E16311BF1670D18B00DA3EA8 /* del_project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = del_project.png; path = Images/del_project.png; sourceTree = "<group>"; };
+		E16311C01670D18B00DA3EA8 /* del_project@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "del_project@2x.png"; path = "Images/del_project@2x.png"; sourceTree = "<group>"; };
+		E16311C41670D7BD00DA3EA8 /* LPLayerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPLayerData.h; path = Classes/Model/LayerData/LPLayerData.h; sourceTree = "<group>"; };
+		E16311C51670D7BD00DA3EA8 /* LPLayerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPLayerData.m; path = Classes/Model/LayerData/LPLayerData.m; sourceTree = "<group>"; };
 		E17C7A8316515B33009202BA /* LPCloseProjectDialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPCloseProjectDialogViewController.h; path = Classes/ViewControllers/CloseProjectDialog/LPCloseProjectDialogViewController.h; sourceTree = "<group>"; };
 		E17C7A8416515B33009202BA /* LPCloseProjectDialogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPCloseProjectDialogViewController.m; path = Classes/ViewControllers/CloseProjectDialog/LPCloseProjectDialogViewController.m; sourceTree = "<group>"; };
 		E17C7A8516515B33009202BA /* LPCloseProjectDialogViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPCloseProjectDialogViewController.xib; path = Classes/ViewControllers/CloseProjectDialog/LPCloseProjectDialogViewController.xib; sourceTree = "<group>"; };
@@ -163,6 +175,7 @@
 		C358B4FF1647BDB50004537E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				E16311B81670CEC000DA3EA8 /* ProjectCell */,
 				C38716EA16537ACA005001A7 /* FileCollHeaderCell */,
 				C3877A8F1652E96100208CAA /* FileCollCell */,
 				C358B5011647BDCE0004537E /* LayerCell */,
@@ -327,6 +340,8 @@
 		C3A7384F166F84C4005AD0F5 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E16311BF1670D18B00DA3EA8 /* del_project.png */,
+				E16311C01670D18B00DA3EA8 /* del_project@2x.png */,
 				C3A73861166F853E005AD0F5 /* main_back.png */,
 				C3A73862166F853E005AD0F5 /* main_back@2x.png */,
 				C3A73851166F84E0005AD0F5 /* new_btn_selected.png */,
@@ -482,6 +497,7 @@
 		E12578AC16429ACD00119C0E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E16311C31670D79000DA3EA8 /* LayerData */,
 				C380B2E2165975220082F30D /* HistoryManager */,
 				C3877A9A1652EF3A00208CAA /* FileInfo */,
 				C3877A961652EE6600208CAA /* FileManager */,
@@ -499,6 +515,25 @@
 				E12578AE16429B3200119C0E /* LPSmartLayer.m */,
 			);
 			name = SmartLayer;
+			sourceTree = "<group>";
+		};
+		E16311B81670CEC000DA3EA8 /* ProjectCell */ = {
+			isa = PBXGroup;
+			children = (
+				E16311BA1670CF1800DA3EA8 /* LPProjectCell.h */,
+				E16311BB1670CF1800DA3EA8 /* LPProjectCell.m */,
+				E16311BD1670CF3500DA3EA8 /* LPProjectCell.xib */,
+			);
+			name = ProjectCell;
+			sourceTree = "<group>";
+		};
+		E16311C31670D79000DA3EA8 /* LayerData */ = {
+			isa = PBXGroup;
+			children = (
+				E16311C41670D7BD00DA3EA8 /* LPLayerData.h */,
+				E16311C51670D7BD00DA3EA8 /* LPLayerData.m */,
+			);
+			name = LayerData;
 			sourceTree = "<group>";
 		};
 		E17C7A8116515AB6009202BA /* CloseProjectDialog */ = {
@@ -586,6 +621,9 @@
 				C3A73860166F84E0005AD0F5 /* open_btn_unselected@2x.png in Resources */,
 				C3A73863166F853E005AD0F5 /* main_back.png in Resources */,
 				C3A73864166F853E005AD0F5 /* main_back@2x.png in Resources */,
+				E16311BE1670CF3500DA3EA8 /* LPProjectCell.xib in Resources */,
+				E16311C11670D18B00DA3EA8 /* del_project.png in Resources */,
+				E16311C21670D18B00DA3EA8 /* del_project@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,6 +659,8 @@
 				C391B56C1664AED500F914DB /* LPImagePickerViewController.m in Sources */,
 				E101C3F0166CFB5D00A9F0E2 /* LPGalleryViewController.m in Sources */,
 				E101C3F5166CFBA200A9F0E2 /* LPHomeViewController.m in Sources */,
+				E16311BC1670CF1800DA3EA8 /* LPProjectCell.m in Sources */,
+				E16311C61670D7BD00DA3EA8 /* LPLayerData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

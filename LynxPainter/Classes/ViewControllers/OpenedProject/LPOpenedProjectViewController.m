@@ -112,7 +112,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     if(self.openedFile){
-        [[LPSmartLayerManager sharedManager] readLayersFromProjectFile:self.openedFile];
+        [[LPSmartLayerManager sharedManager] readProjectFile:self.openedFile];
     }else{
         LPSmartLayer* nl = [[LPSmartLayerManager sharedManager] addNewLayer];
         [[LPSmartLayerManager sharedManager] setCurrLayer:nl];
@@ -153,7 +153,7 @@
     if(self.currScale != 1){
         
     }
-    self.scaleView.hidden = self.curr
+    self.scaleView.hidden = (self.currScale > 1.00 && self.currScale < 1.01)  ? YES : NO;
     self.rootLayer.transform = CGAffineTransformMakeScale(self.currScale, self.currScale);
     self.scaleValueTF.text = [NSString stringWithFormat:@"%.0f%%",self.currScale*100];
     

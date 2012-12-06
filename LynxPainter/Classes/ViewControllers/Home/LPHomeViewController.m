@@ -8,6 +8,8 @@
 
 #import "LPHomeViewController.h"
 #import "LPGalleryViewController.h"
+#import "LPProjectCell.h"
+#import "LPFileManager.h"
 
 @interface LPHomeViewController ()
 
@@ -27,8 +29,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.recentProjectsArray = [NSMutableArray array];
     self.navigationController.navigationBarHidden = YES;
+    
+    UIView *fakeFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.recentProjectsTable.tableFooterView = fakeFooterView;
+    [self.recentProjectsTable registerClass:[LPProjectCell class] forCellReuseIdentifier:@"projectCell"];
+    [self.recentProjectsTable registerNib:[UINib nibWithNibName:@"LPProjectCell" bundle:nil] forCellReuseIdentifier:@"projectCell"];
+    
+    self.recentProjectsTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.recentProjectsTable.separatorColor = [UIColor clearColor];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.recentProjectsArray = [[LPFileManager sharedManager] receiveRecentProjectsFilesList];
+    [self.recentProjectsTable reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,7 +61,44 @@
 }
 
 - (IBAction)openExistedFile:(id)sender {
-    LPGalleryViewController* galVC = [[LPGalleryViewController alloc] initWithNibName:@"LPGalleryViewController" bundle:nil];
-    [self.navigationController pushViewController:galVC animated:YES];
+    [self openGallery];
 }
+
+- (void)openGallery{
+    if(!self.galVC)
+        self.galVC = [[LPGalleryViewController alloc] initWithNibName:@"LPGalleryViewController" bundle:nil];
+    [self.navigationController pushViewController:self.galVC animated:YES];
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(!self.galVC)
+        self.galVC = [[LPGalleryViewController alloc] initWithNibName:@"LPGalleryViewController" bundle:nil];
+    LPFileInfo* fi = [self.recentProjectsArray objectAtIndex:indexPath.row];
+    self.galVC.of = fi;
+    [self openGallery];
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [self.recentProjectsArray count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    LPProjectCell* cell =(LPProjectCell*) [tableView dequeueReusableCellWithIdentifier:@"projectCell"];
+    LPFileInfo* fi = [self.recentProjectsArray objectAtIndex:indexPath.row];
+    [cell fillCellWithFile:fi];
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 65;
+}
+
 @end

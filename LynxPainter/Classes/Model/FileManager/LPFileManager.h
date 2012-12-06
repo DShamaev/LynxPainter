@@ -15,4 +15,6 @@
 - (NSArray*)receiveProjectsFilesList;
 - (NSArray*)receiveImagesFilesList;
 - (void)deleteFileWithInfo:(LPFileInfo*)fi withType:(BOOL)isProjectFile;
+- (NSArray*)readLayersFromProjectFile:(LPFileInfo*)fi;
+- (NSArray*)receiveRecentProjectsFilesList;
 @end
