@@ -31,7 +31,9 @@
 }
 
 - (IBAction)projectDeleteBtnClicked:(id)sender {
-
+    if(self.delegate && [self.delegate respondsToSelector:@selector(deleteFileWithIndex:)]){
+        [self.delegate deleteFileWithIndex:self.idx];
+    }
 }
 
 - (void)fillCellWithFile:(LPFileInfo*)file{

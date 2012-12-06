@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LPProjectCell.h"
 
 @class LPGalleryViewController;
 
-@interface LPHomeViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface LPHomeViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,LPProjectCellDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *recentProjectsTable;
 @property (strong,nonatomic) NSArray* recentProjectsArray;
 @property (strong,nonatomic) LPGalleryViewController* galVC;

@@ -8,7 +8,6 @@
 
 #import "LPHomeViewController.h"
 #import "LPGalleryViewController.h"
-#import "LPProjectCell.h"
 #import "LPFileManager.h"
 
 @interface LPHomeViewController ()
@@ -44,6 +43,10 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self updateRecentFiles];
+}
+
+-(void)updateRecentFiles{
     self.recentProjectsArray = [[LPFileManager sharedManager] receiveRecentProjectsFilesList];
     [self.recentProjectsTable reloadData];
 }
@@ -94,11 +97,20 @@
     LPProjectCell* cell =(LPProjectCell*) [tableView dequeueReusableCellWithIdentifier:@"projectCell"];
     LPFileInfo* fi = [self.recentProjectsArray objectAtIndex:indexPath.row];
     [cell fillCellWithFile:fi];
+    cell.delegate = self;
+    cell.idx = indexPath.row;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 65;
+}
+
+#pragma mark - LPProjectCellDelegate
+
+- (void)deleteFileWithIndex:(int)idx{
+    [[LPFileManager sharedManager] deleteFileWithInfo:[self.recentProjectsArray objectAtIndex:idx] withType:YES];
+    [self updateRecentFiles];
 }
 
 @end
