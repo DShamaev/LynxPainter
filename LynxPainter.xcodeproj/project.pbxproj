@@ -18,6 +18,8 @@
 		C383B4C916479DDC00397907 /* LPLayersManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C383B4C716479DDC00397907 /* LPLayersManagerViewController.xib */; };
 		C384B70316470FAB00A22AFD /* LPSmartLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C384B70216470FAB00A22AFD /* LPSmartLayerManager.m */; };
 		C384B70C164716C900A22AFD /* LPSmartLayerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C384B70B164716C900A22AFD /* LPSmartLayerDelegate.m */; };
+		C386643516713155006C2810 /* proj_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C386643316713155006C2810 /* proj_icon.png */; };
+		C386643616713155006C2810 /* proj_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C386643416713155006C2810 /* proj_icon@2x.png */; };
 		C38716EE16537B2C005001A7 /* LPFileCollHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C38716ED16537B2C005001A7 /* LPFileCollHeaderCell.m */; };
 		C38716F016537B4E005001A7 /* LPFileCollHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C38716EF16537B4E005001A7 /* LPFileCollHeaderCell.xib */; };
 		C3877A931652E9AD00208CAA /* LPFileCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3877A921652E9AD00208CAA /* LPFileCollCell.m */; };
@@ -86,6 +88,8 @@
 		C384B70216470FAB00A22AFD /* LPSmartLayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPSmartLayerManager.m; path = Classes/Model/SmartLayerManager/LPSmartLayerManager.m; sourceTree = "<group>"; };
 		C384B70A164716C900A22AFD /* LPSmartLayerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPSmartLayerDelegate.h; path = Classes/Model/SmartLayerDelegate/LPSmartLayerDelegate.h; sourceTree = "<group>"; };
 		C384B70B164716C900A22AFD /* LPSmartLayerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPSmartLayerDelegate.m; path = Classes/Model/SmartLayerDelegate/LPSmartLayerDelegate.m; sourceTree = "<group>"; };
+		C386643316713155006C2810 /* proj_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = proj_icon.png; path = Images/proj_icon.png; sourceTree = "<group>"; };
+		C386643416713155006C2810 /* proj_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "proj_icon@2x.png"; path = "Images/proj_icon@2x.png"; sourceTree = "<group>"; };
 		C38716EC16537B2C005001A7 /* LPFileCollHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPFileCollHeaderCell.h; path = Classes/Cells/FileCollHeaderCell/LPFileCollHeaderCell.h; sourceTree = "<group>"; };
 		C38716ED16537B2C005001A7 /* LPFileCollHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPFileCollHeaderCell.m; path = Classes/Cells/FileCollHeaderCell/LPFileCollHeaderCell.m; sourceTree = "<group>"; };
 		C38716EF16537B4E005001A7 /* LPFileCollHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPFileCollHeaderCell.xib; path = Classes/Cells/FileCollHeaderCell/LPFileCollHeaderCell.xib; sourceTree = "<group>"; };
@@ -340,6 +344,8 @@
 		C3A7384F166F84C4005AD0F5 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C386643316713155006C2810 /* proj_icon.png */,
+				C386643416713155006C2810 /* proj_icon@2x.png */,
 				E16311BF1670D18B00DA3EA8 /* del_project.png */,
 				E16311C01670D18B00DA3EA8 /* del_project@2x.png */,
 				C3A73861166F853E005AD0F5 /* main_back.png */,
@@ -624,6 +630,8 @@
 				E16311BE1670CF3500DA3EA8 /* LPProjectCell.xib in Resources */,
 				E16311C11670D18B00DA3EA8 /* del_project.png in Resources */,
 				E16311C21670D18B00DA3EA8 /* del_project@2x.png in Resources */,
+				C386643516713155006C2810 /* proj_icon.png in Resources */,
+				C386643616713155006C2810 /* proj_icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

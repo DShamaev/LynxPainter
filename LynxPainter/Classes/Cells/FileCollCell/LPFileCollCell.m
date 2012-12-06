@@ -20,7 +20,8 @@
 }
 
 - (void)fillCellWithName:(NSString*)name andImage:(UIImage*)image{
-    [self.fileImageView setImage:image];
+    if(image)
+        [self.fileImageView setImage:image];
     [self.fileNameLabel setText:name];
 }
 
