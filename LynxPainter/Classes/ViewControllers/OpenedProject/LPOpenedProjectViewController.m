@@ -40,6 +40,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.cancelLayerTransformButton.hidden = YES;
+    self.applyLayerTransformButton.hidden = YES;
     [self.rootLayer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.workAreaSV setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
