@@ -80,7 +80,7 @@
     self.startPoint = [self pointFromTouches:touches];
     if(self.isDrawable && ![LPSmartLayerManager sharedManager].currLayer.smReadOnly){
         isMaskDrawn = NO;
-        if(self.currMode == WADBrush || self.currMode == WADLine /**/ || self.currMode == WADEraser /**/){
+        if(self.currMode == WADBrush || self.currMode == WADLine /* || self.currMode == WADEraser */){
             if(!ppointsArray)
                 ppointsArray = [NSMutableArray array];
             else
@@ -91,11 +91,11 @@
             [ppointsArray addObject:[NSValue valueWithCGPoint:p]];
             //CGPathMoveToPoint(signPath, NULL, p.x, p.y);
         }
-        /*if(self.currMode == WADEraser){
+        if(self.currMode == WADEraser){
             LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
             CGPoint p = [self pointFromTouches:touches];
             [del.eraserPoints addObject:[NSValue valueWithCGPoint:p]];
-        }*/
+        }
     }
 }
 
@@ -113,7 +113,7 @@
             [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];
         }
         if(self.currMode == WADEraser){
-            /*CGPoint point = [self pointFromTouches:touches];
+            CGPoint point = [self pointFromTouches:touches];
             LPSmartLayerDelegate* del;
             NSArray* la = [LPSmartLayerManager sharedManager].currLayer.sublayers;
             for (int i=0; i<[la count]; i++) {
@@ -124,15 +124,15 @@
                 [del.eraserPoints addObject:[NSValue valueWithCGPoint:point]];
                 [l setNeedsDisplay];
             }
-            self.startPoint = point;*/
+            self.startPoint = point;
             
-            CGPoint p = [self pointFromTouches:touches];
+            /*CGPoint p = [self pointFromTouches:touches];
             LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
             del.mode = 1;
             [del.pathPoints addObject:[NSValue valueWithCGPoint:p]];
             del.currentColor = [LPSmartLayerManager sharedManager].currLayer.smColor;
             del.currDrawSize = [LPSmartLayerManager sharedManager].currLayer.smLineWidth;
-            [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];
+            [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];*/
         }
         if(self.currMode == WADLine){
             if(isMaskDrawn)
@@ -209,14 +209,15 @@
             [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];
         }
         [self needNewSubPath];
-        [[LPHistoryManager sharedManager] addActionWithLayer:[LPSmartLayerManager sharedManager].currLayer.smName];
+        if(self.currMode != WADEraser)
+            [[LPHistoryManager sharedManager] addActionWithLayer:[LPSmartLayerManager sharedManager].currLayer.smName];
     }
 }
 
 - (void)needNewSubPath{
     CALayer* sl = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer;
     LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
-    UIGraphicsBeginImageContext(self.bounds.size);
+    /*UIGraphicsBeginImageContext(self.bounds.size);
     float opac = sl.opacity;
     BOOL vis = sl.hidden;
     sl.hidden = NO;
@@ -228,7 +229,7 @@
     UIGraphicsEndImageContext();
     [del.pathPoints removeAllObjects];
     [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];
-    sl.contents = (id)image.CGImage;
+    sl.contents = (id)image.CGImage;*/
     
     CALayer* nplayer = [CALayer layer];
     nplayer.frame = self.bounds;
