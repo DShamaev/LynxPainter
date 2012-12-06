@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *recentProjectsTable;
 @property (strong,nonatomic) NSArray* recentProjectsArray;
 @property (strong,nonatomic) LPGalleryViewController* galVC;
+@property (strong, nonatomic) IBOutlet UILabel *recProjLabel;
 - (IBAction)createProjectFromHome:(id)sender;
 - (IBAction)openExistedFile:(id)sender;
 

@@ -48,6 +48,7 @@
 
 -(void)updateRecentFiles{
     self.recentProjectsArray = [[LPFileManager sharedManager] receiveRecentProjectsFilesList];
+    self.recProjLabel.hidden = [self.recentProjectsArray count] == 0 ? YES: NO;
     [self.recentProjectsTable reloadData];
 }
 
