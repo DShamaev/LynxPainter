@@ -208,9 +208,10 @@
             del.currDrawSize = [LPSmartLayerManager sharedManager].currLayer.smLineWidth;
             [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];
         }
-        [self needNewSubPath];
-        if(self.currMode != WADEraser)
-            [[LPHistoryManager sharedManager] addActionWithLayer:[LPSmartLayerManager sharedManager].currLayer.smName];
+        if(self.currMode != WADEraser){
+            [self needNewSubPath];
+            [[LPHistoryManager sharedManager] addActionWithLayer:[LPSmartLayerManager sharedManager].currLayer.smName];            
+        }
     }
 }
 
