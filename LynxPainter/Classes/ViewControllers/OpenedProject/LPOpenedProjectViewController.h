@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LPLayersManagerViewController.h"
 
-@class LPWorkAreaView;
-@class LPFileInfo;
+@class LPWorkAreaView,LPFileInfo,LPLayersManagerViewController,LPDrawingManagerViewController;
 
 typedef enum {
     LPWATransforming,
@@ -21,6 +20,8 @@ typedef enum {
 @interface LPOpenedProjectViewController : UIViewController<UITextFieldDelegate,ImagePickerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     LPWAMode currMode;
     UIActionSheet* imagePickerActionsSheet;
+    LPLayersManagerViewController* lmvc;
+    LPDrawingManagerViewController* dmvc;
 }
 @property (strong, nonatomic) UIPopoverController *imagePickerPopover;
 @property (strong, nonatomic) LPFileInfo* openedFile;
@@ -36,6 +37,8 @@ typedef enum {
 @property (strong, nonatomic) IBOutlet UIView *scaleView;
 @property (strong, nonatomic) IBOutlet UIButton *cancelLayerTransformButton;
 @property (strong, nonatomic) IBOutlet UIButton *applyLayerTransformButton;
+@property (strong, nonatomic) IBOutlet UIButton *toolsButton;
+@property (strong, nonatomic) IBOutlet UIButton *layersButton;
 @property (nonatomic) BOOL openedFileModeIsProject;
 - (IBAction)closeProject:(id)sender;
 - (IBAction)showLayersManager:(id)sender;

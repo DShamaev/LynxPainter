@@ -72,6 +72,47 @@
     UIPinchGestureRecognizer* pgr = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
     [self.workAreaSV addGestureRecognizer:pgr];
     // Do any additional setup after loading the view from its nib.
+    
+    /*lmvc = [[LPLayersManagerViewController alloc] initWithNibName:@"LPLayersManagerViewController" bundle:nil];
+    [lmvc.view setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self addVC:lmvc toView:self.view];
+    NSLayoutConstraint* posConstr = [NSLayoutConstraint constraintWithItem:lmvc.view
+                                                                 attribute:NSLayoutAttributeLeft
+                                                                 relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                                                    toItem:self.view
+                                                                 attribute:NSLayoutAttributeLeft
+                                                                multiplier:0.0
+                                                                  constant:0];
+    [self.view addConstraint:posConstr];
+    NSLayoutConstraint* posConstr2 = [NSLayoutConstraint constraintWithItem:lmvc.view
+     attribute:NSLayoutAttributeTop
+     relatedBy:NSLayoutRelationEqual
+     toItem:self.view
+     attribute:NSLayoutAttributeTop
+     multiplier:0.0
+     constant:150];
+     [self.view addConstraint:posConstr2];*/
+    //[self changeVC:lmvc withState:!lmvc.view.hidden withAnimation:NO];
+    
+    /*dmvc = [[LPDrawingManagerViewController alloc] initWithNibName:@"LPDrawingManagerViewController" bundle:nil];
+    [self addVC:dmvc toView:self.view];
+    posConstr = [NSLayoutConstraint constraintWithItem:dmvc.view
+     attribute:NSLayoutAttributeLeft
+     relatedBy:NSLayoutRelationGreaterThanOrEqual
+     toItem:self.view
+     attribute:NSLayoutAttributeLeft
+     multiplier:0.0
+     constant:0];
+     [self.view addConstraint:posConstr];
+     posConstr2 = [NSLayoutConstraint constraintWithItem:dmvc.view
+     attribute:NSLayoutAttributeTop
+     relatedBy:NSLayoutRelationEqual
+     toItem:self.view
+     attribute:NSLayoutAttributeTop
+     multiplier:0.0
+     constant:150];
+     [self.view addConstraint:posConstr2];
+    [self changeVC:dmvc withState:!dmvc.view.hidden withAnimation:NO];*/
 }
 
 - (void)createFromImageFile{
@@ -197,11 +238,11 @@
 }
 
 - (IBAction)showLayersManager:(id)sender {
-    UIButton* but = (UIButton*)sender;
-    LPLayersManagerViewController* lmvc = [[LPLayersManagerViewController alloc] initWithNibName:@"LPLayersManagerViewController" bundle:nil];
+    /*UIButton* but = (UIButton*)sender;
+    lmvc = [[LPLayersManagerViewController alloc] initWithNibName:@"LPLayersManagerViewController" bundle:nil];
     lmvc.delegate = self;
     self.pc = [[UIPopoverController alloc] initWithContentViewController:lmvc];
-    [self.pc presentPopoverFromRect:but.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+    [self.pc presentPopoverFromRect:but.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];*/
 }
 
 - (IBAction)modeChanged:(id)sender {
@@ -229,11 +270,11 @@
 }
 
 - (IBAction)showDrawingManager:(id)sender {
-    UIButton* but = (UIButton*)sender;
-    LPDrawingManagerViewController* dmvc = [[LPDrawingManagerViewController alloc] initWithNibName:@"LPDrawingManagerViewController" bundle:nil];
+    /*UIButton* but = (UIButton*)sender;
+    dmvc = [[LPDrawingManagerViewController alloc] initWithNibName:@"LPDrawingManagerViewController" bundle:nil];
     dmvc.delegate = self;
     self.pc = [[UIPopoverController alloc] initWithContentViewController:dmvc];
-    [self.pc presentPopoverFromRect:but.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+    [self.pc presentPopoverFromRect:but.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];*/
 }
 
 - (IBAction)undoBtnClicked:(id)sender {
@@ -435,6 +476,38 @@
     } else {
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+}
+
+- (void)changeVC:(UIViewController*)vc withState:(BOOL)vcVisibility withAnimation:(BOOL)animated{
+    if(vcVisibility)
+        vc.view.hidden = NO;
+    
+    void (^visibilityChanges)(void) = ^{
+        vc.view.transform = vcVisibility ? CGAffineTransformMakeTranslation(-vc.view.bounds.size.width, 0) : CGAffineTransformMakeTranslation(vc.view.bounds.size.width, 0);
+    };
+    void (^completionChanges)(BOOL) = ^(BOOL comp){
+        vc.view.hidden = vcVisibility ? NO : YES;
+    };
+    
+    if (animated) {
+        [UIView animateWithDuration:0.25 animations:visibilityChanges completion:completionChanges];
+    } else {
+        visibilityChanges();
+        completionChanges(YES);
+    }
+    
+}
+
+- (void)addVC:(UIViewController*)vc toView:(UIView*)parentView{
+    [self addChildViewController:vc];
+    [parentView addSubview:vc.view];
+    [vc didMoveToParentViewController:self];
+}
+
+- (void)removeVC:(UIViewController*)vc fromView:(UIView*)parentView{
+    [vc willMoveToParentViewController:nil];
+    [vc.view removeFromSuperview];
+    [vc removeFromParentViewController];
 }
 
 
