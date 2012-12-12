@@ -74,6 +74,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(CATransform3DEqualToTransform(self.slm.currLayer.transform, CATransform3DIdentity))
        [self selectLayerWithIndexPath:indexPath];
+    [self.layerTable reloadData];
 }
 
 -(void)selectLayerWithIndexPath:(NSIndexPath*)indexPath{
@@ -100,10 +101,8 @@
     [cell setLayer:sl];
     [cell fillLayerPreview:[self.previewImagesArray objectAtIndex:[self.slm.layersArray count]-indexPath.row-1]];
     if(indexPath.row == self.selectedIndex){
-        if(CATransform3DEqualToTransform(self.slm.currLayer.transform, CATransform3DIdentity)){
             [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
             [self selectLayerWithIndexPath:indexPath];
-        }
     }
     cell.delegate = self;
     cell.idx = indexPath.row;
