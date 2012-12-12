@@ -125,6 +125,47 @@
     }
     return nil;
 }
+
+- (LPSmartLayer*)addNewCopyLayer{
+    if(self.rootLayer){
+        LPSmartLayer* nLayer = [[LPSmartLayer alloc] initWithName:[NSString stringWithFormat:@"Layer %d",_layerCounter] withColor:[UIColor blackColor] withLineWidth:self.currLayer != nil ? self.currLayer.smLineWidth : 10*self.currScale];
+        
+        UIGraphicsBeginImageContext(self.rootLayer.bounds.size);
+        float opac = self.currLayer.opacity;
+        BOOL vis = self.currLayer.hidden;
+        self.currLayer.hidden = NO;
+        self.currLayer.opacity = 1.0;
+        [self.currLayer renderInContext:UIGraphicsGetCurrentContext()];
+        UIImage* img = UIGraphicsGetImageFromCurrentImageContext();
+        self.currLayer.opacity = opac;
+        self.currLayer.hidden = vis;
+        UIGraphicsEndImageContext();
+        
+        CALayer* imageLayer = [CALayer layer];
+        imageLayer.contents = (id)img.CGImage;
+        imageLayer.frame = self.rootView.bounds;
+        [nLayer addSublayer:imageLayer];
+        
+        nLayer.smCurrSLayer = [[nLayer sublayers] lastObject];
+        nLayer.smReadOnly = NO;
+        if(!self.layersArray)
+            self.layersArray = [NSMutableArray array];
+        [self.layersArray addObject:nLayer];
+        [self.rootLayer addSublayer:nLayer];
+        self.layerCounter +=1;
+        
+        CALayer* mplayer = [CALayer layer];
+        mplayer.frame = nLayer.bounds;
+        LPSmartLayerDelegate* del = [self.currLayer requestNewDelegate];
+        del.signPath = CGPathCreateMutable();
+        mplayer.delegate = del;
+        nLayer.smCurrSLayer = mplayer;
+        [nLayer addSublayer:mplayer ];
+        return nLayer;
+    }
+    return nil;
+}
+
 - (void)removeLayer{
     if(self.rootLayer && self.layersArray && [self.layersArray count]>0){
         [[LPHistoryManager sharedManager] clearItemsForLayer:self.currLayer.smName];

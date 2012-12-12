@@ -28,9 +28,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *alphaLevelLabel;
 @property (strong, nonatomic) id<ImagePickerDelegate> delegate;
 - (IBAction)createNewLayerBtnClicked:(id)sender;
+- (IBAction)createCopyLayerBtnClicked:(id)sender;
 - (IBAction)removeLayerBtnClicked:(id)sender;
 - (IBAction)changeVisBtnClicked:(id)sender;
 - (IBAction)changeAlphaValue:(id)sender;
 - (IBAction)createIL:(id)sender;
+- (void)createImagesForLayers;
 
 @end

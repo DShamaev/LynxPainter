@@ -30,7 +30,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self createImagesForLayers];
     self.contentSizeForViewInPopover = self.view.bounds.size;
     self.selectedIndex = 0;
     UIView *fakeFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -41,7 +40,6 @@
     canMoveCells = NO;
     UILongPressGestureRecognizer* lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLP:)];
     [self.view addGestureRecognizer:lpgr];
-    [self.layerTable reloadData];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -68,12 +66,14 @@
         [self.previewImagesArray addObject:UIGraphicsGetImageFromCurrentImageContext()];
         UIGraphicsEndImageContext();
     }
+    [self.layerTable reloadData];
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self selectLayerWithIndexPath:indexPath];
+    if(CATransform3DEqualToTransform(self.slm.currLayer.transform, CATransform3DIdentity))
+       [self selectLayerWithIndexPath:indexPath];
 }
 
 -(void)selectLayerWithIndexPath:(NSIndexPath*)indexPath{
@@ -100,8 +100,10 @@
     [cell setLayer:sl];
     [cell fillLayerPreview:[self.previewImagesArray objectAtIndex:[self.slm.layersArray count]-indexPath.row-1]];
     if(indexPath.row == self.selectedIndex){
-        [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-        [self selectLayerWithIndexPath:indexPath];
+        if(CATransform3DEqualToTransform(self.slm.currLayer.transform, CATransform3DIdentity)){
+            [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+            [self selectLayerWithIndexPath:indexPath];
+        }
     }
     cell.delegate = self;
     cell.idx = indexPath.row;
@@ -122,7 +124,6 @@
     self.layerTable.editing = NO;
     [self.slm moveLayerFromIndex:[self.slm.layersArray count] - sourceIndexPath.row-1 ToIndex:[self.slm.layersArray count] - destinationIndexPath.row-1];
     [self createImagesForLayers];
-    [self.layerTable reloadData];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -134,14 +135,18 @@
     [self.slm addNewLayer];
     [self createImagesForLayers];
     [self.alphaLevelLabel setText:@"100%"];
-    [self.layerTable reloadData];
+}
+
+- (IBAction)createCopyLayerBtnClicked:(id)sender {
+    [self.slm addNewCopyLayer];
+    [self createImagesForLayers];
+    [self.alphaLevelLabel setText:@"100%"];
 }
 
 - (IBAction)removeLayerBtnClicked:(id)sender {
     [self.slm removeLayer];
     [self createImagesForLayers];
     self.selectedIndex = [self.slm.layersArray count]>0 ? [self.slm.layersArray count]-1 : -1;
-    [self.layerTable reloadData];
 }
 
 - (IBAction)changeVisBtnClicked:(id)sender {

@@ -44,6 +44,7 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{-1, 0}, {361, 360}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="804009532"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="548229527">
@@ -69,6 +70,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{8, 50}, {53, 44}}</string>
 								<reference key="NSSuperview" ref="804009532"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="490961960"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -101,6 +103,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{69, 50}, {53, 44}}</string>
 								<reference key="NSSuperview" ref="804009532"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="874323743"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -123,7 +126,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{211, 50}, {61, 44}}</string>
 								<reference key="NSSuperview" ref="804009532"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -145,6 +148,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{130, 50}, {73, 44}}</string>
 								<reference key="NSSuperview" ref="804009532"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="286278584"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -167,6 +171,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{20, 20}, {79, 21}}</string>
 								<reference key="NSSuperview" ref="804009532"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="484821209"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -200,6 +205,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{110, 20}, {118, 23}}</string>
 								<reference key="NSSuperview" ref="804009532"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="358638582"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -213,6 +219,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{239, 20}, {61, 21}}</string>
 								<reference key="NSSuperview" ref="804009532"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="999859912"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -235,6 +242,7 @@
 						</array>
 						<string key="NSFrame">{{0, 360}, {360, 100}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="506582278"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -246,6 +254,7 @@
 				</array>
 				<string key="NSFrameSize">{360, 460}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="547520019"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -351,12 +360,12 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">createNewLayerBtnClicked:</string>
+						<string key="label">createCopyLayerBtnClicked:</string>
 						<reference key="source" ref="490961960"/>
 						<reference key="destination" ref="841351856"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">331</int>
+					<int key="connectionID">421</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1175,9 +1184,91 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">420</int>
+			<int key="maxID">421</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">LPLayersManagerViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="changeAlphaValue:">id</string>
+						<string key="changeVisBtnClicked:">id</string>
+						<string key="createCopyLayerBtnClicked:">id</string>
+						<string key="createIL:">id</string>
+						<string key="createNewLayerBtnClicked:">id</string>
+						<string key="handleLP:">UILongPressGestureRecognizer</string>
+						<string key="removeLayerBtnClicked:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="changeAlphaValue:">
+							<string key="name">changeAlphaValue:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="changeVisBtnClicked:">
+							<string key="name">changeVisBtnClicked:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="createCopyLayerBtnClicked:">
+							<string key="name">createCopyLayerBtnClicked:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="createIL:">
+							<string key="name">createIL:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="createNewLayerBtnClicked:">
+							<string key="name">createNewLayerBtnClicked:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="handleLP:">
+							<string key="name">handleLP:</string>
+							<string key="candidateClassName">UILongPressGestureRecognizer</string>
+						</object>
+						<object class="IBActionInfo" key="removeLayerBtnClicked:">
+							<string key="name">removeLayerBtnClicked:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="alphaLevelLabel">UILabel</string>
+						<string key="alphaSlider">UISlider</string>
+						<string key="changeVisButton">UIButton</string>
+						<string key="layerTable">UITableView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="alphaLevelLabel">
+							<string key="name">alphaLevelLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="alphaSlider">
+							<string key="name">alphaSlider</string>
+							<string key="candidateClassName">UISlider</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="changeVisButton">
+							<string key="name">changeVisButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="layerTable">
+							<string key="name">layerTable</string>
+							<string key="candidateClassName">UITableView</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/LPLayersManagerViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSLayoutConstraint</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/NSLayoutConstraint.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

@@ -27,6 +27,8 @@
 
 - (LPSmartLayer*)addNewLayer;
 - (LPSmartLayer*)addNewImageLayer:(UIImage*)image;
+- (LPSmartLayer*)addNewCopyLayer;
+
 - (void)setCurrLayerWithIndex:(int)nIndex;
 - (void)setCurrLayerVisibility:(BOOL)vis;
 - (void)setLayerWithIndex:(int)idx withVisibility:(BOOL)vis;
