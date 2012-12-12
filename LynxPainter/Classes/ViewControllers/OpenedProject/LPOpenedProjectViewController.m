@@ -86,7 +86,6 @@
     [self changeVC:lmvc withButton:self.layersButton withState:!lmvc.view.hidden withAnimation:NO];
 
     dmvc = [[LPDrawingManagerViewController alloc] initWithNibName:@"LPDrawingManagerViewController" bundle:nil];
-    NSLog(@"%@",dmvc.view);
     dmvc.delegate = self;
     dmvc.view.layer.borderWidth = 1;
     dmvc.view.layer.borderColor = [UIColor blackColor].CGColor;
@@ -97,7 +96,6 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[lv(320)]|" options:NSLayoutFormatAlignAllRight metrics:nil views:NSDictionaryOfVariableBindings(lv)]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-500-[lv(360)]" options:NSLayoutFormatAlignAllLeft metrics:nil views:NSDictionaryOfVariableBindings(lv)]];
     [self changeVC:dmvc withButton:self.toolsButton withState:!dmvc.view.hidden withAnimation:NO];
-    NSLog(@"%@",dmvc.view);
 }
 
 - (void)createFromImageFile{
@@ -105,7 +103,7 @@
     _currRootLayerHeight = 1;
     NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [homeDomains objectAtIndex:0];
-    NSLog(@"%@",[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",self.openedFile.fiName]]);
+    //NSLog(@"%@",[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",self.openedFile.fiName]]);
     UIImage* img = [UIImage imageWithContentsOfFile:[documentsDirectory stringByAppendingPathComponent:self.openedFile.fiName]];
     if (img) {
         _currRootLayerWidth = img.size.width;
@@ -148,32 +146,6 @@
         LPSmartLayer* nl = [[LPSmartLayerManager sharedManager] addNewLayer];
         [[LPSmartLayerManager sharedManager] setCurrLayer:nl];
     }
-    NSLog(@"%@",dmvc.view);
-}
-
--(void)addCenterConstraints{
-    if([self.currCenterConstraints count]){
-        [self.workAreaSV removeConstraints:self.currCenterConstraints];
-        [self.currCenterConstraints removeAllObjects];
-    }
-    NSLayoutConstraint* posConstr = [NSLayoutConstraint constraintWithItem:self.rootLayer
-                                                                 attribute:NSLayoutAttributeCenterX
-                                                                 relatedBy:NSLayoutRelationEqual
-                                                                    toItem:self.workAreaSV
-                                                                 attribute:NSLayoutAttributeCenterX
-                                                                multiplier:1.0
-                                                                  constant:0.0];
-    [self.workAreaSV addConstraint:posConstr];
-    [self.currCenterConstraints addObject:posConstr];
-    NSLayoutConstraint* posConstr2 = [NSLayoutConstraint constraintWithItem:self.rootLayer
-                                             attribute:NSLayoutAttributeCenterY
-                                             relatedBy:NSLayoutRelationEqual
-                                                toItem:self.workAreaSV
-                                             attribute:NSLayoutAttributeCenterY
-                                            multiplier:1.0
-                                              constant:0.0];
-    [self.workAreaSV addConstraint:posConstr2];
-    [self.currCenterConstraints addObject:posConstr2];
 }
 
 -(void)addNewSizeConstraintsWithScale:(float)nScale{
@@ -223,11 +195,6 @@
     //[self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-- (IBAction)showLayersManager:(id)sender {
-    [self changeVC:lmvc withButton:self.layersButton withState:lmvc.view.hidden withAnimation:YES];
-    [self changeVC:dmvc withButton:self.toolsButton withState:NO withAnimation:YES];
-}
-
 - (IBAction)modeChanged:(id)sender {
     //DRAWING
     if(self.modeSC.selectedSegmentIndex == 0){
@@ -252,14 +219,17 @@
     }
 }
 
+- (IBAction)showLayersManager:(id)sender {
+    if (lmvc.view.hidden) {
+        [lmvc createImagesForLayers];
+    }
+    [self changeVC:lmvc withButton:self.layersButton withState:lmvc.view.hidden withAnimation:YES];
+    [self changeVC:dmvc withButton:self.toolsButton withState:NO withAnimation:YES];
+}
+
 - (IBAction)showDrawingManager:(id)sender {
     [self changeVC:dmvc withButton:self.toolsButton withState:dmvc.view.hidden withAnimation:YES];
     [self changeVC:lmvc withButton:self.layersButton withState:NO withAnimation:YES];
-    /*UIButton* but = (UIButton*)sender;
-    dmvc = [[LPDrawingManagerViewController alloc] initWithNibName:@"LPDrawingManagerViewController" bundle:nil];
-    dmvc.delegate = self;
-    self.pc = [[UIPopoverController alloc] initWithContentViewController:dmvc];
-    [self.pc presentPopoverFromRect:but.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];*/
 }
 
 - (IBAction)undoBtnClicked:(id)sender {
