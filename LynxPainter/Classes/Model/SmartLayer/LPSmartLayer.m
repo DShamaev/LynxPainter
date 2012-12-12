@@ -51,6 +51,9 @@
 }
 
 - (void)initialization {
+    CGPoint p =  CGPointMake([LPSmartLayerManager sharedManager].rootView.bounds.size.width/2, [LPSmartLayerManager sharedManager].rootView.bounds.size.height/2) ;
+    self.position = p;
+    self.bounds = [LPSmartLayerManager sharedManager].rootLayer.bounds;
     self.smRotAngle = 0;
     self.signPath = CGPathCreateMutable();
     [self setBackgroundColor:[UIColor clearColor].CGColor];
@@ -67,7 +70,8 @@
     }
     CALayer* player = [CALayer layer];
     player.delegate = [layerDelegates objectAtIndex:0];
-    player.frame = [LPSmartLayerManager sharedManager].rootView.bounds;
+    player.position = p;
+    player.bounds = self.bounds;
     self.smCurrSLayer = player;
     [self addSublayer:player];
     self.delegate  = [self requestNewDelegate];

@@ -72,6 +72,7 @@
     UITouch *touch = [[touches allObjects] objectAtIndex:0];
     
     CGPoint p = [touch locationInView:self];
+    
     return p;
 }
 
@@ -221,6 +222,7 @@
 }
 
 - (void)needNewSubPath{
+    CGPoint p =  CGPointMake([LPSmartLayerManager sharedManager].rootView.bounds.size.width/2, [LPSmartLayerManager sharedManager].rootView.bounds.size.height/2) ;
     CALayer* sl = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer;
     LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
     /*UIGraphicsBeginImageContext(self.bounds.size);
@@ -238,7 +240,8 @@
     sl.contents = (id)image.CGImage;*/
     
     CALayer* nplayer = [CALayer layer];
-    nplayer.frame = self.bounds;
+    nplayer.position = p;
+    nplayer.bounds = self.layer.bounds;
     del = [[LPSmartLayerManager sharedManager].currLayer requestNewDelegate];
     del.signPath = CGPathCreateMutable();
     nplayer.delegate = del;
@@ -248,9 +251,9 @@
 
 - (void)acceptTransform{
     NSArray* sl = [LPSmartLayerManager sharedManager].currLayer.sublayers;
-    for (int i=0; i<[sl count]; i++) {
+    for (int i=0; i<[sl count]-1; i++) {
         CALayer* l = [sl objectAtIndex:i];
-        l.transform = [LPSmartLayerManager sharedManager].currLayer.transform;
+        l.transform = CATransform3DConcat(l.transform, [LPSmartLayerManager sharedManager].currLayer.transform);
     }
     [self cancelTransform];
 }
@@ -258,6 +261,12 @@
 - (void)cancelTransform{
     [LPSmartLayerManager sharedManager].currLayer.transform = CATransform3DIdentity;
     self.currTransform = CATransform3DIdentity;
+}
+
+- (void)addScaleTransform:(float)scale{
+    [LPSmartLayerManager sharedManager].currLayer.transform = CATransform3DMakeScale(scale, scale, 1);
+    if(self.delegate && [self.delegate respondsToSelector:@selector(showLayerTansformButtons)])
+        [self.delegate showLayerTansformButtons];
 }
 
 @end

@@ -340,8 +340,8 @@
 }
 
 - (IBAction)handlePinch:(UIGestureRecognizer *)sender {
-    if(!self.rootLayer.isDrawable && !self.rootLayer.isDraggable){
-        UIPinchGestureRecognizer* recognizer = (UIPinchGestureRecognizer*)sender;
+    UIPinchGestureRecognizer* recognizer = (UIPinchGestureRecognizer*)sender;
+    if(!self.rootLayer.isDrawable && !self.rootLayer.isDraggable){        
         if (recognizer.state == UIGestureRecognizerStateBegan) {
             tempScale = [LPSmartLayerManager sharedManager].currScale;
         } else if (recognizer.state == UIGestureRecognizerStateEnded ||
@@ -368,6 +368,9 @@
             }
             [self addNewSizeConstraintsWithScale:scale];
         }
+    }
+    if(!self.rootLayer.isDrawable && self.rootLayer.isDraggable){
+        [self.rootLayer addScaleTransform:recognizer.scale];
     }
 }
 

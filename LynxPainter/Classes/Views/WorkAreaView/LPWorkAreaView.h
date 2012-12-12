@@ -34,6 +34,9 @@ typedef enum {
 @property (nonatomic) WADMode currMode;
 @property (nonatomic) CGPoint startPoint;
 - (void)needNewSubPath;
+
+//layer transforming
+- (void)addScaleTransform:(float)scale;
 - (void)cancelTransform;
 - (void)acceptTransform;
 
