@@ -71,6 +71,10 @@
     self.rootLayer.layer.borderColor = [UIColor blackColor].CGColor;
     UIPinchGestureRecognizer* pgr = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
     [self.workAreaSV addGestureRecognizer:pgr];
+    
+    UITapGestureRecognizer* tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    tgr.numberOfTapsRequired = 2;
+    [self.scaleView addGestureRecognizer:tgr];
     // Do any additional setup after loading the view from its nib.
     
     lmvc = [[LPLayersManagerViewController alloc] initWithNibName:@"LPLayersManagerViewController" bundle:nil];
@@ -365,6 +369,11 @@
             [self addNewSizeConstraintsWithScale:scale];
         }
     }
+}
+
+- (IBAction)handleTap:(UITapGestureRecognizer *)sender {
+    [LPSmartLayerManager sharedManager].currScale = 1.;
+    [self addNewSizeConstraintsWithScale:1.];
 }
 
 - (void)showImagePickerWithSourceType:(UIImagePickerControllerSourceType)sourceType {
