@@ -11,7 +11,6 @@
 #import "LPSmartLayer.h"
 #import "LPSmartLayerDelegate.h"
 #import "LPHistoryManager.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface LPWorkAreaView (){
     CGMutablePathRef signPath;
@@ -97,6 +96,10 @@
             [del.eraserPoints addObject:[NSValue valueWithCGPoint:p]];
         }
     }
+    if(self.isDraggable){
+        if(CATransform3DEqualToTransform(self.currTransform, CATransform3DIdentity))
+            self.currTransform = [LPSmartLayerManager sharedManager].currLayer.transform;
+    }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -170,10 +173,12 @@
         }
     }
     if(self.isDraggable){
+        
         CGPoint p = [self pointFromTouches:touches];
         [LPSmartLayerManager sharedManager].currLayer.transform = CATransform3DConcat([LPSmartLayerManager sharedManager].currLayer.transform, CATransform3DMakeTranslation(p.x-self.startPoint.x, p.y-self.startPoint.y, 0));
         self.startPoint = p;
-        //(CG)CGAffineTransformConcat([LPSmartLayerManager sharedManager].currLayer.transform, CGAffineTransformMakeTranslation(p.x-self.startPoint.x, p.y-self.startPoint.y));
+        if(self.delegate && [self.delegate respondsToSelector:@selector(showLayerTansformButtons)])
+            [self.delegate showLayerTansformButtons];
     }
 }
 
@@ -239,6 +244,20 @@
     nplayer.delegate = del;
     [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer = nplayer;
     [[LPSmartLayerManager sharedManager].currLayer addSublayer:nplayer ];
+}
+
+- (void)acceptTransform{
+    NSArray* sl = [LPSmartLayerManager sharedManager].currLayer.sublayers;
+    for (int i=0; i<[sl count]; i++) {
+        CALayer* l = [sl objectAtIndex:i];
+        l.transform = [LPSmartLayerManager sharedManager].currLayer.transform;
+    }
+    [self cancelTransform];
+}
+
+- (void)cancelTransform{
+    [LPSmartLayerManager sharedManager].currLayer.transform = CATransform3DIdentity;
+    self.currTransform = CATransform3DIdentity;
 }
 
 @end

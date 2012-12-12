@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LPLayersManagerViewController.h"
+#import "LPWorkAreaView.h"
 
 @class LPWorkAreaView,LPFileInfo,LPLayersManagerViewController,LPDrawingManagerViewController;
 
@@ -17,7 +18,7 @@ typedef enum {
     LPWALayer
 } LPWAMode;
 
-@interface LPOpenedProjectViewController : UIViewController<UITextFieldDelegate,ImagePickerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
+@interface LPOpenedProjectViewController : UIViewController<UITextFieldDelegate,ImagePickerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,WorkAreaDelegate>{
     LPWAMode currMode;
     UIActionSheet* imagePickerActionsSheet;
     LPLayersManagerViewController* lmvc;
@@ -45,6 +46,8 @@ typedef enum {
 - (IBAction)modeChanged:(id)sender;
 - (IBAction)showDrawingManager:(id)sender;
 - (IBAction)undoBtnClicked:(id)sender;
+- (IBAction)acceptLayerTransformBtnClicked:(id)sender;
+- (IBAction)cancelLayerTransformBtnClicked:(id)sender;
 
 -(void)saveProjectAsJPEGImage:(NSString*)filename;
 -(void)saveProjectAsPNGImage:(NSString*)filename;

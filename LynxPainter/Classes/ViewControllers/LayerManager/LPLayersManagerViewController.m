@@ -41,7 +41,7 @@
     canMoveCells = NO;
     UILongPressGestureRecognizer* lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLP:)];
     [self.view addGestureRecognizer:lpgr];
-
+    [self.layerTable reloadData];
     // Do any additional setup after loading the view from its nib.
 }
 

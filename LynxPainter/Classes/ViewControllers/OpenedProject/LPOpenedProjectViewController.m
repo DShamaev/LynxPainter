@@ -10,9 +10,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "LPSmartLayerManager.h"
 #import "LPSmartLayer.h"
-#import "LPWorkAreaView.h"
 #import "LPCloseProjectDialogViewController.h"
 #import "LPDrawingManagerViewController.h"
+#import "LPLayersManagerViewController.h"
 #import "NSData+YBase64String.h"
 #import "TBXML.h"
 #import "LPFileInfo.h"
@@ -40,8 +40,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.cancelLayerTransformButton.hidden = YES;
-    self.applyLayerTransformButton.hidden = YES;
+    self.rootLayer.delegate = self;
+    [self hideLayerTansformButtons];
     [self.rootLayer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.workAreaSV setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -73,46 +73,31 @@
     [self.workAreaSV addGestureRecognizer:pgr];
     // Do any additional setup after loading the view from its nib.
     
-    /*lmvc = [[LPLayersManagerViewController alloc] initWithNibName:@"LPLayersManagerViewController" bundle:nil];
+    lmvc = [[LPLayersManagerViewController alloc] initWithNibName:@"LPLayersManagerViewController" bundle:nil];
+    lmvc.delegate = self;
+    lmvc.view.layer.borderWidth = 1;
+    lmvc.view.layer.borderColor = [UIColor blackColor].CGColor;
     [lmvc.view setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addVC:lmvc toView:self.view];
-    NSLayoutConstraint* posConstr = [NSLayoutConstraint constraintWithItem:lmvc.view
-                                                                 attribute:NSLayoutAttributeLeft
-                                                                 relatedBy:NSLayoutRelationGreaterThanOrEqual
-                                                                    toItem:self.view
-                                                                 attribute:NSLayoutAttributeLeft
-                                                                multiplier:0.0
-                                                                  constant:0];
-    [self.view addConstraint:posConstr];
-    NSLayoutConstraint* posConstr2 = [NSLayoutConstraint constraintWithItem:lmvc.view
-     attribute:NSLayoutAttributeTop
-     relatedBy:NSLayoutRelationEqual
-     toItem:self.view
-     attribute:NSLayoutAttributeTop
-     multiplier:0.0
-     constant:150];
-     [self.view addConstraint:posConstr2];*/
-    //[self changeVC:lmvc withState:!lmvc.view.hidden withAnimation:NO];
-    
-    /*dmvc = [[LPDrawingManagerViewController alloc] initWithNibName:@"LPDrawingManagerViewController" bundle:nil];
+    UIView* lv = lmvc.view;
+    lv.hidden = YES;
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[lv(360)]|" options:NSLayoutFormatAlignAllRight metrics:nil views:NSDictionaryOfVariableBindings(lv)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-150-[lv(460)]" options:NSLayoutFormatAlignAllLeft metrics:nil views:NSDictionaryOfVariableBindings(lv)]];
+    [self changeVC:lmvc withButton:self.layersButton withState:!lmvc.view.hidden withAnimation:NO];
+
+    dmvc = [[LPDrawingManagerViewController alloc] initWithNibName:@"LPDrawingManagerViewController" bundle:nil];
+    NSLog(@"%@",dmvc.view);
+    dmvc.delegate = self;
+    dmvc.view.layer.borderWidth = 1;
+    dmvc.view.layer.borderColor = [UIColor blackColor].CGColor;
+    [dmvc.view setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addVC:dmvc toView:self.view];
-    posConstr = [NSLayoutConstraint constraintWithItem:dmvc.view
-     attribute:NSLayoutAttributeLeft
-     relatedBy:NSLayoutRelationGreaterThanOrEqual
-     toItem:self.view
-     attribute:NSLayoutAttributeLeft
-     multiplier:0.0
-     constant:0];
-     [self.view addConstraint:posConstr];
-     posConstr2 = [NSLayoutConstraint constraintWithItem:dmvc.view
-     attribute:NSLayoutAttributeTop
-     relatedBy:NSLayoutRelationEqual
-     toItem:self.view
-     attribute:NSLayoutAttributeTop
-     multiplier:0.0
-     constant:150];
-     [self.view addConstraint:posConstr2];
-    [self changeVC:dmvc withState:!dmvc.view.hidden withAnimation:NO];*/
+    lv = dmvc.view;
+    lv.hidden = YES;
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[lv(320)]|" options:NSLayoutFormatAlignAllRight metrics:nil views:NSDictionaryOfVariableBindings(lv)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-500-[lv(360)]" options:NSLayoutFormatAlignAllLeft metrics:nil views:NSDictionaryOfVariableBindings(lv)]];
+    [self changeVC:dmvc withButton:self.toolsButton withState:!dmvc.view.hidden withAnimation:NO];
+    NSLog(@"%@",dmvc.view);
 }
 
 - (void)createFromImageFile{
@@ -163,6 +148,7 @@
         LPSmartLayer* nl = [[LPSmartLayerManager sharedManager] addNewLayer];
         [[LPSmartLayerManager sharedManager] setCurrLayer:nl];
     }
+    NSLog(@"%@",dmvc.view);
 }
 
 -(void)addCenterConstraints{
@@ -238,11 +224,8 @@
 }
 
 - (IBAction)showLayersManager:(id)sender {
-    /*UIButton* but = (UIButton*)sender;
-    lmvc = [[LPLayersManagerViewController alloc] initWithNibName:@"LPLayersManagerViewController" bundle:nil];
-    lmvc.delegate = self;
-    self.pc = [[UIPopoverController alloc] initWithContentViewController:lmvc];
-    [self.pc presentPopoverFromRect:but.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];*/
+    [self changeVC:lmvc withButton:self.layersButton withState:lmvc.view.hidden withAnimation:YES];
+    [self changeVC:dmvc withButton:self.toolsButton withState:NO withAnimation:YES];
 }
 
 - (IBAction)modeChanged:(id)sender {
@@ -270,6 +253,8 @@
 }
 
 - (IBAction)showDrawingManager:(id)sender {
+    [self changeVC:dmvc withButton:self.toolsButton withState:dmvc.view.hidden withAnimation:YES];
+    [self changeVC:lmvc withButton:self.layersButton withState:NO withAnimation:YES];
     /*UIButton* but = (UIButton*)sender;
     dmvc = [[LPDrawingManagerViewController alloc] initWithNibName:@"LPDrawingManagerViewController" bundle:nil];
     dmvc.delegate = self;
@@ -478,19 +463,21 @@
     }
 }
 
-- (void)changeVC:(UIViewController*)vc withState:(BOOL)vcVisibility withAnimation:(BOOL)animated{
+- (void)changeVC:(UIViewController*)vc withButton:(UIButton*)btn withState:(BOOL)vcVisibility withAnimation:(BOOL)animated{
     if(vcVisibility)
         vc.view.hidden = NO;
     
     void (^visibilityChanges)(void) = ^{
-        vc.view.transform = vcVisibility ? CGAffineTransformMakeTranslation(-vc.view.bounds.size.width, 0) : CGAffineTransformMakeTranslation(vc.view.bounds.size.width, 0);
+        if(btn)
+            btn.transform = vcVisibility ? CGAffineTransformMakeTranslation(-vc.view.bounds.size.width*2, 0) : CGAffineTransformMakeTranslation(0, 0);
+        vc.view.transform = vcVisibility ? CGAffineTransformMakeTranslation(0, 0) : CGAffineTransformMakeTranslation(vc.view.bounds.size.width, 0);
     };
     void (^completionChanges)(BOOL) = ^(BOOL comp){
         vc.view.hidden = vcVisibility ? NO : YES;
     };
     
     if (animated) {
-        [UIView animateWithDuration:0.25 animations:visibilityChanges completion:completionChanges];
+        [UIView animateWithDuration:0.35 animations:visibilityChanges completion:completionChanges];
     } else {
         visibilityChanges();
         completionChanges(YES);
@@ -510,5 +497,31 @@
     [vc removeFromParentViewController];
 }
 
+#pragma mark -
 
+-(void)closeAllTabs{
+    [self changeVC:dmvc withButton:self.toolsButton withState:NO withAnimation:YES];
+    [self changeVC:lmvc withButton:self.layersButton withState:NO withAnimation:YES];
+}
+
+-(void)showLayerTansformButtons{
+    self.cancelLayerTransformButton.hidden = NO;
+    self.applyLayerTransformButton.hidden = NO;
+}
+
+-(void)hideLayerTansformButtons{
+    self.cancelLayerTransformButton.hidden = YES;
+    self.applyLayerTransformButton.hidden = YES;
+}
+
+
+- (IBAction)acceptLayerTransformBtnClicked:(id)sender {
+    [self.rootLayer acceptTransform];
+    [self hideLayerTansformButtons];
+}
+
+- (IBAction)cancelLayerTransformBtnClicked:(id)sender {
+    [self.rootLayer cancelTransform];
+    [self hideLayerTansformButtons];
+}
 @end
