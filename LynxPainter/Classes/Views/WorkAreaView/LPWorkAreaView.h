@@ -20,6 +20,7 @@
 @interface LPWorkAreaView : UIView
 
 typedef enum {
+    WADNone,
     WADBrush,
     WADRect,
     WADEllipse,

@@ -18,6 +18,8 @@
 #import "LPFileInfo.h"
 #import "LPImagePickerViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "LPToolCollCell.h"
+#import "LPWorkAreaView.h"
 
 @interface LPOpenedProjectViewController (){
     float tempScale;
@@ -40,6 +42,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.toolsCV registerClass:[LPToolCollCell class] forCellWithReuseIdentifier:@"toolCollCell"];
+    [self.toolsCV registerNib:[UINib nibWithNibName:@"LPToolCollCell" bundle:nil] forCellWithReuseIdentifier:@"toolCollCell"];
+    toolsImageArray = [NSMutableArray arrayWithObjects:@"move_tool.png",@"brush_tool.png",@"rect_tool.png",@"ellipse_tool.png",@"line_tool.png",@"eraser_tool.png",@"scale_tool.png", nil];
+    
     self.rootLayer.delegate = self;
     [self hideLayerTansformButtons];
     [self.rootLayer setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -52,7 +59,6 @@
     [[LPSmartLayerManager sharedManager] setRootLayer:self.rootLayer.layer];
     [[LPSmartLayerManager sharedManager] setRootView:self.rootLayer];
     currMode = LPWADrawing;
-    self.modeSC.selectedSegmentIndex = 0;
     if (self.openedFile) {
         if(self.openedFileModeIsProject)
             [self loadOpenedProjectFile];
@@ -162,7 +168,6 @@
     if(!self.scaleView.hidden)
         self.scaleLabel.text = [NSString stringWithFormat:@"%.0f%%",self.currScale*100];
     self.rootLayer.transform = CGAffineTransformMakeScale(self.currScale, self.currScale);
-    self.scaleValueTF.text = [NSString stringWithFormat:@"%.0f%%",self.currScale*100];
     
     NSLayoutConstraint* sizeConstr = [NSLayoutConstraint constraintWithItem:self.rootLayer
                                                                   attribute:NSLayoutAttributeHeight
@@ -199,30 +204,6 @@
     //[self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-- (IBAction)modeChanged:(id)sender {
-    //DRAWING
-    if(self.modeSC.selectedSegmentIndex == 0){
-        self.workAreaSV.scrollEnabled = NO;
-        currMode = LPWADrawing;
-        self.rootLayer.isDrawable = YES;
-        self.rootLayer.isDraggable = NO;
-    }
-    //TRANSFORMING
-    if(self.modeSC.selectedSegmentIndex == 1){
-        self.workAreaSV.scrollEnabled = YES;
-        currMode = LPWATransforming;
-        self.rootLayer.isDrawable = NO;
-        self.rootLayer.isDraggable = NO;
-    }
-    //LAYER
-    if(self.modeSC.selectedSegmentIndex == 2){
-        self.workAreaSV.scrollEnabled = NO;
-        currMode = LPWALayer;
-        self.rootLayer.isDrawable = NO;
-        self.rootLayer.isDraggable = YES;
-    }
-}
-
 - (IBAction)showLayersManager:(id)sender {
     if (lmvc.view.hidden) {
         [lmvc createImagesForLayers];
@@ -238,46 +219,6 @@
 
 - (IBAction)undoBtnClicked:(id)sender {
     [[LPSmartLayerManager sharedManager] undo];
-}
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    if([@"" isEqualToString:string])
-        return true;
-    if(textField == self.scaleValueTF){
-        NSScanner *sc = [NSScanner scannerWithString: string];
-        NSCharacterSet* allUnaccepted = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789%%"] invertedSet];
-        if([sc scanCharactersFromSet:allUnaccepted intoString:&string])
-            return false;
-        if ([textField.text length]>0 && [textField.text characterAtIndex:[textField.text length]-1] == '%') {
-            return false;
-        }
-        NSString* actValue = [NSString stringWithFormat:@"%@%@",textField.text,string];
-        NSRange lastPerc = [actValue rangeOfString:@"%" options:NSBackwardsSearch];
-        if(lastPerc.location != NSNotFound)
-            actValue = [actValue stringByReplacingCharactersInRange:lastPerc
-                                                    withString:@""];
-        if([actValue intValue]<1){
-            [textField setText:@"1%"];
-            return false;
-        }
-        if([actValue intValue]>30000){
-            [textField setText:@"1000%"];
-            return false;
-        }
-    }
-    return true;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField{
-    if(textField == self.scaleValueTF){
-        NSString* actValue = [NSString stringWithString:textField.text];
-        NSRange lastPerc = [actValue rangeOfString:@"%" options:NSBackwardsSearch];
-        if(lastPerc.location != NSNotFound)
-            actValue = [actValue stringByReplacingCharactersInRange:lastPerc
-                                                         withString:@""];
-        [self addNewSizeConstraintsWithScale:[actValue intValue]/100.];
-        [LPSmartLayerManager sharedManager].currScale = [actValue intValue]/100.;
-    }
 }
 
 -(void)saveProjectAsJPEGImage:(NSString*)filename{
@@ -506,4 +447,68 @@
     [self.rootLayer cancelTransform];
     [self hideLayerTansformButtons];
 }
+
+#pragma mark - UICollectionViewDelegate delegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    self.workAreaSV.scrollEnabled = NO;
+    switch (indexPath.row) {
+        case 0:
+            [LPSmartLayerManager sharedManager].rootView.isDraggable = YES;
+            [LPSmartLayerManager sharedManager].rootView.isDrawable = NO;
+            [LPSmartLayerManager sharedManager].rootView.currMode = WADNone;
+            break;
+        case 1:
+            [LPSmartLayerManager sharedManager].rootView.isDraggable = NO;
+            [LPSmartLayerManager sharedManager].rootView.isDrawable = YES;
+            [LPSmartLayerManager sharedManager].rootView.currMode = WADBrush;
+            break;
+        case 2:
+            [LPSmartLayerManager sharedManager].rootView.isDraggable = NO;
+            [LPSmartLayerManager sharedManager].rootView.isDrawable = YES;
+            [LPSmartLayerManager sharedManager].rootView.currMode = WADRect;
+            break;
+        case 3:
+            [LPSmartLayerManager sharedManager].rootView.isDraggable = NO;
+            [LPSmartLayerManager sharedManager].rootView.isDrawable = YES;
+            [LPSmartLayerManager sharedManager].rootView.currMode = WADEllipse;
+            break;
+        case 4:
+            [LPSmartLayerManager sharedManager].rootView.isDraggable = NO;
+            [LPSmartLayerManager sharedManager].rootView.isDrawable = YES;
+            [LPSmartLayerManager sharedManager].rootView.currMode = WADLine;
+            break;
+        case 5:
+            [LPSmartLayerManager sharedManager].rootView.isDraggable = NO;
+            [LPSmartLayerManager sharedManager].rootView.isDrawable = YES;
+            [LPSmartLayerManager sharedManager].rootView.currMode = WADEraser;
+            break;
+        case 6:
+            self.workAreaSV.scrollEnabled = YES;
+            [LPSmartLayerManager sharedManager].rootView.isDraggable = NO;
+            [LPSmartLayerManager sharedManager].rootView.isDrawable = NO;
+            [LPSmartLayerManager sharedManager].rootView.currMode = WADNone;
+            break;
+            
+        default:
+            break;
+    }
+}
+
+#pragma mark - UICollectionViewDataSource delegate
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    LPToolCollCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"toolCollCell" forIndexPath:indexPath];
+    [cell.toolImage setImage:[UIImage imageNamed:[toolsImageArray objectAtIndex:indexPath.row]]];
+    return cell;
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return [toolsImageArray count];
+}
+
 @end

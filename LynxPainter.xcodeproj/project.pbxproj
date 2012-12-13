@@ -27,6 +27,22 @@
 		C3877A991652EE8E00208CAA /* LPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3877A981652EE8E00208CAA /* LPFileManager.m */; };
 		C3877A9D1652EF7B00208CAA /* LPFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C3877A9C1652EF7B00208CAA /* LPFileInfo.m */; };
 		C391B56C1664AED500F914DB /* LPImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C391B56B1664AED500F914DB /* LPImagePickerViewController.m */; };
+		C3932FFF167A24FB00C13475 /* LPToolCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3932FFE167A24FB00C13475 /* LPToolCollCell.m */; };
+		C3933003167A269A00C13475 /* LPToolCollCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3933002167A269900C13475 /* LPToolCollCell.xib */; };
+		C3933011167A2C3E00C13475 /* brush_tool.png in Resources */ = {isa = PBXBuildFile; fileRef = C3933004167A2C3E00C13475 /* brush_tool.png */; };
+		C3933012167A2C3E00C13475 /* brush_tool@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3933005167A2C3E00C13475 /* brush_tool@2x.png */; };
+		C3933013167A2C3E00C13475 /* ellipse_tool.png in Resources */ = {isa = PBXBuildFile; fileRef = C3933006167A2C3E00C13475 /* ellipse_tool.png */; };
+		C3933014167A2C3E00C13475 /* ellipse_tool@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3933007167A2C3E00C13475 /* ellipse_tool@2x.png */; };
+		C3933015167A2C3E00C13475 /* eraser_tool.png in Resources */ = {isa = PBXBuildFile; fileRef = C3933008167A2C3E00C13475 /* eraser_tool.png */; };
+		C3933016167A2C3E00C13475 /* eraser_tool@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3933009167A2C3E00C13475 /* eraser_tool@2x.png */; };
+		C3933017167A2C3E00C13475 /* line_tool.png in Resources */ = {isa = PBXBuildFile; fileRef = C393300A167A2C3E00C13475 /* line_tool.png */; };
+		C3933018167A2C3E00C13475 /* line_tool@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C393300B167A2C3E00C13475 /* line_tool@2x.png */; };
+		C3933019167A2C3E00C13475 /* move_tool.png in Resources */ = {isa = PBXBuildFile; fileRef = C393300C167A2C3E00C13475 /* move_tool.png */; };
+		C393301A167A2C3E00C13475 /* move_tool@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C393300D167A2C3E00C13475 /* move_tool@2x.png */; };
+		C393301B167A2C3E00C13475 /* rect_tool.png in Resources */ = {isa = PBXBuildFile; fileRef = C393300E167A2C3E00C13475 /* rect_tool.png */; };
+		C393301C167A2C3E00C13475 /* rect_tool@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C393300F167A2C3E00C13475 /* rect_tool@2x.png */; };
+		C393301D167A2C3E00C13475 /* scale_tool@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3933010167A2C3E00C13475 /* scale_tool@2x.png */; };
+		C393301F167A2C4800C13475 /* scale_tool.png in Resources */ = {isa = PBXBuildFile; fileRef = C393301E167A2C4800C13475 /* scale_tool.png */; };
 		C394D59D1653AB6B008A2A90 /* NSData+YBase64String.m in Sources */ = {isa = PBXBuildFile; fileRef = C394D5961653AB6B008A2A90 /* NSData+YBase64String.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C394D59E1653AB6B008A2A90 /* NSString+YBase64toData.m in Sources */ = {isa = PBXBuildFile; fileRef = C394D5981653AB6B008A2A90 /* NSString+YBase64toData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C394D59F1653AB6B008A2A90 /* ybase64.c in Sources */ = {isa = PBXBuildFile; fileRef = C394D5991653AB6B008A2A90 /* ybase64.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -114,6 +130,23 @@
 		C3877A9C1652EF7B00208CAA /* LPFileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPFileInfo.m; path = Classes/Model/FileInfo/LPFileInfo.m; sourceTree = "<group>"; };
 		C391B56A1664AED500F914DB /* LPImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPImagePickerViewController.h; path = Classes/ViewControllers/ImagePicker/LPImagePickerViewController.h; sourceTree = "<group>"; };
 		C391B56B1664AED500F914DB /* LPImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPImagePickerViewController.m; path = Classes/ViewControllers/ImagePicker/LPImagePickerViewController.m; sourceTree = "<group>"; };
+		C3932FFD167A24FB00C13475 /* LPToolCollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPToolCollCell.h; path = Classes/Cells/ToolCell/LPToolCollCell.h; sourceTree = "<group>"; };
+		C3932FFE167A24FB00C13475 /* LPToolCollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPToolCollCell.m; path = Classes/Cells/ToolCell/LPToolCollCell.m; sourceTree = "<group>"; };
+		C3933002167A269900C13475 /* LPToolCollCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPToolCollCell.xib; path = Classes/Cells/ToolCell/LPToolCollCell.xib; sourceTree = "<group>"; };
+		C3933004167A2C3E00C13475 /* brush_tool.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = brush_tool.png; path = Images/brush_tool.png; sourceTree = "<group>"; };
+		C3933005167A2C3E00C13475 /* brush_tool@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "brush_tool@2x.png"; path = "Images/brush_tool@2x.png"; sourceTree = "<group>"; };
+		C3933006167A2C3E00C13475 /* ellipse_tool.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ellipse_tool.png; path = Images/ellipse_tool.png; sourceTree = "<group>"; };
+		C3933007167A2C3E00C13475 /* ellipse_tool@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ellipse_tool@2x.png"; path = "Images/ellipse_tool@2x.png"; sourceTree = "<group>"; };
+		C3933008167A2C3E00C13475 /* eraser_tool.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eraser_tool.png; path = Images/eraser_tool.png; sourceTree = "<group>"; };
+		C3933009167A2C3E00C13475 /* eraser_tool@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "eraser_tool@2x.png"; path = "Images/eraser_tool@2x.png"; sourceTree = "<group>"; };
+		C393300A167A2C3E00C13475 /* line_tool.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = line_tool.png; path = Images/line_tool.png; sourceTree = "<group>"; };
+		C393300B167A2C3E00C13475 /* line_tool@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "line_tool@2x.png"; path = "Images/line_tool@2x.png"; sourceTree = "<group>"; };
+		C393300C167A2C3E00C13475 /* move_tool.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = move_tool.png; path = Images/move_tool.png; sourceTree = "<group>"; };
+		C393300D167A2C3E00C13475 /* move_tool@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "move_tool@2x.png"; path = "Images/move_tool@2x.png"; sourceTree = "<group>"; };
+		C393300E167A2C3E00C13475 /* rect_tool.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rect_tool.png; path = Images/rect_tool.png; sourceTree = "<group>"; };
+		C393300F167A2C3E00C13475 /* rect_tool@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rect_tool@2x.png"; path = "Images/rect_tool@2x.png"; sourceTree = "<group>"; };
+		C3933010167A2C3E00C13475 /* scale_tool@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "scale_tool@2x.png"; path = "Images/scale_tool@2x.png"; sourceTree = "<group>"; };
+		C393301E167A2C4800C13475 /* scale_tool.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scale_tool.png; path = Images/scale_tool.png; sourceTree = "<group>"; };
 		C394D5951653AB6B008A2A90 /* NSData+YBase64String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+YBase64String.h"; path = "Classes/External/ybase64/NSData+YBase64String.h"; sourceTree = "<group>"; };
 		C394D5961653AB6B008A2A90 /* NSData+YBase64String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+YBase64String.m"; path = "Classes/External/ybase64/NSData+YBase64String.m"; sourceTree = "<group>"; };
 		C394D5971653AB6B008A2A90 /* NSString+YBase64toData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+YBase64toData.h"; path = "Classes/External/ybase64/NSString+YBase64toData.h"; sourceTree = "<group>"; };
@@ -203,6 +236,7 @@
 		C358B4FF1647BDB50004537E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				C3932FFB167A24A800C13475 /* ToolCollCell */,
 				E16311B81670CEC000DA3EA8 /* ProjectCell */,
 				C38716EA16537ACA005001A7 /* FileCollHeaderCell */,
 				C3877A8F1652E96100208CAA /* FileCollCell */,
@@ -350,6 +384,16 @@
 			name = ImagePicker;
 			sourceTree = "<group>";
 		};
+		C3932FFB167A24A800C13475 /* ToolCollCell */ = {
+			isa = PBXGroup;
+			children = (
+				C3933002167A269900C13475 /* LPToolCollCell.xib */,
+				C3932FFD167A24FB00C13475 /* LPToolCollCell.h */,
+				C3932FFE167A24FB00C13475 /* LPToolCollCell.m */,
+			);
+			name = ToolCollCell;
+			sourceTree = "<group>";
+		};
 		C394D5941653AB58008A2A90 /* ybase64 */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +412,20 @@
 		C3A7384F166F84C4005AD0F5 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C3933004167A2C3E00C13475 /* brush_tool.png */,
+				C3933005167A2C3E00C13475 /* brush_tool@2x.png */,
+				C3933006167A2C3E00C13475 /* ellipse_tool.png */,
+				C3933007167A2C3E00C13475 /* ellipse_tool@2x.png */,
+				C3933008167A2C3E00C13475 /* eraser_tool.png */,
+				C3933009167A2C3E00C13475 /* eraser_tool@2x.png */,
+				C393300A167A2C3E00C13475 /* line_tool.png */,
+				C393300B167A2C3E00C13475 /* line_tool@2x.png */,
+				C393300C167A2C3E00C13475 /* move_tool.png */,
+				C393300D167A2C3E00C13475 /* move_tool@2x.png */,
+				C393300E167A2C3E00C13475 /* rect_tool.png */,
+				C393300F167A2C3E00C13475 /* rect_tool@2x.png */,
+				C393301E167A2C4800C13475 /* scale_tool.png */,
+				C3933010167A2C3E00C13475 /* scale_tool@2x.png */,
 				C39EF84F16778851006185EE /* accept_but.png */,
 				C39EF85016778851006185EE /* accept_but@2x.png */,
 				C39EF85116778851006185EE /* cancel_but.png */,
@@ -680,6 +738,21 @@
 				C39EF86416778851006185EE /* scale_bg@2x.png in Resources */,
 				C39EF86516778851006185EE /* tools_icon.png in Resources */,
 				C39EF86616778851006185EE /* tools_icon@2x.png in Resources */,
+				C3933003167A269A00C13475 /* LPToolCollCell.xib in Resources */,
+				C3933011167A2C3E00C13475 /* brush_tool.png in Resources */,
+				C3933012167A2C3E00C13475 /* brush_tool@2x.png in Resources */,
+				C3933013167A2C3E00C13475 /* ellipse_tool.png in Resources */,
+				C3933014167A2C3E00C13475 /* ellipse_tool@2x.png in Resources */,
+				C3933015167A2C3E00C13475 /* eraser_tool.png in Resources */,
+				C3933016167A2C3E00C13475 /* eraser_tool@2x.png in Resources */,
+				C3933017167A2C3E00C13475 /* line_tool.png in Resources */,
+				C3933018167A2C3E00C13475 /* line_tool@2x.png in Resources */,
+				C3933019167A2C3E00C13475 /* move_tool.png in Resources */,
+				C393301A167A2C3E00C13475 /* move_tool@2x.png in Resources */,
+				C393301B167A2C3E00C13475 /* rect_tool.png in Resources */,
+				C393301C167A2C3E00C13475 /* rect_tool@2x.png in Resources */,
+				C393301D167A2C3E00C13475 /* scale_tool@2x.png in Resources */,
+				C393301F167A2C4800C13475 /* scale_tool.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,6 +790,7 @@
 				E101C3F5166CFBA200A9F0E2 /* LPHomeViewController.m in Sources */,
 				E16311BC1670CF1800DA3EA8 /* LPProjectCell.m in Sources */,
 				E16311C61670D7BD00DA3EA8 /* LPLayerData.m in Sources */,
+				C3932FFF167A24FB00C13475 /* LPToolCollCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LPToolCell : UITableViewCell
+@interface LPToolCollCell : UICollectionViewCell
+@property (strong, nonatomic) IBOutlet UIImageView *toolImage;
 
 @end

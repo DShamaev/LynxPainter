@@ -6,24 +6,18 @@
 //  Copyright (c) 2012 DmitriyShamaev. All rights reserved.
 //
 
-#import "LPToolCell.h"
+#import "LPToolCollCell.h"
 
-@implementation LPToolCell
+@implementation LPToolCollCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
     }
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 @end
