@@ -68,6 +68,9 @@
 		C3A73860166F84E0005AD0F5 /* open_btn_unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A73858166F84E0005AD0F5 /* open_btn_unselected@2x.png */; };
 		C3A73863166F853E005AD0F5 /* main_back.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A73861166F853E005AD0F5 /* main_back.png */; };
 		C3A73864166F853E005AD0F5 /* main_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A73862166F853E005AD0F5 /* main_back@2x.png */; };
+		E101B4B2167B7F55006A5CC0 /* checkers.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = E101B4B1167B7F55006A5CC0 /* checkers.jpeg */; };
+		E101B4B6167B811C006A5CC0 /* layer_unvisible_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E101B4B4167B811C006A5CC0 /* layer_unvisible_icon.png */; };
+		E101B4B7167B811C006A5CC0 /* layer_visible_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E101B4B5167B811C006A5CC0 /* layer_visible_icon.png */; };
 		E101C3F0166CFB5D00A9F0E2 /* LPGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E101C3EE166CFB5D00A9F0E2 /* LPGalleryViewController.m */; };
 		E101C3F1166CFB5D00A9F0E2 /* LPGalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E101C3EF166CFB5D00A9F0E2 /* LPGalleryViewController.xib */; };
 		E101C3F5166CFBA200A9F0E2 /* LPHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E101C3F3166CFBA200A9F0E2 /* LPHomeViewController.m */; };
@@ -177,6 +180,9 @@
 		C3A73858166F84E0005AD0F5 /* open_btn_unselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "open_btn_unselected@2x.png"; path = "Images/open_btn_unselected@2x.png"; sourceTree = "<group>"; };
 		C3A73861166F853E005AD0F5 /* main_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = main_back.png; path = Images/main_back.png; sourceTree = "<group>"; };
 		C3A73862166F853E005AD0F5 /* main_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "main_back@2x.png"; path = "Images/main_back@2x.png"; sourceTree = "<group>"; };
+		E101B4B1167B7F55006A5CC0 /* checkers.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = checkers.jpeg; path = Images/checkers.jpeg; sourceTree = "<group>"; };
+		E101B4B4167B811C006A5CC0 /* layer_unvisible_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = layer_unvisible_icon.png; path = Images/layer_unvisible_icon.png; sourceTree = "<group>"; };
+		E101B4B5167B811C006A5CC0 /* layer_visible_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = layer_visible_icon.png; path = Images/layer_visible_icon.png; sourceTree = "<group>"; };
 		E101C3ED166CFB5D00A9F0E2 /* LPGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPGalleryViewController.h; path = Classes/ViewControllers/Gallery/LPGalleryViewController.h; sourceTree = "<group>"; };
 		E101C3EE166CFB5D00A9F0E2 /* LPGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPGalleryViewController.m; path = Classes/ViewControllers/Gallery/LPGalleryViewController.m; sourceTree = "<group>"; };
 		E101C3EF166CFB5D00A9F0E2 /* LPGalleryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPGalleryViewController.xib; path = Classes/ViewControllers/Gallery/LPGalleryViewController.xib; sourceTree = "<group>"; };
@@ -412,6 +418,9 @@
 		C3A7384F166F84C4005AD0F5 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E101B4B4167B811C006A5CC0 /* layer_unvisible_icon.png */,
+				E101B4B5167B811C006A5CC0 /* layer_visible_icon.png */,
+				E101B4B1167B7F55006A5CC0 /* checkers.jpeg */,
 				C3933004167A2C3E00C13475 /* brush_tool.png */,
 				C3933005167A2C3E00C13475 /* brush_tool@2x.png */,
 				C3933006167A2C3E00C13475 /* ellipse_tool.png */,
@@ -753,6 +762,9 @@
 				C393301C167A2C3E00C13475 /* rect_tool@2x.png in Resources */,
 				C393301D167A2C3E00C13475 /* scale_tool@2x.png in Resources */,
 				C393301F167A2C4800C13475 /* scale_tool.png in Resources */,
+				E101B4B2167B7F55006A5CC0 /* checkers.jpeg in Resources */,
+				E101B4B6167B811C006A5CC0 /* layer_unvisible_icon.png in Resources */,
+				E101B4B7167B811C006A5CC0 /* layer_visible_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

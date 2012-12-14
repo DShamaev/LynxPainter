@@ -49,6 +49,7 @@
     currToolIndex = 1;
     
     self.rootLayer.delegate = self;
+    self.rootLayer.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"checkers.jpeg"]];
     [self hideLayerTansformButtons];
     [self.rootLayer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.workAreaSV setTranslatesAutoresizingMaskIntoConstraints:NO];
