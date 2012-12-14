@@ -46,19 +46,18 @@
     [self.toolsCV registerClass:[LPToolCollCell class] forCellWithReuseIdentifier:@"toolCollCell"];
     [self.toolsCV registerNib:[UINib nibWithNibName:@"LPToolCollCell" bundle:nil] forCellWithReuseIdentifier:@"toolCollCell"];
     toolsImageArray = [NSMutableArray arrayWithObjects:@"move_tool.png",@"brush_tool.png",@"rect_tool.png",@"ellipse_tool.png",@"line_tool.png",@"eraser_tool.png",@"scale_tool.png", nil];
+    currToolIndex = 1;
     
     self.rootLayer.delegate = self;
     [self hideLayerTansformButtons];
     [self.rootLayer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.workAreaSV setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
-    currMode = LPWADrawing;
     self.workAreaSV.scrollEnabled = NO;
     self.currCenterConstraints = [NSMutableArray array];
     self.currSizeConstraints = [NSMutableArray array];
     [[LPSmartLayerManager sharedManager] setRootLayer:self.rootLayer.layer];
     [[LPSmartLayerManager sharedManager] setRootView:self.rootLayer];
-    currMode = LPWADrawing;
     if (self.openedFile) {
         if(self.openedFileModeIsProject)
             [self loadOpenedProjectFile];
@@ -80,7 +79,7 @@
     
     UITapGestureRecognizer* tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     tgr.numberOfTapsRequired = 2;
-    [self.scaleView addGestureRecognizer:tgr];
+    [self.workAreaSV addGestureRecognizer:tgr];
     // Do any additional setup after loading the view from its nib.
     
     lmvc = [[LPLayersManagerViewController alloc] initWithNibName:@"LPLayersManagerViewController" bundle:nil];
@@ -451,6 +450,7 @@
 #pragma mark - UICollectionViewDelegate delegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    currToolIndex = indexPath.row;
     self.workAreaSV.scrollEnabled = NO;
     switch (indexPath.row) {
         case 0:
@@ -493,6 +493,7 @@
         default:
             break;
     }
+    [collectionView reloadData];
 }
 
 #pragma mark - UICollectionViewDataSource delegate
@@ -500,6 +501,9 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     LPToolCollCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"toolCollCell" forIndexPath:indexPath];
     [cell.toolImage setImage:[UIImage imageNamed:[toolsImageArray objectAtIndex:indexPath.row]]];
+    if (currToolIndex == indexPath.row) {
+        [cell setSelected:YES];
+    }
     return cell;
 }
 

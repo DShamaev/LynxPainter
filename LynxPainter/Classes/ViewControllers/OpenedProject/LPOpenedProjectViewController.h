@@ -12,18 +12,12 @@
 
 @class LPWorkAreaView,LPFileInfo,LPLayersManagerViewController,LPDrawingManagerViewController;
 
-typedef enum {
-    LPWATransforming,
-    LPWADrawing,
-    LPWALayer
-} LPWAMode;
-
 @interface LPOpenedProjectViewController : UIViewController<ImagePickerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,WorkAreaDelegate,UICollectionViewDataSource,UICollectionViewDelegate>{
-    LPWAMode currMode;
     UIActionSheet* imagePickerActionsSheet;
     LPLayersManagerViewController* lmvc;
     LPDrawingManagerViewController* dmvc;
     NSMutableArray* toolsImageArray;
+    int currToolIndex;
 }
 @property (strong, nonatomic) UIPopoverController *imagePickerPopover;
 @property (strong, nonatomic) LPFileInfo* openedFile;
