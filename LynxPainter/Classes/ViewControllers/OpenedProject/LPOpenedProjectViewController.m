@@ -450,50 +450,52 @@
 #pragma mark - UICollectionViewDelegate delegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    currToolIndex = indexPath.row;
-    self.workAreaSV.scrollEnabled = NO;
-    switch (indexPath.row) {
-        case 0:
-            [LPSmartLayerManager sharedManager].rootView.isDraggable = YES;
-            [LPSmartLayerManager sharedManager].rootView.isDrawable = NO;
-            [LPSmartLayerManager sharedManager].rootView.currMode = WADNone;
-            break;
-        case 1:
-            [LPSmartLayerManager sharedManager].rootView.isDraggable = NO;
-            [LPSmartLayerManager sharedManager].rootView.isDrawable = YES;
-            [LPSmartLayerManager sharedManager].rootView.currMode = WADBrush;
-            break;
-        case 2:
-            [LPSmartLayerManager sharedManager].rootView.isDraggable = NO;
-            [LPSmartLayerManager sharedManager].rootView.isDrawable = YES;
-            [LPSmartLayerManager sharedManager].rootView.currMode = WADRect;
-            break;
-        case 3:
-            [LPSmartLayerManager sharedManager].rootView.isDraggable = NO;
-            [LPSmartLayerManager sharedManager].rootView.isDrawable = YES;
-            [LPSmartLayerManager sharedManager].rootView.currMode = WADEllipse;
-            break;
-        case 4:
-            [LPSmartLayerManager sharedManager].rootView.isDraggable = NO;
-            [LPSmartLayerManager sharedManager].rootView.isDrawable = YES;
-            [LPSmartLayerManager sharedManager].rootView.currMode = WADLine;
-            break;
-        case 5:
-            [LPSmartLayerManager sharedManager].rootView.isDraggable = NO;
-            [LPSmartLayerManager sharedManager].rootView.isDrawable = YES;
-            [LPSmartLayerManager sharedManager].rootView.currMode = WADEraser;
-            break;
-        case 6:
-            self.workAreaSV.scrollEnabled = YES;
-            [LPSmartLayerManager sharedManager].rootView.isDraggable = NO;
-            [LPSmartLayerManager sharedManager].rootView.isDrawable = NO;
-            [LPSmartLayerManager sharedManager].rootView.currMode = WADNone;
-            break;
-            
-        default:
-            break;
+    if(CATransform3DEqualToTransform([LPSmartLayerManager sharedManager].currLayer.transform, CATransform3DIdentity)){
+        currToolIndex = indexPath.row;
+        self.workAreaSV.scrollEnabled = NO;
+        switch (indexPath.row) {
+            case 0:
+                [LPSmartLayerManager sharedManager].rootView.isDraggable = YES;
+                [LPSmartLayerManager sharedManager].rootView.isDrawable = NO;
+                [LPSmartLayerManager sharedManager].rootView.currMode = WADNone;
+                break;
+            case 1:
+                [LPSmartLayerManager sharedManager].rootView.isDraggable = NO;
+                [LPSmartLayerManager sharedManager].rootView.isDrawable = YES;
+                [LPSmartLayerManager sharedManager].rootView.currMode = WADBrush;
+                break;
+            case 2:
+                [LPSmartLayerManager sharedManager].rootView.isDraggable = NO;
+                [LPSmartLayerManager sharedManager].rootView.isDrawable = YES;
+                [LPSmartLayerManager sharedManager].rootView.currMode = WADRect;
+                break;
+            case 3:
+                [LPSmartLayerManager sharedManager].rootView.isDraggable = NO;
+                [LPSmartLayerManager sharedManager].rootView.isDrawable = YES;
+                [LPSmartLayerManager sharedManager].rootView.currMode = WADEllipse;
+                break;
+            case 4:
+                [LPSmartLayerManager sharedManager].rootView.isDraggable = NO;
+                [LPSmartLayerManager sharedManager].rootView.isDrawable = YES;
+                [LPSmartLayerManager sharedManager].rootView.currMode = WADLine;
+                break;
+            case 5:
+                [LPSmartLayerManager sharedManager].rootView.isDraggable = NO;
+                [LPSmartLayerManager sharedManager].rootView.isDrawable = YES;
+                [LPSmartLayerManager sharedManager].rootView.currMode = WADEraser;
+                break;
+            case 6:
+                self.workAreaSV.scrollEnabled = YES;
+                [LPSmartLayerManager sharedManager].rootView.isDraggable = NO;
+                [LPSmartLayerManager sharedManager].rootView.isDrawable = NO;
+                [LPSmartLayerManager sharedManager].rootView.currMode = WADNone;
+                break;
+                
+            default:
+                break;
+        }
+        [collectionView reloadData];
     }
-    [collectionView reloadData];
 }
 
 #pragma mark - UICollectionViewDataSource delegate
@@ -501,9 +503,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     LPToolCollCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"toolCollCell" forIndexPath:indexPath];
     [cell.toolImage setImage:[UIImage imageNamed:[toolsImageArray objectAtIndex:indexPath.row]]];
-    if (currToolIndex == indexPath.row) {
-        [cell setSelected:YES];
-    }
+    [cell setSelectedTool:currToolIndex == indexPath.row];
     return cell;
 }
 
