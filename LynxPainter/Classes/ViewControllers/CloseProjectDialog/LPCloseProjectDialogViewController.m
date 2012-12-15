@@ -57,18 +57,14 @@
         [self.delegate saveImageAsLProjectFile:self.cpdFilenameTF.text];
     }
     [self.delegate.pc dismissPopoverAnimated:YES];
-    [self.delegate.navigationController popToRootViewControllerAnimated:YES];
-    [self clearSharedData];
 }
 
 - (IBAction)dontsaveBtnClicked:(id)sender {
     [self.delegate.pc dismissPopoverAnimated:YES];
-    [self.delegate.navigationController popToRootViewControllerAnimated:YES];
-    [self clearSharedData];
 }
 
-- (void)clearSharedData{
+/*- (void)clearSharedData{
     [[LPSmartLayerManager sharedManager] clearManagerData];
     [[LPHistoryManager sharedManager] clearHistoryData];
-}
+}*/
 @end

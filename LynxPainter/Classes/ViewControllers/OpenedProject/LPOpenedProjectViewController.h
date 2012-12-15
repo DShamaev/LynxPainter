@@ -18,6 +18,8 @@
     LPDrawingManagerViewController* dmvc;
     NSMutableArray* toolsImageArray;
     int currToolIndex;
+    NSString* currFileName;
+    UIActionSheet* menuActionSheet;
 }
 @property (strong, nonatomic) UIPopoverController *imagePickerPopover;
 @property (strong, nonatomic) LPFileInfo* openedFile;
@@ -35,12 +37,15 @@
 @property (strong, nonatomic) IBOutlet UIButton *toolsButton;
 @property (strong, nonatomic) IBOutlet UIButton *layersButton;
 @property (nonatomic) BOOL openedFileModeIsProject;
+@property (strong, nonatomic) IBOutlet UIButton *saveButton;
 - (IBAction)closeProject:(id)sender;
 - (IBAction)showLayersManager:(id)sender;
 - (IBAction)showDrawingManager:(id)sender;
 - (IBAction)undoBtnClicked:(id)sender;
 - (IBAction)acceptLayerTransformBtnClicked:(id)sender;
 - (IBAction)cancelLayerTransformBtnClicked:(id)sender;
+- (IBAction)openGalleryBtnClicked:(id)sender;
+- (IBAction)saveBtnClicked:(id)sender;
 
 -(void)saveProjectAsJPEGImage:(NSString*)filename;
 -(void)saveProjectAsPNGImage:(NSString*)filename;

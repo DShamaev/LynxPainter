@@ -20,6 +20,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "LPToolCollCell.h"
 #import "LPWorkAreaView.h"
+#import "LPHistoryManager.h"
 
 @interface LPOpenedProjectViewController (){
     float tempScale;
@@ -196,11 +197,8 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)closeProject:(id)sender {
-    UIButton* but = (UIButton*)sender;
-    LPCloseProjectDialogViewController* cpdvc = [[LPCloseProjectDialogViewController alloc] initWithNibName:@"LPCloseProjectDialogViewController" bundle:nil];
-    cpdvc.delegate = self;
-    self.pc = [[UIPopoverController alloc] initWithContentViewController:cpdvc];
-    [self.pc presentPopoverFromRect:but.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+    menuActionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Cancel" otherButtonTitles:@"Save As", @"Gallery",@"Close", nil];
+    [menuActionSheet showInView:self.view];
     //[self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -228,7 +226,8 @@
     [self.rootLayer.layer renderInContext:UIGraphicsGetCurrentContext()];
     NSData* content = UIImageJPEGRepresentation(UIGraphicsGetImageFromCurrentImageContext(), 1.);
     UIGraphicsEndImageContext();
-    [content writeToFile:[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg",filename]] atomically:YES];
+    currFileName = [NSString stringWithFormat:@"%@.jpg",filename];
+    [content writeToFile:[documentsDirectory stringByAppendingPathComponent:currFileName] atomically:YES];
 }
 
 -(void)saveProjectAsPNGImage:(NSString*)filename{
@@ -238,7 +237,8 @@
     [self.rootLayer.layer renderInContext:UIGraphicsGetCurrentContext()];
     NSData* content = UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
     UIGraphicsEndImageContext();
-    [content writeToFile:[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",filename]] atomically:YES];
+    currFileName = [NSString stringWithFormat:@"%@.png",filename];
+    [content writeToFile:[documentsDirectory stringByAppendingPathComponent:currFileName] atomically:YES];
 }
 
 -(void)saveImageAsLProjectFile:(NSString*)filename{
@@ -277,7 +277,8 @@
         fileData=[fileData stringByAppendingString:@"</LPFileLayer>"];
     }
     fileData=[fileData stringByAppendingString:@"</LPFileRoot>"];
-    [fileData writeToFile:[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"Projects/%@.lpf",filename]] atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    currFileName = [NSString stringWithFormat:@"Projects/%@.lpf",filename];
+    [fileData writeToFile:[documentsDirectory stringByAppendingPathComponent:currFileName] atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
 - (IBAction)handlePinch:(UIGestureRecognizer *)sender {
@@ -356,6 +357,23 @@
                 default:
                     break;
             }
+    }
+    if (actionSheet == menuActionSheet) {
+        LPCloseProjectDialogViewController* cpdvc;
+        switch (buttonIndex) {
+            case 1:
+                cpdvc = [[LPCloseProjectDialogViewController alloc] initWithNibName:@"LPCloseProjectDialogViewController" bundle:nil];
+                cpdvc.delegate = self;
+                self.pc = [[UIPopoverController alloc] initWithContentViewController:cpdvc];
+                [self.pc presentPopoverFromRect:self.saveButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+                break;
+            case 2:
+                [self.navigationController popViewControllerAnimated:YES];
+            case 3:
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            default:
+                break;
+        }
     }
 }
 
@@ -448,10 +466,37 @@
     [self hideLayerTansformButtons];
 }
 
+- (IBAction)openGalleryBtnClicked:(id)sender {
+    [[LPSmartLayerManager sharedManager] clearManagerData];
+    [[LPHistoryManager sharedManager] clearHistoryData];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)saveBtnClicked:(id)sender {
+    if (currFileName != nil) {
+        NSString* type = [currFileName substringFromIndex:[currFileName length]-3];
+        if ([@"jpg" isEqualToString:type]) {
+            [self saveProjectAsJPEGImage:[currFileName stringByReplacingOccurrencesOfString:type withString:@""]];
+        }
+        if ([@"png" isEqualToString:type]) {
+            [self saveProjectAsPNGImage:[currFileName stringByReplacingOccurrencesOfString:type withString:@""]];
+        }
+        if ([@"lpf" isEqualToString:type]) {
+            [self saveImageAsLProjectFile:[currFileName stringByReplacingOccurrencesOfString:type withString:@""]];
+        }
+    }else{
+        LPCloseProjectDialogViewController* cpdvc = [[LPCloseProjectDialogViewController alloc] initWithNibName:@"LPCloseProjectDialogViewController" bundle:nil];
+        cpdvc.delegate = self;
+        self.pc = [[UIPopoverController alloc] initWithContentViewController:cpdvc];
+        [self.pc presentPopoverFromRect:self.saveButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+    }
+}
+
 #pragma mark - UICollectionViewDelegate delegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if(CATransform3DEqualToTransform([LPSmartLayerManager sharedManager].currLayer.transform, CATransform3DIdentity)){
+        [self closeAllTabs];
         currToolIndex = indexPath.row;
         self.workAreaSV.scrollEnabled = NO;
         switch (indexPath.row) {

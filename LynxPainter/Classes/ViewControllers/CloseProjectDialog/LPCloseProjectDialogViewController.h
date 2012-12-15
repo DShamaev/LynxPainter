@@ -16,6 +16,5 @@
 @property (strong, nonatomic) IBOutlet UISegmentedControl *formatSC;
 - (IBAction)cancelBtnClicked:(id)sender;
 - (IBAction)saveBtnClicked:(id)sender;
-- (IBAction)dontsaveBtnClicked:(id)sender;
 
 @end
