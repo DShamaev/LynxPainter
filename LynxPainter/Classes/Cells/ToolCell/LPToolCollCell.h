@@ -10,5 +10,5 @@
 
 @interface LPToolCollCell : UICollectionViewCell
 @property (strong, nonatomic) IBOutlet UIImageView *toolImage;
-
+- (void)setSelectedTool:(BOOL)selected;
 @end

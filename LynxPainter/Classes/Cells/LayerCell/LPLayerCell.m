@@ -33,20 +33,23 @@
 
 - (IBAction)changeVisBtnClicked:(id)sender {
     if(self.delegate && [self.delegate respondsToSelector:@selector(changeLayerVisibilityWithIndex:andValue:)]){
-        [self.delegate changeLayerVisibilityWithIndex:self.idx andValue:[self.smVisibilityButton.titleLabel.text isEqualToString:@"X"] ? YES : NO];
+        [self.delegate changeLayerVisibilityWithIndex:self.idx andValue:self.smVisibilityButton.tag ? 0 : 1];
     }
 }
 
 - (void)setLayer:(LPSmartLayer*)layer{
     [self.smLayerNameLabel setText:layer.smName];
     if(layer.hidden){
-        [self.smVisibilityButton setTitle:@"X" forState:UIControlStateNormal];
+        [self.smVisibilityButton setImage:[UIImage imageNamed:@"layer_unvisible_icon.png"] forState:UIControlStateNormal];
+        [self.smVisibilityButton setTag:0];
     }else{
-        [self.smVisibilityButton setTitle:@"V" forState:UIControlStateNormal];
+        [self.smVisibilityButton setImage:[UIImage imageNamed:@"layer_visible_icon.png"] forState:UIControlStateNormal];
+        [self.smVisibilityButton setTag:1];
     }
 }
 
 - (void)fillLayerPreview:(UIImage*)image{
+    [self.smLayerPreview setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"checkers.jpeg"]]];
     self.smLayerPreview.layer.borderColor = [UIColor blackColor].CGColor;
     self.smLayerPreview.layer.borderWidth = 1;
     if (image != nil) {

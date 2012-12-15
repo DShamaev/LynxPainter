@@ -208,8 +208,9 @@
             LPSmartLayerDelegate* del = [LPSmartLayerManager sharedManager].currLayer.smCurrSLayer.delegate;
             del.mode = 0;
             //del.signPath = signPath;
-            [ppointsArray addObject:[NSValue valueWithCGPoint:p]];
-            [del.pathPoints addObjectsFromArray:ppointsArray];
+            [del.pathPoints removeAllObjects];
+            [del.pathPoints addObject:[NSValue valueWithCGPoint:self.startPoint]];
+            [del.pathPoints addObject:[NSValue valueWithCGPoint:p]];
             del.currentColor = [LPSmartLayerManager sharedManager].currLayer.smColor;
             del.currDrawSize = [LPSmartLayerManager sharedManager].currLayer.smLineWidth;
             [[LPSmartLayerManager sharedManager].currLayer.smCurrSLayer setNeedsDisplay];
