@@ -104,7 +104,7 @@
     lv = dmvc.view;
     lv.hidden = YES;
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[lv(320)]|" options:NSLayoutFormatAlignAllRight metrics:nil views:NSDictionaryOfVariableBindings(lv)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-500-[lv(360)]" options:NSLayoutFormatAlignAllLeft metrics:nil views:NSDictionaryOfVariableBindings(lv)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-500-[lv(240)]" options:NSLayoutFormatAlignAllLeft metrics:nil views:NSDictionaryOfVariableBindings(lv)]];
     [self changeVC:dmvc withButton:self.toolsButton withState:!dmvc.view.hidden withAnimation:NO];
 }
 
@@ -451,6 +451,7 @@
 #pragma mark - UICollectionViewDelegate delegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [self closeAllTabs];
     self.workAreaSV.scrollEnabled = NO;
     switch (indexPath.row) {
         case 0:

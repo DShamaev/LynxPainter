@@ -40,26 +40,6 @@
     self.valueSlider.value = (int)(brightness*100);
     self.contentSizeForViewInPopover = self.view.bounds.size;
     self.brsizeTF.text = [NSString stringWithFormat:@"%d",(int)([LPSmartLayerManager sharedManager].currLayer.smLineWidth*self.delegate.currScale)];
-    switch ([LPSmartLayerManager sharedManager].rootView.currMode) {
-        case WADBrush:
-            self.toolsSC.selectedSegmentIndex=0;
-            break;
-        case WADRect:
-            self.toolsSC.selectedSegmentIndex=1;
-            break;
-        case WADEllipse:
-            self.toolsSC.selectedSegmentIndex=2;
-            break;
-        case WADLine:
-            self.toolsSC.selectedSegmentIndex=3;
-            break;
-        case WADEraser:
-            self.toolsSC.selectedSegmentIndex=4;
-            break;
-            
-        default:
-            break;
-    }
     
     self.currColorView.layer.borderColor = [UIColor blackColor].CGColor;
     self.currColorView.layer.borderWidth = 1;
@@ -127,24 +107,6 @@
 - (IBAction)valueValueChanged:(id)sender {
     [LPSmartLayerManager sharedManager].currLayer.smColor = [UIColor colorWithHue:self.hueSlider.value/360 saturation:self.saturationSlider.value/100 brightness:self.valueSlider.value/100 alpha:1.0];
     [self notifyAboutColorChange];
-}
-
-- (IBAction)toolChanged:(id)sender {
-    if(self.toolsSC.selectedSegmentIndex == 0){
-        [LPSmartLayerManager sharedManager].rootView.currMode = WADBrush;        
-    }
-    if(self.toolsSC.selectedSegmentIndex == 1){
-        [LPSmartLayerManager sharedManager].rootView.currMode = WADRect;
-    }
-    if(self.toolsSC.selectedSegmentIndex == 2){
-        [LPSmartLayerManager sharedManager].rootView.currMode = WADEllipse;
-    }
-    if(self.toolsSC.selectedSegmentIndex == 3){
-        [LPSmartLayerManager sharedManager].rootView.currMode = WADLine;
-    }
-    if(self.toolsSC.selectedSegmentIndex == 4){
-        [LPSmartLayerManager sharedManager].rootView.currMode = WADEraser;
-    }
 }
 
 - (void) notifyAboutColorChange{
