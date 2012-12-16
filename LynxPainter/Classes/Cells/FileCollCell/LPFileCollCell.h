@@ -21,6 +21,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *fileNameLabel;
 @property (strong, nonatomic) id<LPFileCollCellDelegate> delegate;
 @property (strong, nonatomic) NSIndexPath* idp;
-- (void)fillCellWithName:(NSString*)name andImage:(UIImage*)image;
+@property (strong, nonatomic) IBOutlet UIButton *trashButton;
+- (void)fillCellWithName:(NSString*)name andImage:(UIImage*)image withTrashVis:(BOOL)trVis;
 - (IBAction)deleteFile:(id)sender;
 @end

@@ -44,7 +44,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     if(self.of)
-        [self openProject:self.of];
+        [self openProject:self.of withMode:YES];
     [self updateFileSectionArray];
 }
 
@@ -151,7 +151,7 @@
     LPFileCollCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"fileCollCell" forIndexPath:indexPath];
     NSMutableArray* ca = [self.fileSectionArray objectAtIndex:indexPath.section];
     LPFileInfo* fi = [ca objectAtIndex:indexPath.row];
-    [cell fillCellWithName:fi.fiName andImage:[UIImage imageWithContentsOfFile:fi.fiURL]];
+    [cell fillCellWithName:fi.fiName andImage:[UIImage imageWithContentsOfFile:fi.fiURL] withTrashVis:!(indexPath.section == 0 && indexPath.row == 0)];
     cell.delegate = self;
     cell.idp = indexPath;
     return cell;
