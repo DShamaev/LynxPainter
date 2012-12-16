@@ -374,8 +374,10 @@
                 [self.pc presentPopoverFromRect:self.saveButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
                 break;
             case 2:
+                [self clearManagerData];
                 [self.navigationController popViewControllerAnimated:YES];
             case 3:
+                [self clearManagerData];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             default:
                 break;
@@ -473,9 +475,13 @@
 }
 
 - (IBAction)openGalleryBtnClicked:(id)sender {
+    [self clearManagerData];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)clearManagerData{
     [[LPSmartLayerManager sharedManager] clearManagerData];
     [[LPHistoryManager sharedManager] clearHistoryData];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)saveBtnClicked:(id)sender {
