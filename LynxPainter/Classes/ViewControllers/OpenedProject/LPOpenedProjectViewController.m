@@ -214,6 +214,9 @@
 }
 
 - (IBAction)showDrawingManager:(id)sender {
+    if (dmvc.view.hidden) {
+        [dmvc updateData];
+    }
     [self changeVC:dmvc withButton:self.toolsButton withState:dmvc.view.hidden withAnimation:YES];
     [self changeVC:lmvc withButton:self.layersButton withState:NO withAnimation:YES];
 }

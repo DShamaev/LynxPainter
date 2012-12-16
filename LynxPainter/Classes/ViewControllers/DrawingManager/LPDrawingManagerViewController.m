@@ -30,6 +30,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.contentSizeForViewInPopover = self.view.bounds.size;
+    
+    self.currColorView.layer.borderColor = [UIColor blackColor].CGColor;
+    self.currColorView.layer.borderWidth = 1;
+    // Do any additional setup after loading the view from its nib.
+    [self updateData];
+}
+
+-(void)updateData{
     CGFloat hue = 0.0, saturation = 0.0, brightness = 0.0, alpha = 0.0;
     [[LPSmartLayerManager sharedManager].currLayer.smColor getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
     [self.hueLabel setText:[NSString stringWithFormat:@"%d",(int)(hue*360)]];
@@ -38,12 +47,7 @@
     self.saturationSlider.value = (int)(saturation*100);
     [self.valueLabel setText:[NSString stringWithFormat:@"%d",(int)(brightness*100)]];
     self.valueSlider.value = (int)(brightness*100);
-    self.contentSizeForViewInPopover = self.view.bounds.size;
     self.brsizeTF.text = [NSString stringWithFormat:@"%d",(int)([LPSmartLayerManager sharedManager].currLayer.smLineWidth*self.delegate.currScale)];
-    
-    self.currColorView.layer.borderColor = [UIColor blackColor].CGColor;
-    self.currColorView.layer.borderWidth = 1;
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning

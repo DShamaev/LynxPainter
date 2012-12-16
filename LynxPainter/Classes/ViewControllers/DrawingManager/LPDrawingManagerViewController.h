@@ -29,5 +29,6 @@
 - (IBAction)hueValueChanged:(id)sender;
 - (IBAction)saturationValueChanged:(id)sender;
 - (IBAction)valueValueChanged:(id)sender;
+- (void)updateData;
 
 @end
