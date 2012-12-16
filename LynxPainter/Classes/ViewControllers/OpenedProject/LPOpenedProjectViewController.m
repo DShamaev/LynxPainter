@@ -199,7 +199,8 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)closeProject:(id)sender {
-    menuActionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Cancel" otherButtonTitles:@"Save As", @"Gallery",@"Close", nil];
+    menuActionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Save As" otherButtonTitles:@"Gallery", @"Close Project",@"Cancel", nil];
+    menuActionSheet.destructiveButtonIndex = 3;
     [menuActionSheet showInView:self.view];
     //[self.navigationController popToRootViewControllerAnimated:YES];
 }
@@ -367,16 +368,16 @@
     if (actionSheet == menuActionSheet) {
         LPCloseProjectDialogViewController* cpdvc;
         switch (buttonIndex) {
-            case 1:
+            case 0:
                 cpdvc = [[LPCloseProjectDialogViewController alloc] initWithNibName:@"LPCloseProjectDialogViewController" bundle:nil];
                 cpdvc.delegate = self;
                 self.pc = [[UIPopoverController alloc] initWithContentViewController:cpdvc];
                 [self.pc presentPopoverFromRect:self.saveButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
                 break;
-            case 2:
+            case 1:
                 [self clearManagerData];
                 [self.navigationController popViewControllerAnimated:YES];
-            case 3:
+            case 2:
                 [self clearManagerData];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             default:
