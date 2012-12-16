@@ -43,8 +43,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    if(self.of)
+    if(self.of){
         [self openProject:self.of withMode:YES];
+        self.of = nil;
+    }
     [self updateFileSectionArray];
 }
 
