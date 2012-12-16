@@ -211,7 +211,7 @@
 		E101C3F4166CFBA200A9F0E2 /* LPHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LPHomeViewController.xib; path = Classes/ViewControllers/Home/LPHomeViewController.xib; sourceTree = "<group>"; };
 		E112F2E0165A7EEE0005F559 /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBXML.h; path = Classes/External/TBXML/TBXML.h; sourceTree = "<group>"; };
 		E112F2E1165A7EEE0005F559 /* TBXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBXML.m; path = Classes/External/TBXML/TBXML.m; sourceTree = "<group>"; };
-		E125784C1642686C00119C0E /* LynxPainter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LynxPainter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E125784C1642686C00119C0E /* LynxPaint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LynxPaint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E12578501642686C00119C0E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E12578521642686C00119C0E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E12578541642686C00119C0E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -526,7 +526,7 @@
 		E125784D1642686C00119C0E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E125784C1642686C00119C0E /* LynxPainter.app */,
+				E125784C1642686C00119C0E /* LynxPaint.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -702,7 +702,7 @@
 			);
 			name = LynxPainter;
 			productName = LynxPainter;
-			productReference = E125784C1642686C00119C0E /* LynxPainter.app */;
+			productReference = E125784C1642686C00119C0E /* LynxPaint.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -921,7 +921,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LynxPainter/LynxPainter-Prefix.pch";
 				INFOPLIST_FILE = "LynxPainter/LynxPainter-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LynxPaint;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -934,7 +934,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LynxPainter/LynxPainter-Prefix.pch";
 				INFOPLIST_FILE = "LynxPainter/LynxPainter-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LynxPaint;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
