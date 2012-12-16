@@ -151,8 +151,10 @@
     if(self.openedFile){
         if(self.openedFileModeIsProject)
             [[LPSmartLayerManager sharedManager] readProjectFile:self.openedFile];
-        else
+        else{
             [[LPSmartLayerManager sharedManager] readImageFile:self.openedFile];
+            [[LPSmartLayerManager sharedManager] addNewLayer];
+        }
     }else{
         LPSmartLayer* nl = [[LPSmartLayerManager sharedManager] addNewLayer];
         [[LPSmartLayerManager sharedManager] setCurrLayer:nl];
@@ -223,22 +225,26 @@
     NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [homeDomains objectAtIndex:0];
     UIGraphicsBeginImageContext(self.rootLayer.bounds.size);
-    [self.rootLayer.layer renderInContext:UIGraphicsGetCurrentContext()];
+    self.rootLayer.backgroundColor = [UIColor whiteColor];
+    [self.rootLayer.layer renderInContext:UIGraphicsGetCurrentContext()];    
     NSData* content = UIImageJPEGRepresentation(UIGraphicsGetImageFromCurrentImageContext(), 1.);
+    self.rootLayer.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"checkers.jpeg"]];
     UIGraphicsEndImageContext();
-    currFileName = [NSString stringWithFormat:@"%@.jpg",filename];
-    [content writeToFile:[documentsDirectory stringByAppendingPathComponent:currFileName] atomically:YES];
+    self.currFileName = [NSString stringWithFormat:@"%@.jpg",filename];
+    [content writeToFile:[documentsDirectory stringByAppendingPathComponent:self.currFileName] atomically:YES];
 }
 
 -(void)saveProjectAsPNGImage:(NSString*)filename{
     NSArray *homeDomains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [homeDomains objectAtIndex:0];
     UIGraphicsBeginImageContext(self.rootLayer.bounds.size);
-    [self.rootLayer.layer renderInContext:UIGraphicsGetCurrentContext()];
+    self.rootLayer.backgroundColor = [UIColor clearColor];
+    [self.rootLayer.layer renderInContext:UIGraphicsGetCurrentContext()];    
     NSData* content = UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
+    self.rootLayer.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"checkers.jpeg"]];
     UIGraphicsEndImageContext();
-    currFileName = [NSString stringWithFormat:@"%@.png",filename];
-    [content writeToFile:[documentsDirectory stringByAppendingPathComponent:currFileName] atomically:YES];
+    self.currFileName = [NSString stringWithFormat:@"%@.png",filename];
+    [content writeToFile:[documentsDirectory stringByAppendingPathComponent:self.currFileName] atomically:YES];
 }
 
 -(void)saveImageAsLProjectFile:(NSString*)filename{
@@ -277,8 +283,8 @@
         fileData=[fileData stringByAppendingString:@"</LPFileLayer>"];
     }
     fileData=[fileData stringByAppendingString:@"</LPFileRoot>"];
-    currFileName = [NSString stringWithFormat:@"Projects/%@.lpf",filename];
-    [fileData writeToFile:[documentsDirectory stringByAppendingPathComponent:currFileName] atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    self.currFileName = [NSString stringWithFormat:@"Projects/%@.lpf",filename];
+    [fileData writeToFile:[documentsDirectory stringByAppendingPathComponent:self.currFileName] atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
 - (IBAction)handlePinch:(UIGestureRecognizer *)sender {
@@ -473,16 +479,16 @@
 }
 
 - (IBAction)saveBtnClicked:(id)sender {
-    if (currFileName != nil) {
-        NSString* type = [currFileName substringFromIndex:[currFileName length]-3];
-        if ([@"jpg" isEqualToString:type]) {
-            [self saveProjectAsJPEGImage:[currFileName stringByReplacingOccurrencesOfString:type withString:@""]];
+    if (self.currFileName != nil) {
+        NSString* type = [self.currFileName substringFromIndex:[self.currFileName length]-4];
+        if ([@".jpg" isEqualToString:type]) {
+            [self saveProjectAsJPEGImage:[self.currFileName stringByReplacingOccurrencesOfString:type withString:@""]];
         }
-        if ([@"png" isEqualToString:type]) {
-            [self saveProjectAsPNGImage:[currFileName stringByReplacingOccurrencesOfString:type withString:@""]];
+        if ([@".png" isEqualToString:type]) {
+            [self saveProjectAsPNGImage:[self.currFileName stringByReplacingOccurrencesOfString:type withString:@""]];
         }
-        if ([@"lpf" isEqualToString:type]) {
-            [self saveImageAsLProjectFile:[currFileName stringByReplacingOccurrencesOfString:type withString:@""]];
+        if ([@".lpf" isEqualToString:type]) {
+            [self saveImageAsLProjectFile:[self.currFileName stringByReplacingOccurrencesOfString:type withString:@""]];
         }
     }else{
         LPCloseProjectDialogViewController* cpdvc = [[LPCloseProjectDialogViewController alloc] initWithNibName:@"LPCloseProjectDialogViewController" bundle:nil];

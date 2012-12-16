@@ -78,6 +78,9 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     self.startPoint = [self pointFromTouches:touches];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(closeAllTabs)]) {
+        [self.delegate closeAllTabs];
+    }
     if(self.isDrawable && ![LPSmartLayerManager sharedManager].currLayer.smReadOnly){
         isMaskDrawn = NO;
         if(self.currMode == WADBrush || self.currMode == WADLine /* || self.currMode == WADEraser */){

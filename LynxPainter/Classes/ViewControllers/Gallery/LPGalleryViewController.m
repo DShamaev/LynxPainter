@@ -139,6 +139,9 @@
     LPOpenedProjectViewController* projectVC = [[LPOpenedProjectViewController alloc] initWithNibName:@"LPOpenedProjectViewController" bundle:nil];
     projectVC.openedFile = fi;
     projectVC.openedFileModeIsProject = isProject;
+    if (!isProject) {
+        projectVC.currFileName = fi.fiName;
+    }
     [self.navigationController pushViewController:projectVC animated:YES];
 }
 

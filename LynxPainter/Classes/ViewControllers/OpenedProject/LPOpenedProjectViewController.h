@@ -18,7 +18,6 @@
     LPDrawingManagerViewController* dmvc;
     NSMutableArray* toolsImageArray;
     int currToolIndex;
-    NSString* currFileName;
     UIActionSheet* menuActionSheet;
 }
 @property (strong, nonatomic) UIPopoverController *imagePickerPopover;
@@ -38,6 +37,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *layersButton;
 @property (nonatomic) BOOL openedFileModeIsProject;
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
+@property (strong, nonatomic) NSString* currFileName;
 - (IBAction)closeProject:(id)sender;
 - (IBAction)showLayersManager:(id)sender;
 - (IBAction)showDrawingManager:(id)sender;

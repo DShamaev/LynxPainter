@@ -7,6 +7,7 @@
 //
 
 #import "LPFileCollCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation LPFileCollCell
 
@@ -20,8 +21,12 @@
 }
 
 - (void)fillCellWithName:(NSString*)name andImage:(UIImage*)image{
-    if(image)
+    if(image){
         [self.fileImageView setImage:image];
+    }else
+        [self.fileImageView setImage:[UIImage imageNamed:@"proj_icon.png"]];
+    self.fileImageView.layer.borderWidth = image!=nil ? 1 : 0;
+    self.fileImageView.layer.borderColor = [UIColor blackColor].CGColor;
     [self.fileNameLabel setText:name];
 }
 
